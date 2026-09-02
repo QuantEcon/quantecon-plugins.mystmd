@@ -23,7 +23,7 @@ the report theme,
 | Family | Bundle | Contents | Status |
 | --- | --- | --- | --- |
 | Data presentation | `datavis.mjs` | `stats`, `bar-list`, `stacked-bar`, `heatmap`, `data-table`, `chips`, `badges`, `delta-list` — data-presentation directives reading inline data or CSV files | planned first |
-| Repository metadata | `git-metadata.mjs` | per-page git history (last modified + changelog) | lives in the lecture theme today; the move is tracked in [quantecon-theme.mystmd#156](https://github.com/QuantEcon/quantecon-theme.mystmd/issues/156) |
+| Repository metadata | `git-metadata.mjs` | per-page git history (last modified + changelog) | lives in the lecture theme today; the move is tracked in [#11](https://github.com/QuantEcon/quantecon-plugins.mystmd/issues/11) |
 
 Domain-specific wrappers that apply a rubric to a particular dataset (for example the
 compliance ledger's `qe-*` directives) do **not** live here; they ship beside the theme
