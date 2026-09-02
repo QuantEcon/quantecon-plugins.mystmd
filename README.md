@@ -9,8 +9,13 @@ as engine tooling, in the same family as
 
 ## Status
 
-**Planning complete (2026-09-02); build not started.** Work hangs off this repository's
-`Project`-typed tracker issue (see Issues). The plan that created this repository is
+**Planning complete (2026-09-02); build not started.** Work hangs off the `Project`-typed
+tracker [#2](https://github.com/QuantEcon/quantecon-plugins.mystmd/issues/2); its sub-issues
+are the contract, the toolchain, the two directive groups and the first release. Whether the
+family is later extracted to a general project or proposed upstream is held in
+[#8](https://github.com/QuantEcon/quantecon-plugins.mystmd/issues/8). The first consumer is
+the report theme,
+[quantecon-theme-report.mystmd#2](https://github.com/QuantEcon/quantecon-theme-report.mystmd/issues/2). The plan that created this repository is
 [`PLAN.md` in the report theme's design handover](https://github.com/QuantEcon/quantecon-theme-report.mystmd/tree/main/docs/design-handoff-2026-09).
 
 ## Families
