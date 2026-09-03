@@ -4,9 +4,9 @@
  * It is deliberately not one of the eight contract primitives — those are
  * QuantEcon/quantecon-plugins.mystmd#5 and #6. Its job is to prove, through a real build,
  * that the pieces #4 delivers actually work in the engine rather than only in unit tests:
- * `:file:` resolution from a page at depth, the CSV reader, the mtime-and-size cache across
- * an incremental rebuild, deferred diagnostics reaching `--strict`, and the fact that a
- * bundled multi-file source tree loads at all.
+ * `:file:` resolution from a page at depth, the CSV reader, the file cache, deferred
+ * diagnostics reaching `--strict` with a line number, and the fact that a bundled multi-file
+ * source tree loads at all.
  *
  * It is bundled by the tests exactly the way `datavis.mjs` is bundled for release, so a
  * regression in the bundle step fails here too.
@@ -14,7 +14,9 @@
 import { readCsv, requireColumns, typed } from '../../../src/lib/csv.mjs';
 import { fileCache } from '../../../src/lib/cache.mjs';
 import { resolveFile } from '../../../src/lib/project.mjs';
-import { defer, diagnosticsTransform, errorNode } from '../../../src/lib/report.mjs';
+import { defer, diagnosticsTransform, errorNode, locate, ruleId } from '../../../src/lib/report.mjs';
+
+const PRIMITIVE = 'probe';
 
 const probeDirective = {
   name: 'probe-table',
@@ -29,7 +31,7 @@ const probeDirective = {
     try {
       resolved = resolveFile(file, vfile?.path);
     } catch (error) {
-      return [errorNode('probe', error.message)];
+      return [errorNode(PRIMITIVE, error.message, { data })];
     }
 
     let table;
@@ -40,15 +42,16 @@ const probeDirective = {
         return typed(parsed.rows, ['reach']);
       });
     } catch (error) {
-      return [errorNode('probe', `cannot read ${resolved.relative}: ${error.message}`)];
+      return [errorNode(PRIMITIVE, `cannot read ${resolved.relative}: ${error.message}`, { data })];
     }
 
+    // The cached rows are frozen; build fresh objects rather than reusing them.
     const rows = table.map((row) => ({ rule: row.rule, reach: row.reach }));
     const node = {
       type: 'div',
       class: 'qe-dv qe-dv-probe',
       contract: '1.0',
-      primitive: 'probe',
+      primitive: PRIMITIVE,
       source: resolved.relative,
       label: data.options?.label ?? null,
       rows,
@@ -62,10 +65,14 @@ const probeDirective = {
         },
       ],
     };
+    // Carry the directive's own position so any diagnostic below names a line.
+    locate(node, data);
     // A row with no reach is a hole in the data, not a zero: warn without failing the build.
     const holes = rows.filter((row) => row.reach === null).map((row) => row.rule);
     if (holes.length > 0) {
-      defer(node, 'warn', `no reach recorded for ${holes.join(', ')} in ${resolved.relative}`);
+      defer(node, 'warn', `no reach recorded for ${holes.join(', ')} in ${resolved.relative}`, {
+        ruleId: ruleId(PRIMITIVE),
+      });
     }
     return [node];
   },
@@ -77,6 +84,7 @@ function headerRow(names) {
     children: names.map((name) => ({
       type: 'tableCell',
       header: true,
+      align: 'left',
       children: [{ type: 'text', value: name }],
     })),
   };
@@ -86,7 +94,7 @@ function bodyRow(rule, reach) {
   return {
     type: 'tableRow',
     children: [
-      { type: 'tableCell', children: [{ type: 'inlineCode', value: String(rule) }] },
+      { type: 'tableCell', align: 'left', children: [{ type: 'inlineCode', value: String(rule) }] },
       {
         type: 'tableCell',
         align: 'right',

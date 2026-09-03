@@ -17,6 +17,9 @@ jobs:
   test:
     name: Unit and plugin tests
     runs-on: ubuntu-latest
+    # The suite takes well under a minute; a registry outage during the mystmd install
+    # should not hold the branch's concurrency group for GitHub's six-hour default.
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -29,8 +32,14 @@ jobs:
         run: npm ci
 
       # The plugin tests drive the real myst CLI, which is what makes them worth running:
-      # they assert the AST mystmd actually emits, not what we believe it emits. The version
-      # is pinned to the engine the themes build against; bump it deliberately.
+      # they assert the AST mystmd actually emits, not what we believe it emits.
+      #
+      # What is installed here is UPSTREAM mystmd 1.10.1 from the npm registry. The themes
+      # are developed against QuantEcon's fork of that same version (qe-v10), which has no
+      # published package or release asset to install from. The lecture theme's own CI has
+      # the same gap and installs upstream unpinned; this one at least pins the version the
+      # fork tracks. A fork-only change to plugin loading or --strict accounting would
+      # therefore pass here and differ locally, or the reverse. Bump the pin deliberately.
       - name: Install mystmd
         run: npm install --no-save mystmd@1.10.1
 

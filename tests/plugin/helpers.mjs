@@ -2,13 +2,16 @@
  * Shared machinery for the end-to-end plugin tests: bundle a plugin, lay out a throwaway
  * MyST project, run the real `myst` CLI over it and read back the page JSON.
  *
- * Two choices are worth stating, because they are what keep this suite fast and offline:
+ * Two choices are worth stating, because they are what keep this suite fast and free of
+ * network dependencies:
  *
  *   - The fixture project points `site.template` at `tests/fixtures/template`, a directory
  *     holding nothing but a `template.yml`. `myst build --site` requires a site template to
  *     resolve, and the default resolves over the network from the template registry. A local
  *     stand-in removes that dependency; the tests assert on `_build/site/content/*.json`,
- *     which the engine writes regardless of what the template renders.
+ *     which the engine writes regardless of what the template renders. (The CLI still makes
+ *     one outbound call per run, an update check, and tolerates its failure — so the suite
+ *     passes with the network denied but is not silent on it.)
  *   - `--strict` accounting lives in the site build path (`processSite`), so a test that
  *     asserts a build fails must use `--site`, not `--md` or `--tex`.
  */
@@ -27,7 +30,7 @@ export const testsRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url
 export const TEMPLATE = path.join(testsRoot, 'fixtures', 'template');
 export const BUILD_TIMEOUT_MS = 180_000;
 
-/** Whether the real `myst` CLI is on PATH; the plugin tests skip without it. */
+/** Whether the real `myst` CLI is on PATH. */
 export function mystAvailable() {
   try {
     execFileSync('myst', ['--version'], { encoding: 'utf8', timeout: 60_000 });
@@ -37,9 +40,21 @@ export function mystAvailable() {
   }
 }
 
+/**
+ * The skip reason for the plugin tests when `myst` is missing — or, on CI, a hard failure.
+ *
+ * A skipped `describe` block folds a dozen tests into one "skipped" line and exits 0, which
+ * is how a runner with no `myst` on it turns a red suite green. Locally that is a
+ * convenience; on CI it would mean the plugin tests had silently stopped running, so there
+ * the absence of the CLI is an error thrown at import time, which no test can skip past.
+ */
 export const skipWithoutMyst = mystAvailable()
   ? false
   : 'the myst CLI is not on PATH (install mystmd to run the plugin tests)';
+
+if (skipWithoutMyst && process.env.CI) {
+  throw new Error(`${skipWithoutMyst}; on CI that is a failure, not a skip`);
+}
 
 /** Make a throwaway directory that the caller is responsible for removing. */
 export function tempDir(prefix) {
@@ -61,11 +76,14 @@ export async function bundleTo(entry, name, outdir) {
   return outfile;
 }
 
+/** A YAML scalar that survives any path: JSON string syntax is valid YAML double-quoting. */
+const yaml = (value) => JSON.stringify(String(value));
+
 /**
  * Write a fixture project.
  *
  * @param {string} dir
- * @param {{plugins?: string[], files?: Record<string, string>, toc?: string[], strictTemplate?: boolean}} spec
+ * @param {{plugins?: string[], files?: Record<string, string>, toc?: string[]}} spec
  *   `files` maps project-relative paths to contents; directories are created as needed.
  *   `toc` defaults to every `.md` file in `files`, in insertion order.
  */
@@ -77,18 +95,20 @@ export function writeProject(dir, spec) {
     fs.writeFileSync(target, contents);
   }
   const toc = spec.toc ?? Object.keys(files).filter((name) => name.endsWith('.md'));
+  // Every path is quoted: a temp directory on a CI runner may contain a space, a colon or a
+  // hash, any of which turns an unquoted YAML value into something else.
   const lines = [
     'version: 1',
     'project:',
     '  title: Plugin Fixture',
     ...(spec.plugins?.length
-      ? ['  plugins:', ...spec.plugins.map((plugin) => `    - ${plugin}`)]
+      ? ['  plugins:', ...spec.plugins.map((plugin) => `    - ${yaml(plugin)}`)]
       : []),
     '  toc:',
-    ...toc.map((file) => `    - file: ${file}`),
+    ...toc.map((file) => `    - file: ${yaml(file)}`),
     'site:',
     '  title: Plugin Fixture',
-    `  template: ${TEMPLATE}`,
+    `  template: ${yaml(TEMPLATE)}`,
     '',
   ];
   fs.writeFileSync(path.join(dir, 'myst.yml'), lines.join('\n'));

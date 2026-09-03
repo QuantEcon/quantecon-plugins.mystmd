@@ -31,7 +31,7 @@ test('parses once and serves the cached value while the file is unchanged', () =
   assert.deepEqual(cache.stats, { size: 1, hits: 1, misses: 1 });
 });
 
-test('re-reads after the file changes, which is what myst start needs', () => {
+test('re-reads after the file changes, which is what a rebuild in one process needs', () => {
   const cache = new FileCache();
   let parses = 0;
   const parse = (text) => {
@@ -67,6 +67,20 @@ test('re-reads when the size changes even if the mtime does not', () => {
   assert.equal(parses, 2);
 });
 
+test('the cached value is frozen, so a caller cannot quietly re-sort it for everyone else', () => {
+  const cache = new FileCache();
+  const rows = cache.read(file, () => [{ rule: 'b', reach: 1 }, { rule: 'a', reach: 2 }]);
+  assert.ok(Object.isFrozen(rows));
+  assert.ok(Object.isFrozen(rows[0]));
+  assert.throws(() => rows.sort((x, y) => x.rule.localeCompare(y.rule)), TypeError);
+  assert.throws(() => {
+    rows[0].reach = 99;
+  }, TypeError);
+  // Every reader gets the same object, and it is still what was parsed.
+  assert.equal(cache.read(file, () => 'never called'), rows);
+  assert.equal(rows[0].rule, 'b');
+});
+
 test('propagates a read error and forgets the stale entry', () => {
   const cache = new FileCache();
   const gone = path.join(dir, 'gone.csv');
@@ -75,16 +89,6 @@ test('propagates a read error and forgets the stale entry', () => {
   fs.rmSync(gone);
   assert.throws(() => cache.read(gone, (text) => text.trim()), { code: 'ENOENT' });
   assert.equal(cache.stats.size, 0, 'the stale entry should not survive a failed read');
-});
-
-test('invalidate clears one path or the whole cache', () => {
-  const cache = new FileCache();
-  cache.read(file, (text) => text.trim());
-  cache.invalidate(file);
-  assert.equal(cache.stats.size, 0);
-  cache.read(file, (text) => text.trim());
-  cache.invalidate();
-  assert.equal(cache.stats.size, 0);
 });
 
 test('the shared instance is a FileCache', () => {

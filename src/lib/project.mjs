@@ -11,6 +11,13 @@
  * project root, not against the page, so that the same `:file: data/scores.csv` works from a
  * page at any depth in the tree. A path may also be written relative to the page by prefixing
  * it with `./` or `../`, which is the escape hatch for a page that keeps data beside itself.
+ *
+ * Either way the data has to live inside the project. That is a portability rule rather than
+ * a security boundary — an author who can write `:file:` can already read their own disk —
+ * but a project that reads outside its own tree does not build anywhere else, and the check
+ * that says so has to mean it. So containment is checked on real paths: a symlink inside the
+ * project that points outside it is refused, as is a page-relative path from a page that has
+ * no project above it at all.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,6 +27,9 @@ export const PROJECT_MARKER = 'myst.yml';
 
 /**
  * Find the MyST project root by walking up from a starting path.
+ *
+ * Where two projects nest, the nearer one wins, which is what a page in a sub-project means
+ * by "the project".
  *
  * @param {string} from a file or directory path inside the project
  * @returns {string|null} the absolute directory holding `myst.yml`, or `null` if there is none
@@ -50,14 +60,50 @@ export class ResolutionError extends Error {
 }
 
 /**
+ * The real path of the longest existing prefix of `target`, joined to the rest.
+ *
+ * `fs.realpathSync` throws on a path that does not exist yet, and a `:file:` target may not
+ * exist — that is the missing-CSV case the caller reports separately. So the walk goes up to
+ * the nearest ancestor that does exist, resolves that, and re-attaches the tail.
+ */
+function realpathLenient(target) {
+  let existing = target;
+  const tail = [];
+  for (;;) {
+    try {
+      return path.join(fs.realpathSync(existing), ...tail);
+    } catch {
+      const parent = path.dirname(existing);
+      if (parent === existing) return target;
+      tail.unshift(path.basename(existing));
+      existing = parent;
+    }
+  }
+}
+
+/** Whether `child` is `parent` or inside it, comparing whole path segments. */
+function isInside(parent, child) {
+  const relative = path.relative(parent, child);
+  return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
+}
+
+/** A path relative to the root, always with forward slashes, whatever the platform. */
+function posixRelative(root, target) {
+  return path.relative(root, target).split(path.sep).join('/');
+}
+
+/**
  * Resolve a `:file:` option to an absolute path.
  *
  * @param {string} file the `:file:` value as written by the author
  * @param {string} pagePath the absolute path of the page being parsed (`vfile.path`)
  * @param {{root?: string, allowOutsideRoot?: boolean}} [options]
- *   `root` overrides project-root discovery. `allowOutsideRoot` (default false) permits a
- *   resolved path outside the project root; it exists for tests, not for content.
+ *   `root` overrides project-root discovery and must be an absolute path. `allowOutsideRoot`
+ *   (default false) permits a resolved path outside the project root; it exists for tests,
+ *   not for content.
  * @returns {{path: string, root: string|null, relative: string}}
+ *   `path` is the OS path to read. `relative` is the path from the root with forward slashes,
+ *   so a node property built from it is the same on every platform.
  */
 export function resolveFile(file, pagePath, options = {}) {
   if (typeof file !== 'string' || file.trim() === '') {
@@ -70,9 +116,24 @@ export function resolveFile(file, pagePath, options = {}) {
     );
   }
 
-  const root = options.root ?? findProjectRoot(pagePath);
+  let root;
+  if (options.root !== undefined && options.root !== '') {
+    if (typeof options.root !== 'string' || !path.isAbsolute(options.root)) {
+      throw new ResolutionError(`a root override must be an absolute path, got ${JSON.stringify(options.root)}`);
+    }
+    root = options.root;
+  } else {
+    root = findProjectRoot(pagePath);
+  }
+
   // './x' and '../x' are explicitly page-relative; everything else is project-relative.
   const pageRelative = /^\.\.?[/\\]/.test(raw);
+
+  if (!root && !options.allowOutsideRoot) {
+    throw new ResolutionError(
+      `cannot resolve "${raw}": no ${PROJECT_MARKER} was found above ${pagePath ?? 'the page'}`,
+    );
+  }
 
   let base;
   if (pageRelative) {
@@ -94,8 +155,9 @@ export function resolveFile(file, pagePath, options = {}) {
   const resolved = path.resolve(base, raw);
 
   if (root && !options.allowOutsideRoot) {
-    const relative = path.relative(root, resolved);
-    if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    // Lexical first, so the message can quote the path the author wrote; then physical, so
+    // a symlink cannot make the lexical answer a lie.
+    if (!isInside(root, resolved) || !isInside(realpathLenient(root), realpathLenient(resolved))) {
       throw new ResolutionError(
         `"${raw}" resolves outside the project root ${root}; data must live inside the project`,
       );
@@ -105,6 +167,6 @@ export function resolveFile(file, pagePath, options = {}) {
   return {
     path: resolved,
     root: root ?? null,
-    relative: root ? path.relative(root, resolved) : resolved,
+    relative: root ? posixRelative(root, resolved) : resolved,
   };
 }

@@ -3,13 +3,14 @@
  *
  * The builders exist to make the contract's rules hard to break by accident, so most of
  * these tests are about what the builders REFUSE: an empty fallback, a ragged table, a
- * header cell outside row 0, a root-level label. Each refusal corresponds to a verified
- * engine behaviour documented in CONTRACT.md.
+ * header cell outside row 0, a root-level label, a props key that would overwrite a stamp.
+ * Each refusal corresponds to a verified engine behaviour or a schema rule.
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import {
+  ALIGNMENTS,
   CONTRACT_VERSION,
   FAMILY_TOKEN,
   NULL_DISPLAY,
@@ -19,6 +20,7 @@ import {
   code,
   display,
   div,
+  emphasis,
   fraction,
   link,
   list,
@@ -29,6 +31,7 @@ import {
   strong,
   table,
   text,
+  toneClass,
 } from '../../src/lib/nodes.mjs';
 
 test('normaliseClass puts the family and primitive tokens first', () => {
@@ -61,6 +64,12 @@ test('checkTone accepts the closed set and defaults to neutral', () => {
   assert.throws(() => checkTone('red', 'items[0].tone'), /items\[0\]\.tone/);
 });
 
+test('toneClass builds the token the schemas expect and refuses an unknown tone', () => {
+  assert.equal(toneClass('good'), 'qe-dv-tone-good');
+  assert.equal(toneClass(undefined), 'qe-dv-tone-neutral');
+  assert.throws(() => toneClass('danger'), RangeError);
+});
+
 test('root stamps the contract, the primitive and both class tokens', () => {
   const node = root('stats', {
     props: { stats: [{ label: 'Lectures', value: 68 }] },
@@ -71,14 +80,28 @@ test('root stamps the contract, the primitive and both class tokens', () => {
   assert.equal(node.contract, CONTRACT_VERSION);
   assert.equal(node.primitive, 'stats');
   assert.deepEqual(node.stats, [{ label: 'Lectures', value: 68 }]);
-  // children last, so the JSON reads properties-then-fallback.
-  assert.equal(Object.keys(node).at(-1), 'children');
+  assert.equal(node.position, undefined);
+});
+
+test('root forwards a source position so a deferred diagnostic can name a line', () => {
+  const position = { start: { line: 14, column: 1 }, end: { line: 18, column: 4 } };
+  const node = root('stats', { children: [paragraph('f')], position });
+  assert.deepEqual(node.position, position);
 });
 
 test('root refuses an empty fallback, which is the whole point of the contract', () => {
   assert.throws(() => root('stats', { children: [] }), /non-empty fallback/);
   assert.throws(() => root('stats', {}), /non-empty fallback/);
   assert.throws(() => root('stats', { children: 'nope' }), TypeError);
+});
+
+test('root refuses a props key that would overwrite a stamp', () => {
+  for (const key of ['type', 'class', 'contract', 'primitive', 'children']) {
+    assert.throws(
+      () => root('stats', { props: { [key]: 'x' }, children: [paragraph('f')] }),
+      new RegExp(`"${key}"`),
+    );
+  }
 });
 
 test('root refuses label, identifier and html_id, which {embed} would delete', () => {
@@ -110,6 +133,7 @@ test('inline builders coerce strings and numbers', () => {
   assert.deepEqual(text(42), { type: 'text', value: '42' });
   assert.deepEqual(code('w-01'), { type: 'inlineCode', value: 'w-01' });
   assert.deepEqual(strong('41'), { type: 'strong', children: [text('41')] });
+  assert.deepEqual(emphasis('proposed'), { type: 'emphasis', children: [text('proposed')] });
   assert.deepEqual(paragraph('hi'), { type: 'paragraph', children: [text('hi')] });
   assert.deepEqual(link('https://example.org', 'see'), {
     type: 'link',
@@ -117,6 +141,11 @@ test('inline builders coerce strings and numbers', () => {
     children: [text('see')],
   });
   assert.deepEqual(paragraph([text('a'), code('b')]).children.length, 2);
+});
+
+test('cell validates its alignment', () => {
+  for (const align of ALIGNMENTS) assert.equal(cell('x', { align }).align, align);
+  assert.throws(() => cell('x', { align: 'middle' }), RangeError);
 });
 
 test('table builds one header row and body rows, in that order', () => {
@@ -128,12 +157,19 @@ test('table builds one header row and body rows, in that order', () => {
   assert.ok(body.children.every((c) => c.header === undefined));
 });
 
-test('table applies per-column alignment to every row', () => {
-  const t = table(['Rule', 'Reach'], [[code('w-01'), '12']], { align: ['left', 'right'] });
-  for (const row of t.children) {
-    assert.equal(row.children[0].align, 'left');
-    assert.equal(row.children[1].align, 'right');
+test('table puts an align on every cell, defaulting to left, because the schemas require one', () => {
+  const t = table(['Rule', 'Reach'], [[code('w-01'), '12']]);
+  for (const r of t.children) for (const c of r.children) assert.equal(c.align, 'left');
+  const aligned = table(['Rule', 'Reach'], [[code('w-01'), '12']], { align: ['left', 'right'] });
+  for (const r of aligned.children) {
+    assert.equal(r.children[0].align, 'left');
+    assert.equal(r.children[1].align, 'right');
   }
+});
+
+test('table refuses an align list that does not fit the table', () => {
+  assert.throws(() => table(['a', 'b'], [], { align: ['left'] }), /align lists 1 columns/);
+  assert.throws(() => table(['a'], [], { align: ['middle'] }), RangeError);
 });
 
 test('table refuses a ragged row, which shifts every following cell in a typst export', () => {
@@ -149,10 +185,16 @@ test('table strips a header flag from a body cell, which would rule the LaTeX ta
   assert.equal(t.children[1].children[0].header, undefined);
 });
 
-test('table accepts prebuilt cells and keeps their content', () => {
-  const t = table([cell('Rule')], [[cell([strong('41'), text(' / 49')])]]);
-  assert.equal(t.children[0].children[0].header, true);
-  assert.equal(t.children[1].children[0].children.length, 2);
+test('table copies a ready-made cell, so one cell object can be reused across rows', () => {
+  const dash = cell('—');
+  const t = table(['a', 'b'], [[dash, dash], ['x', dash]], { align: ['left', 'right'] });
+  assert.equal(t.children[1].children[0].align, 'left');
+  assert.equal(t.children[1].children[1].align, 'right');
+  assert.notEqual(t.children[1].children[0], t.children[1].children[1]);
+  assert.equal(dash.align, undefined, 'the caller\'s object is untouched');
+  const header = cell('H', { header: true });
+  table([header], [[header]]);
+  assert.equal(header.header, true, 'the caller\'s header flag is untouched');
 });
 
 test('list builds a plain bullet list', () => {
@@ -173,8 +215,13 @@ test('display prints the em dash for an absent value', () => {
   assert.equal(display(0), '0', 'zero is a value, not an absence');
 });
 
-test('fraction renders a value over its denominator, or alone', () => {
+test('fraction renders a value over its denominator, with the display string when given', () => {
   assert.deepEqual(fraction(41, 49), [strong('41'), text(' / 49')]);
   assert.deepEqual(fraction(8), [strong('8')]);
-  assert.deepEqual(fraction(null, 49), [strong(NULL_DISPLAY), text(' / 49')]);
+  assert.deepEqual(fraction(9, 10, '9.0'), [strong('9.0'), text(' / 10')]);
+});
+
+test('fraction renders an absent value as a bare em dash, as the contract samples do', () => {
+  assert.deepEqual(fraction(null, 49), [text(NULL_DISPLAY)]);
+  assert.deepEqual(fraction(undefined), [text(NULL_DISPLAY)]);
 });

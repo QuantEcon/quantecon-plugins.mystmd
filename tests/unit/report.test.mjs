@@ -4,12 +4,15 @@ import { test } from 'node:test';
 
 import {
   DIAGNOSTICS_KEY,
+  RULE_ID_BASE,
   collectDiagnostics,
   defer,
   diagnosticsTransform,
   errorNode,
   fileError,
   fileWarn,
+  locate,
+  ruleId,
 } from '../../src/lib/report.mjs';
 
 /** The slice of the VFile API these helpers use, so the tests need no vfile dependency. */
@@ -41,6 +44,11 @@ test('fileWarn leaves the message non-fatal', () => {
   assert.equal(message.ruleId, undefined);
 });
 
+test('ruleId builds the exact string error_rules matches on', () => {
+  assert.equal(RULE_ID_BASE, 'qe-datavis');
+  assert.equal(ruleId('stats'), 'qe-datavis-stats');
+});
+
 test('defer attaches a diagnostic to the node and returns it', () => {
   const node = { type: 'div' };
   assert.equal(defer(node, 'error', 'boom'), node);
@@ -62,11 +70,23 @@ test('defer rejects a level outside the vocabulary', () => {
   assert.throws(() => defer({ type: 'div' }, 'fatal', 'boom'), TypeError);
 });
 
-test('errorNode is a readable admonition carrying its own diagnostic', () => {
-  const node = errorNode('stats', 'cannot read data/scores.csv');
+test('locate copies the authoring directive position onto the emitted node', () => {
+  const position = { start: { line: 14, column: 1 }, end: { line: 18, column: 4 } };
+  const node = { type: 'div' };
+  assert.equal(locate(node, { node: { position } }), node);
+  assert.deepEqual(node.position, position);
+  // Nothing to copy leaves the node alone.
+  assert.equal('position' in locate({ type: 'div' }, {}), false);
+  assert.equal('position' in locate({ type: 'div' }, undefined), false);
+});
+
+test('errorNode is a readable admonition carrying its own diagnostic and, when given, a line', () => {
+  const position = { start: { line: 3, column: 1 } };
+  const node = errorNode('stats', 'cannot read data/scores.csv', { data: { node: { position } } });
   assert.equal(node.type, 'admonition');
   assert.equal(node.kind, 'error');
   assert.match(node.class, /qe-dv-stats/);
+  assert.deepEqual(node.position, position);
   // The fallback must say something on the page, not just in the log.
   const text = JSON.stringify(node.children);
   assert.match(text, /cannot read data\/scores\.csv/);
@@ -96,7 +116,7 @@ test('collectDiagnostics tolerates a tree with no diagnostics or no children', (
   assert.deepEqual(collectDiagnostics({ type: 'root', children: [{ type: 'text', value: 'x' }] }), []);
 });
 
-test('the transform re-raises every deferred diagnostic at the right level', () => {
+test('the transform re-raises every deferred diagnostic at the right level, with its position', () => {
   const vfile = stubVFile();
   const tree = {
     type: 'root',
@@ -115,6 +135,37 @@ test('the transform re-raises every deferred diagnostic at the right level', () 
   assert.equal(error.ruleId, 'qe-datavis-stats');
   assert.deepEqual(error.node, { start: { line: 3, column: 1 } }, 'position is forwarded');
   assert.equal(warning.fatal, false);
+});
+
+test('the transform strips the payload after raising it, so it does not ship in the site JSON', () => {
+  const vfile = stubVFile();
+  const bare = defer({ type: 'div' }, 'error', 'x');
+  const shared = defer({ type: 'div', data: { keep: true } }, 'warn', 'y');
+  diagnosticsTransform.plugin()({ type: 'root', children: [bare, shared] }, vfile);
+  assert.equal('data' in bare, false, 'an empty data object is removed with the payload');
+  assert.deepEqual(shared.data, { keep: true }, 'other data on the node survives');
+});
+
+test('two copies of the transform on one pass raise each diagnostic once', () => {
+  // A project that loads the family twice gets two transform instances in two module
+  // scopes. The VFile is the one thing they share, so that is where the ledger lives.
+  const vfile = stubVFile();
+  const tree = { type: 'root', children: [defer({ type: 'div' }, 'error', 'once')] };
+  const first = diagnosticsTransform.plugin();
+  const second = diagnosticsTransform.plugin();
+  first(tree, vfile);
+  second(tree, vfile);
+  assert.equal(vfile.messages.length, 1);
+});
+
+test('a fresh pass raises again, because the ledger lives on the pass\'s VFile', () => {
+  const build = () => ({ type: 'root', children: [defer({ type: 'div' }, 'error', 'again')] });
+  const one = stubVFile();
+  const two = stubVFile();
+  diagnosticsTransform.plugin()(build(), one);
+  diagnosticsTransform.plugin()(build(), two);
+  assert.equal(one.messages.length, 1);
+  assert.equal(two.messages.length, 1);
 });
 
 test('the transform is a document-stage transform, which is the stage --strict observes', () => {

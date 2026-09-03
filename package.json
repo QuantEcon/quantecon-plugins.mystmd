@@ -10,8 +10,8 @@
   },
   "scripts": {
     "bundle": "node scripts/bundle.mjs",
-    "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
-    "test:plugin": "npm run bundle && node --test \"tests/plugin/**/*.test.mjs\"",
+    "test:unit": "node --test tests/unit",
+    "test:plugin": "npm run bundle && node --test tests/plugin",
     "test": "npm run test:unit && npm run test:plugin"
   },
   "devDependencies": {

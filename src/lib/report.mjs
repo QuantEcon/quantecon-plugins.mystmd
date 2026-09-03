@@ -22,13 +22,33 @@
  *
  *    The engine behaviour is filed as QuantEcon/mystmd#95; when that is fixed the deferral
  *    becomes redundant but stays harmless.
+ *
+ * Two further engine facts make the transform safe to write the way it is written. The
+ * engine gives each pass a fresh VFile, so a set of already-raised diagnostics stashed on
+ * `vfile.data` cannot leak into the next pass. And it `structuredClone`s the cached tree
+ * before transforms run, so deleting the payload from a node after raising it does not
+ * starve the next cached rebuild — that rebuild starts from the untouched clone.
  */
 
 /** Where a deferred diagnostic rides on the node that produced it. */
 export const DIAGNOSTICS_KEY = 'qeDiagnostics';
 
-/** The `ruleId` prefix consumers use to suppress a family's messages via `error_rules`. */
-export const RULE_PREFIX = 'qe-datavis';
+/** Where the transform records, per pass, which diagnostics it has already raised. */
+const RAISED_KEY = 'qeDiagnosticsRaised';
+
+/**
+ * The stem of every rule id this family emits.
+ *
+ * mystmd's `error_rules` matches a rule id EXACTLY: `- id: qe-datavis` suppresses nothing,
+ * `- id: qe-datavis-stats` suppresses that primitive's diagnostics. Build ids with
+ * `ruleId()` so the stem is never spelled by hand.
+ */
+export const RULE_ID_BASE = 'qe-datavis';
+
+/** The rule id for a primitive's diagnostics, the exact string `error_rules` needs. */
+export function ruleId(primitive) {
+  return `${RULE_ID_BASE}-${primitive}`;
+}
 
 /**
  * Raise a fatal message on a VFile — the bundle-safe equivalent of `myst-common`'s
@@ -79,6 +99,24 @@ export function defer(node, level, message, opts = {}) {
 }
 
 /**
+ * Copy the authoring directive's source position onto an emitted node.
+ *
+ * A node a directive builds has no position of its own, so a diagnostic deferred onto it
+ * would be reported with a file name and no line. The directive does receive the parsed
+ * directive node, with its position, as `data.node`; forwarding it is what turns
+ * `page.md cannot read data/x.csv` into `page.md:14 cannot read data/x.csv`.
+ *
+ * @param {object} node the node being emitted
+ * @param {{node?: {position?: object}}} data the `DirectiveData` the engine passed to `run()`
+ * @returns {object} the same node
+ */
+export function locate(node, data) {
+  const position = data?.node?.position;
+  if (position) node.position = position;
+  return node;
+}
+
+/**
  * Build a node that stands in for a directive that could not produce its real output.
  *
  * The fallback matters: a failed directive that emits nothing leaves a hole in the page, and
@@ -87,7 +125,8 @@ export function defer(node, level, message, opts = {}) {
  *
  * @param {string} primitive the primitive that failed, e.g. 'stats'
  * @param {string} message
- * @param {{ruleId?: string}} [opts]
+ * @param {{ruleId?: string, data?: object}} [opts] pass the directive's `data` to give the
+ *   diagnostic a line number
  */
 export function errorNode(primitive, message, opts = {}) {
   const node = {
@@ -99,7 +138,8 @@ export function errorNode(primitive, message, opts = {}) {
       { type: 'paragraph', children: [{ type: 'text', value: message }] },
     ],
   };
-  return defer(node, 'error', message, { ruleId: opts.ruleId ?? `${RULE_PREFIX}-${primitive}` });
+  locate(node, opts.data);
+  return defer(node, 'error', message, { ruleId: opts.ruleId ?? ruleId(primitive) });
 }
 
 /** Collect every deferred diagnostic in a tree, depth first, in document order. */
@@ -125,18 +165,32 @@ export function collectDiagnostics(tree) {
  * The document-stage transform every family bundle must register.
  *
  * It re-raises each deferred diagnostic on the page's VFile, which is the only place the
- * engine's `--strict` accounting can see it. Register it once per bundle.
+ * engine's `--strict` accounting can see it, then removes the payload from the node so it
+ * does not ship in the site JSON.
+ *
+ * A project that loads a family twice — by two paths, or through a template that pulls it in
+ * as well — gets two copies of this transform, in two module scopes, on the same pass. Each
+ * pass's VFile is the one thing both copies share, so the set of diagnostics already raised
+ * lives there: the second copy finds nothing left to raise.
  */
 export const diagnosticsTransform = {
   name: 'qe-datavis-diagnostics',
   doc: 'Re-raise diagnostics deferred by QuantEcon datavis directives so that --strict sees them.',
   stage: 'document',
   plugin: () => (tree, vfile) => {
+    vfile.data = vfile.data ?? {};
+    const raised = (vfile.data[RAISED_KEY] ??= new WeakSet());
     for (const { node, diagnostic } of collectDiagnostics(tree)) {
+      if (raised.has(diagnostic)) continue;
+      raised.add(diagnostic);
       const { level, message, ...opts } = diagnostic;
       const info = { ...opts, node: node.position ?? undefined };
       if (level === 'error') fileError(vfile, message, info);
       else fileWarn(vfile, message, info);
+    }
+    for (const { node } of collectDiagnostics(tree)) {
+      delete node.data[DIAGNOSTICS_KEY];
+      if (Object.keys(node.data).length === 0) delete node.data;
     }
     return tree;
   },

@@ -37,7 +37,8 @@ after(() => fs.rmSync(dist, { recursive: true, force: true }));
 /**
  * A project whose page sits two directories deep, so root resolution is actually exercised.
  *
- * The single TOC entry becomes the project index, so the built page is `index.json`.
+ * The single TOC entry becomes the project index, so the built page is `index.json`. The
+ * directive sits on line 3 of the page, which the line-number assertions below rely on.
  */
 function project(files) {
   const dir = tempDir('qe-toolchain-');
@@ -54,6 +55,9 @@ function project(files) {
   return dir;
 }
 
+const probeNode = (dir) =>
+  selectAll(readPage(dir).mdast, 'div').find((div) => (div.class ?? '').includes('qe-dv-probe'));
+
 describe('reading a CSV through the toolchain', { skip: skipWithoutMyst }, () => {
   test('resolves :file: against the project root, not the page, and emits both data and a table', async () => {
     const dir = project();
@@ -61,23 +65,22 @@ describe('reading a CSV through the toolchain', { skip: skipWithoutMyst }, () =>
       const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
       assert.equal(code, 0, `${stdout}\n${stderr}`);
 
-      const page = readPage(dir);
-      const [node] = selectAll(page.mdast, 'div').filter((div) =>
-        (div.class ?? '').includes('qe-dv-probe'),
-      );
+      const node = probeNode(dir);
       assert.ok(node, 'the probe directive should have emitted a classed div');
 
       // The structured data rides on the node...
       assert.equal(node.contract, '1.0');
       assert.equal(node.primitive, 'probe');
       assert.equal(node.label, 'Rule reach');
-      assert.equal(node.source, path.join('data', 'rule_reach.csv'));
+      assert.equal(node.source, 'data/rule_reach.csv', 'forward slashes on every platform');
       assert.deepEqual(node.rows, [
         { rule: 'w-01', reach: 12 },
         { rule: 'w-04', reach: 7 },
       ]);
       // ...and numbers survive as numbers, not as strings.
       assert.equal(typeof node.rows[0].reach, 'number');
+      // ...and the diagnostics payload does not ship, because the transform strips it.
+      assert.equal(node.data, undefined);
 
       // ...while the children are a genuine table, which is what a plain theme renders.
       const [table] = selectAll(node, 'table');
@@ -105,49 +108,31 @@ describe('reading a CSV through the toolchain', { skip: skipWithoutMyst }, () =>
       });
       const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
       assert.equal(code, 0, `${stdout}\n${stderr}`);
-      const [node] = selectAll(readPage(dir).mdast, 'div').filter((div) =>
-        (div.class ?? '').includes('qe-dv-probe'),
-      );
-      assert.deepEqual(node.rows, [{ rule: 'local-01', reach: 3 }]);
+      assert.deepEqual(probeNode(dir).rows, [{ rule: 'local-01', reach: 3 }]);
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
   });
 
   /**
-   * The scope of this test is deliberate. A fresh `myst build` always reflects the current
-   * data, which is what a deploy does. Under `myst start` a CSV edit alone does NOT change
-   * the output — the engine rebuilds the page from its own mdast cache without re-running
-   * directives, and a plugin has no way to declare the CSV a dependency of the page
-   * (QuantEcon/mystmd#96). Touching the page is what picks the new data up, which is why
-   * this test touches it.
+   * What this proves, and what it does not. Each `myst build` is a fresh process with an
+   * empty mdast cache, so every directive runs again and reads the current data whether or
+   * not the page changed. That is the property a deploy needs, and it is what is asserted.
+   * It says nothing about the file cache, whose proof is `tests/unit/cache.test.mjs`, and
+   * nothing about `myst start`, where a CSV edit alone does NOT refresh the page: the engine
+   * rebuilds from its own cache without re-running directives, and a plugin cannot declare
+   * the CSV a dependency (QuantEcon/mystmd#96).
    */
-  test('a regenerated CSV changes the output on the next build, with no restart', async () => {
+  test('a fresh build reflects the current data, with no change to the page', async () => {
     const dir = project();
     try {
       assert.equal((await mystBuild(dir)).code, 0);
-      const before = selectAll(readPage(dir).mdast, 'div').find((div) =>
-        (div.class ?? '').includes('qe-dv-probe'),
-      );
-      assert.equal(before.rows[0].reach, 12);
-
-      // Rewrite the data the way a report pipeline would, and stamp an unambiguously later
-      // mtime so the assertion does not depend on filesystem timestamp granularity.
-      const csv = path.join(dir, 'data', 'rule_reach.csv');
-      fs.writeFileSync(csv, 'rule,reach\nw-01,20\nw-04,7\nw-09,1\n');
-      const later = new Date(Date.now() + 2000);
-      fs.utimesSync(csv, later, later);
-      // Touch the page too: the engine re-parses a page only when the page's own content
-      // hash changes, so without this the directive would not run again and the stale rows
-      // would survive. See QuantEcon/mystmd#96.
-      fs.appendFileSync(path.join(dir, 'lectures', 'intro', 'page.md'), '\nRebuilt.\n');
-
+      assert.equal(probeNode(dir).rows[0].reach, 12);
+      fs.writeFileSync(path.join(dir, 'data', 'rule_reach.csv'), 'rule,reach\nw-01,20\nw-04,7\nw-09,1\n');
       assert.equal((await mystBuild(dir)).code, 0);
-      const after = selectAll(readPage(dir).mdast, 'div').find((div) =>
-        (div.class ?? '').includes('qe-dv-probe'),
-      );
+      const after = probeNode(dir);
       assert.equal(after.rows.length, 3, 'the new row should be present');
-      assert.equal(after.rows[0].reach, 20, 'the changed value should be re-read, not cached');
+      assert.equal(after.rows[0].reach, 20, 'the changed value should be read');
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
@@ -155,18 +140,19 @@ describe('reading a CSV through the toolchain', { skip: skipWithoutMyst }, () =>
 });
 
 describe('failing loudly', { skip: skipWithoutMyst }, () => {
-  test('a missing CSV fails --strict and leaves a visible admonition on the page', async () => {
+  test('a missing CSV fails --strict, names the line, and leaves a visible admonition', async () => {
     const dir = project();
     try {
       fs.rmSync(path.join(dir, 'data', 'rule_reach.csv'));
       const strict = await mystBuild(dir, { strict: true });
+      const output = `${strict.stdout}${strict.stderr}`;
       assert.equal(strict.code, 1, 'a missing data file must fail the build');
-      assert.match(`${strict.stdout}${strict.stderr}`, /cannot read data\/rule_reach\.csv/);
+      // The directive starts on line 3 of the page; the diagnostic must say so.
+      assert.match(output, /page\.md:3 cannot read data\/rule_reach\.csv/);
 
       // Even on a non-strict build the page says what went wrong rather than silently
       // dropping the region.
-      const page = readPage(dir);
-      const [admonition] = selectAll(page.mdast, 'admonition').filter((node) =>
+      const [admonition] = selectAll(readPage(dir).mdast, 'admonition').filter((node) =>
         (node.class ?? '').includes('qe-dv-error'),
       );
       assert.ok(admonition, 'a failed directive should leave a visible error on the page');
@@ -187,34 +173,76 @@ describe('failing loudly', { skip: skipWithoutMyst }, () => {
     }
   });
 
-  test('a path escaping the project root is refused', async () => {
+  test('a path escaping the project root is refused, lexically and through a symlink', async () => {
     const dir = project();
     try {
-      fs.writeFileSync(
-        path.join(dir, 'lectures', 'intro', 'page.md'),
-        '# Probe\n\n```{probe-table}\n:file: ../../../../etc/passwd\n```\n',
-      );
-      const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
-      assert.equal(code, 1);
-      assert.match(`${stdout}${stderr}`, /outside the project root/);
+      const page = path.join(dir, 'lectures', 'intro', 'page.md');
+      fs.writeFileSync(page, '# Probe\n\n```{probe-table}\n:file: ../../../../etc/passwd\n```\n');
+      let result = await mystBuild(dir, { strict: true });
+      assert.equal(result.code, 1);
+      assert.match(`${result.stdout}${result.stderr}`, /outside the project root/);
+
+      const outside = tempDir('qe-outside-');
+      fs.writeFileSync(path.join(outside, 'secret.csv'), 'rule,reach\nSECRET,1\n');
+      fs.symlinkSync(outside, path.join(dir, 'data', 'out'));
+      fs.writeFileSync(page, '# Probe\n\n```{probe-table}\n:file: data/out/secret.csv\n```\n');
+      result = await mystBuild(dir, { strict: true });
+      assert.equal(result.code, 1, 'a symlink out of the project must be refused too');
+      assert.match(`${result.stdout}${result.stderr}`, /outside the project root/);
+      fs.rmSync(outside, { recursive: true, force: true });
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
   });
 
-  test('a warning diagnostic is reported but does not fail the build', async () => {
+  test('a warning diagnostic is reported, once, and does not fail the build', async () => {
     const dir = project({ 'data/rule_reach.csv': 'rule,reach\nw-01,12\nw-04,\n' });
     try {
       const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
       const output = `${stdout}${stderr}`;
       assert.equal(code, 0, output);
-      assert.match(output, /no reach recorded for w-04/);
-      const [node] = selectAll(readPage(dir).mdast, 'div').filter((div) =>
-        (div.class ?? '').includes('qe-dv-probe'),
-      );
-      assert.equal(node.rows[1].reach, null, 'an empty cell is null, not zero');
+      assert.match(output, /page\.md:3 no reach recorded for w-04/);
+      assert.equal(probeNode(dir).rows[1].reach, null, 'an empty cell is null, not zero');
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
   });
+});
+
+/**
+ * The engine premise the whole deferral mechanism rests on, pinned so that a green suite
+ * would go red the day it changes (QuantEcon/mystmd#95): a fatal message raised from a
+ * directive's own `run()` is logged but NOT counted by `--strict`, while the same message
+ * raised from a document-stage transform is. If the first of these ever starts failing the
+ * build, the deferral is redundant and this test says so.
+ */
+describe('the --strict premise', { skip: skipWithoutMyst }, () => {
+  const plugin = (raiseFrom) => `
+    function fatal(vfile, message) { const m = vfile.message(message); m.fatal = true; return m; }
+    const directive = { name: 'boom', body: { type: String },
+      run(data, vfile) { ${raiseFrom === 'directive' ? "fatal(vfile, 'raised from the directive');" : ''} return []; } };
+    const transform = { name: 'boom-transform', stage: 'document',
+      plugin: () => (tree, vfile) => { ${raiseFrom === 'transform' ? "fatal(vfile, 'raised from the transform');" : ''} return tree; } };
+    export default { name: 'Boom', directives: [directive], transforms: [transform] };
+  `;
+
+  for (const [raiseFrom, expectedExit] of [
+    ['directive', 0],
+    ['transform', 1],
+  ]) {
+    test(`a fatal message raised from a ${raiseFrom} exits ${expectedExit} under --strict`, async () => {
+      const dir = tempDir(`qe-strict-${raiseFrom}-`);
+      try {
+        const file = path.join(dir, 'boom.mjs');
+        fs.writeFileSync(file, plugin(raiseFrom));
+        writeProject(dir, { plugins: [file], files: { 'page.md': '# S\n\n```{boom}\nx\n```\n' } });
+        const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
+        const output = `${stdout}${stderr}`;
+        assert.match(output, new RegExp(`raised from the ${raiseFrom}`), 'the message is logged either way');
+        assert.equal(code, expectedExit, output);
+      } finally {
+        fs.rmSync(dir, { recursive: true, force: true });
+      }
+    });
+  }
 });

@@ -5,9 +5,9 @@
  *
  * mystmd keeps the FIRST directive registered under a name and warns about every duplicate,
  * once per page. Core directives are registered before any plugin's, so a plugin that takes
- * a core name is silently ignored — the worst failure mode available, because the page still
- * builds and the content is simply wrong. These tests pin the behaviour so the eight
- * directive names in CONTRACT.md can be checked against it.
+ * a core name never runs — the page builds, core's directive renders, and the only signal is
+ * that same per-page warning. These tests pin the behaviour so the eight directive names in
+ * the contract can be checked against it.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -56,22 +56,25 @@ export default { name: ${JSON.stringify(`Stub ${marker}`)}, directives: [d] };
   return target;
 }
 
+const count = (haystack, needle) => haystack.split(needle).length - 1;
+
 describe('duplicate registration', { skip: skipWithoutMyst }, () => {
-  test('loading the same family twice warns and registers it once', async () => {
+  test('loading the same family twice warns, registers it once, and raises each diagnostic once', async () => {
     const dir = tempDir('qe-dup-');
     try {
       // Two paths to the same bundle: what happens when a project pins the family and a
-      // second family, or a template, pulls it in as well.
+      // second family, or a template, pulls it in as well. The CSV has a hole so that the
+      // family's diagnostics transform — which is also loaded twice — has something to raise.
       const copy = path.join(dir, 'probe-copy.mjs');
       fs.copyFileSync(probe, copy);
       writeProject(dir, {
         plugins: [probe, copy],
         files: {
           'page.md': '# Dup\n\n```{probe-table}\n:file: data/r.csv\n```\n',
-          'data/r.csv': 'rule,reach\nw-01,12\n',
+          'data/r.csv': 'rule,reach\nw-01,12\nw-04,\n',
         },
       });
-      const { code, stdout, stderr } = await mystBuild(dir);
+      const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
       const output = `${stdout}${stderr}`;
       assert.equal(code, 0, output);
       assert.match(output, /duplicate directive/i, 'the engine should warn about the duplicate');
@@ -80,7 +83,9 @@ describe('duplicate registration', { skip: skipWithoutMyst }, () => {
         (node.class ?? '').includes('qe-dv-probe'),
       );
       assert.equal(nodes.length, 1);
-      assert.deepEqual(nodes[0].rows, [{ rule: 'w-01', reach: 12 }]);
+      // One diagnostic: the engine's transform line plus its strict summary line, and not
+      // that again for the second copy of the transform.
+      assert.equal(count(output, 'no reach recorded'), 2, output);
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
@@ -104,27 +109,33 @@ describe('duplicate registration', { skip: skipWithoutMyst }, () => {
     }
   });
 
-  test('mystmd core wins a name collision, and the plugin is silently ignored', async () => {
+  test('mystmd core wins a name collision: the plugin never runs, and the only signal is a per-page warning', async () => {
     const dir = tempDir('qe-core-wins-');
     try {
       // `div` is a core directive. A plugin claiming it does not replace it and does not
-      // fail the build: the page renders core's div, and the only signal is a warning.
+      // fail the build: the page renders core's div. The engine does say something — the
+      // same "duplicate directives" warning, once per page — which is a warning to look for
+      // in a build log, not an error a build would stop on.
       const collider = stubPlugin(dir, 'plugins/collide.mjs', 'div', 'PLUGIN');
       writeProject(dir, {
         plugins: [collider],
-        files: { 'page.md': '# Collide\n\n:::{div}\n:class: from-core\ncore body\n:::\n' },
+        files: {
+          'a.md': '# A\n\n:::{div}\n:class: from-core\ncore body\n:::\n',
+          'b.md': '# B\n\n:::{div}\n:class: from-core\ncore body\n:::\n',
+        },
       });
-      const { code, stdout, stderr } = await mystBuild(dir);
-      assert.equal(code, 0, `${stdout}${stderr}`);
-      const divs = selectAll(readPage(dir).mdast, 'div');
-      const fromCore = divs.find((node) => (node.class ?? '').includes('from-core'));
-      assert.ok(fromCore, 'core div should still be the one that ran');
-      assert.match(textOf(fromCore), /core body/);
-      assert.equal(
-        divs.some((node) => node.marker === 'PLUGIN'),
-        false,
-        'the plugin directive should never have run',
-      );
+      const { code, stdout, stderr } = await mystBuild(dir, { strict: true });
+      const output = `${stdout}${stderr}`;
+      assert.equal(code, 0, output);
+      assert.match(output, /a\.md.*duplicate directives registered with name: div/);
+      assert.match(output, /b\.md.*duplicate directives registered with name: div/);
+      for (const slug of ['index', 'b']) {
+        const divs = selectAll(readPage(dir, slug).mdast, 'div');
+        const fromCore = divs.find((node) => (node.class ?? '').includes('from-core'));
+        assert.ok(fromCore, `${slug}: core div should still be the one that ran`);
+        assert.match(textOf(fromCore), /core body/);
+        assert.equal(divs.some((node) => node.marker === 'PLUGIN'), false, `${slug}: the plugin never ran`);
+      }
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }
