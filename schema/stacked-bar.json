@@ -90,6 +90,9 @@
           "additionalProperties": false,
           "properties": {
             "type": { "const": "table" },
+            "key": { "type": "string", "description": "Engine-assigned node id; present on every node of an emitted tree, absent from a hand-written one." },
+            "position": { "type": "object", "description": "Source position the parser leaves on the node." },
+            "data": { "type": "object", "description": "Engine-side node data. The family's diagnostics transform strips its own payload before the tree is written." },
             "children": {
               "type": "array",
               "minItems": 3,
@@ -134,6 +137,9 @@
       "additionalProperties": false,
       "properties": {
         "type": { "const": "tableRow" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
         "children": {
           "type": "array",
           "minItems": 2,
@@ -150,6 +156,9 @@
       "additionalProperties": false,
       "properties": {
         "type": { "const": "tableRow" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
         "children": {
           "type": "array",
           "minItems": 2,
@@ -166,6 +175,9 @@
       "additionalProperties": false,
       "properties": {
         "type": { "const": "tableCell" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
         "header": {
           "const": true,
           "description": "True on every cell of row 0, and on no cell anywhere else."
@@ -186,6 +198,9 @@
       "additionalProperties": false,
       "properties": {
         "type": { "const": "tableCell" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
         "header": {
           "const": false,
           "description": "Never true outside row 0. The directive omits the property altogether on a body cell; `false` is tolerated so a tree round-tripped through a serialiser that fills defaults still validates."

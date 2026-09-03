@@ -189,6 +189,41 @@ for (const name of sampleNames) {
   }
 }
 
+// 5. A tree the directive actually emits is not the hand-written fixture: mystmd stamps a
+//    `key` on every node and the parser leaves a `position`, so a schema whose fallback nodes
+//    are closed without admitting those keys accepts every fixture and rejects every real tree.
+//    Decorate every node of every valid sample the way the engine would — the root and
+//    everything reachable through `children`, which is the walk the engine's transforms do; a
+//    data object that happens to carry a `type` field is not a node — and validate again.
+function decorate(node) {
+  if (!node || typeof node !== 'object') return node;
+  const copy = {
+    ...node,
+    key: 'engine-key',
+    position: { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } },
+  };
+  if (Array.isArray(node.children)) copy.children = node.children.map(decorate);
+  return copy;
+}
+for (const name of sampleNames) {
+  const validate = validators.get(name);
+  const samples = readJson(path.join(sampleDir, `${name}.json`));
+  if (!validate || !samples) continue;
+  (samples.valid ?? []).forEach((node, index) => {
+    checks += 1;
+    if (!validate(decorate(node))) {
+      const detail = (validate.errors ?? [])
+        .filter((error) => ['key', 'position'].includes(error.params?.additionalProperty))
+        .slice(0, 3)
+        .map((error) => `      ${error.instancePath || '/'} rejects "${error.params.additionalProperty}"`)
+        .join('\n');
+      fail(
+        `samples/${name}.json valid[${index}] is rejected once every node carries the engine's key and position — a real emitted tree would fail this schema:\n${detail}`,
+      );
+    }
+  });
+}
+
 if (verbose && notes.length) console.log(notes.join('\n'));
 
 if (problems.length > 0) {

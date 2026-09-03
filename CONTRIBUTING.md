@@ -91,8 +91,9 @@ no options, so configuration is a directive option or an environment variable.
 
 `npm run test:contract` checks the contract on its own and needs no engine: every schema in
 `schema/` compiles under ajv in strict mode, every sample in `samples/` marked valid
-validates, every sample marked invalid is rejected, and every valid sample satisfies the
-invariants `CONTRACT.md` states in prose. `ajv` is a devDependency, which the bundle
+validates, every sample marked invalid is rejected, every valid sample satisfies the
+invariants `CONTRACT.md` states in prose, and every valid sample still validates once every
+node under it carries the `key` and `position` the engine stamps on an emitted tree. `ajv` is a devDependency, which the bundle
 constraint permits — nothing in `scripts/` or `tests/` is bundled — and hand-rolling a
 partial JSON Schema checker would mean the schemas were checked by an implementation that
 does not implement the spec they are written in.
