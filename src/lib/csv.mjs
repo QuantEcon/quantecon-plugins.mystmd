@@ -79,7 +79,10 @@ export function parseCsv(text, options = {}) {
           quoted = false;
         }
       } else {
-        if (char === '\n') line += 1;
+        // A quoted field may contain literal breaks in any of the three spellings, and the
+        // line counter has to agree with the unquoted branch below or an error after such a
+        // field names the wrong line. CRLF counts once, not twice.
+        if (char === '\n' || (char === '\r' && input[i + 1] !== '\n')) line += 1;
         field += char;
       }
       continue;

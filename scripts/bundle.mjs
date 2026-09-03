@@ -14,6 +14,7 @@
  * Usage: node scripts/bundle.mjs [--watch]
  */
 import fs from 'node:fs';
+import { builtinModules } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,15 +25,20 @@ export const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)
 /** The families this repository publishes. Each becomes one release asset. */
 export const FAMILIES = [{ name: 'datavis', entry: 'src/index.mjs' }];
 
-/** Node built-ins are the only imports a bundle may keep. */
-const NODE_BUILTINS = [
-  'assert', 'buffer', 'child_process', 'crypto', 'events', 'fs', 'http', 'https', 'os',
-  'path', 'process', 'stream', 'string_decoder', 'timers', 'tty', 'url', 'util', 'zlib',
-];
-
+/**
+ * Node built-ins are the only imports a bundle may keep, in both spellings.
+ *
+ * Taken from `node:module` rather than written out. A hand-kept list is wrong in two
+ * directions at once: it omits the sub-path builtins (`fs/promises`, `path/posix`,
+ * `stream/web`) and the prefix-only ones (`node:test`, `node:sqlite`), so esbuild would try
+ * to bundle a legal import, and `tests/plugin/bundle.test.mjs` would reject one with a
+ * misleading message. `builtinModules` already contains a few prefixed names, hence the
+ * branch: prefixing everything blindly would produce `node:node:test`.
+ */
 export const externals = [
-  ...NODE_BUILTINS,
-  ...NODE_BUILTINS.map((name) => `node:${name}`),
+  ...new Set(
+    builtinModules.flatMap((name) => (name.startsWith('node:') ? [name] : [name, `node:${name}`])),
+  ),
 ];
 
 /**

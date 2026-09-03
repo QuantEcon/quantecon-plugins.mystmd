@@ -68,6 +68,19 @@ test('keeps a line break inside a quoted field, and counts the line', () => {
   assert.equal(error.line, 3, 'the line counter should advance inside a quoted field');
 });
 
+test('counts a lone CR inside a quoted field, matching the unquoted branch', () => {
+  // The parser accepts a lone CR as a record separator, so it has to count one inside a
+  // quoted field too, or an error after such a field names the wrong line.
+  const lone = caught(() => parseCsv('a\n"open\rstill open'));
+  assert.ok(lone instanceof CsvError);
+  assert.equal(lone.line, 3);
+  // CRLF is one break, not two.
+  const crlf = caught(() => parseCsv('a\n"open\r\nstill open'));
+  assert.equal(crlf.line, 3);
+  // And the field itself keeps the break verbatim, whichever spelling it used.
+  assert.deepEqual(parseCsv('a\n"one\rtwo"\n'), [['a'], ['one\rtwo']]);
+});
+
 test('preserves empty fields, including a trailing one', () => {
   assert.deepEqual(parseCsv('a,b,c\n1,,3\n,,\n'), [
     ['a', 'b', 'c'],

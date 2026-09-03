@@ -42,7 +42,7 @@ after(() => fs.rmSync(dist, { recursive: true, force: true }));
 function stubPlugin(dir, file, name, marker) {
   const source = `const d = {
   name: ${JSON.stringify(name)},
-  body: { type: 'String' },
+  body: { type: String },
   run() {
     return [{ type: 'div', class: 'stub', marker: ${JSON.stringify(marker)},
       children: [{ type: 'paragraph', children: [{ type: 'text', value: ${JSON.stringify(marker)} }] }] }];

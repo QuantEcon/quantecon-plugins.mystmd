@@ -168,7 +168,7 @@ export function row(cells) {
  * shifts every cell after it. Both are silent in the source and obvious only in the output,
  * which is exactly the kind of thing a builder should refuse to produce.
  *
- * @param {any[][]} headerCells the header row's cells, as content or cell nodes
+ * @param {any[]} headerCells the header row's cells, as content or cell nodes
  * @param {any[][]} bodyRows each row's cells
  * @param {{align?: ('left'|'center'|'right')[]}} [options] per-column alignment
  */
