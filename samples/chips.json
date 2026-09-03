@@ -1,0 +1,4205 @@
+{
+  "valid": [
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-clean-rules",
+      "contract": "1.0",
+      "primitive": "chips",
+      "variant": "pill",
+      "tone": "good",
+      "mark": "✓",
+      "items": [
+        {
+          "id": "qe-admon-002",
+          "label": "Dropdown class for solutions",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-code-002",
+          "label": "Unicode Greek in code",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-code-005",
+          "label": "quantecon timeit for benchmarking",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-fig-004",
+          "label": "Caption formatting",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-fig-010",
+          "label": "Plotly latex directive",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-link-001",
+          "label": "Markdown links in-series",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-003",
+          "label": "Square brackets for matrices",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-004",
+          "label": "No bold matrices/vectors",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-005",
+          "label": "Curly brackets for sequences",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-006",
+          "label": "aligned environment for PDF",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-007",
+          "label": "Automatic equation numbering",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-008",
+          "label": "Explain special notation",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-011",
+          "label": "Plain-letter distribution names",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-math-013",
+          "label": "{eq} equation references",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-ref-001",
+          "label": "Correct citation style",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        },
+        {
+          "id": "qe-writing-009",
+          "label": "Write \"IID\"",
+          "tone": "good",
+          "variant": "pill",
+          "mark": "✓"
+        }
+      ],
+      "children": [
+        {
+          "type": "list",
+          "ordered": false,
+          "spread": false,
+          "children": [
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-admon-002"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Dropdown class for solutions"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-code-002"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Unicode Greek in code"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-code-005"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — quantecon timeit for benchmarking"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-fig-004"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Caption formatting"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-fig-010"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Plotly latex directive"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-link-001"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Markdown links in-series"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-003"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Square brackets for matrices"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-004"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — No bold matrices/vectors"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-005"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Curly brackets for sequences"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-006"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — aligned environment for PDF"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-007"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Automatic equation numbering"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-008"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Explain special notation"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-011"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Plain-letter distribution names"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-math-013"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — {eq} equation references"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-ref-001"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Correct citation style"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "✓ "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-writing-009"
+                        },
+                        {
+                          "type": "text",
+                          "value": " — Write \"IID\""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+      "contract": "1.0",
+      "primitive": "chips",
+      "variant": "tag",
+      "tone": "neutral",
+      "items": [
+        {
+          "label": "Writing 4.6",
+          "tone": "neutral",
+          "variant": "tag"
+        },
+        {
+          "label": "Math 5.8",
+          "tone": "neutral",
+          "variant": "tag"
+        }
+      ],
+      "children": [
+        {
+          "type": "list",
+          "ordered": false,
+          "spread": false,
+          "children": [
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Writing 4.6"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Math 5.8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+      "contract": "1.0",
+      "primitive": "chips",
+      "variant": "tag",
+      "tone": "good",
+      "items": [
+        {
+          "id": "qe-writing-008",
+          "tone": "good",
+          "variant": "tag"
+        },
+        {
+          "id": "qe-writing-006",
+          "tone": "good",
+          "variant": "tag"
+        },
+        {
+          "id": "qe-fig-008",
+          "tone": "good",
+          "variant": "tag"
+        },
+        {
+          "id": "qe-writing-001",
+          "tone": "good",
+          "variant": "tag"
+        }
+      ],
+      "children": [
+        {
+          "type": "list",
+          "ordered": false,
+          "spread": false,
+          "children": [
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-writing-008"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-writing-006"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-fig-008"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "spread": false,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-good",
+                      "children": [
+                        {
+                          "type": "inlineCode",
+                          "value": "qe-writing-001"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-chips qe-dv-chips--pill",
+      "contract": "1.0",
+      "primitive": "chips",
+      "variant": "pill",
+      "tone": "good",
+      "mark": "✓",
+      "items": [],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "emphasis",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "None."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "because": "`primitive` is `chip`, which names a part rather than one of the eight primitives",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chip",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`primitive` is missing altogether, so nothing keys on it",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` carries the variant token but not the primitive token `qe-dv-chips`",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` is not normalised: a double space, so token matching by split is unsafe",
+      "node": {
+        "type": "div",
+        "class": "qe-dv  qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` carries every token but in the wrong order: the family, primitive and variant tokens come first and in that order",
+      "node": {
+        "type": "div",
+        "class": "qe-dv-chips qe-dv qe-dv-chips--pill",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` repeats the `qe-dv` family token as an author token; the directive drops a token already present, so a repeat is a defect rather than a harmless duplicate",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-dv",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` carries a second variant token in the author tail; the variant is derived from the property, and the directive drops any author token that is itself a variant token",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`tone` is a colour name rather than a member of the closed tone vocabulary",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "green",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "green",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "green",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` says `--pill` while `variant` is `tag`: the derived token disagrees with the property",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item carries neither `id` nor `label`, so the chip has nothing to render",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item carries an unrecognised field, which the contract treats as a violation rather than a private extension",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag",
+            "value": 5.8
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item `tone` is a number rather than one of the five tone strings",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": 3,
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`items` is non-empty but the fallback list has no items: an empty container with the data hidden in props",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "because": "`items` has two entries but the fallback list has one: the props and the children disagree, which is the one defect the whole contract exists to prevent",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback list carries a third chip span that no entry of `items` accounts for, so the page shows a chip the data does not have",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback holds a bare text node instead of a chip span, so the children no longer render the data",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing 4.6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a chip span carries a tone token that disagrees with the set's resolved `tone`",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-bad",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`contract` is a number rather than the version string",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": 1,
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`mark` is a word rather than a glyph",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-clean-rules",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "pill",
+        "tone": "good",
+        "mark": "clean",
+        "items": [
+          {
+            "id": "qe-admon-002",
+            "label": "Dropdown class for solutions",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-002",
+            "label": "Unicode Greek in code",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-005",
+            "label": "quantecon timeit for benchmarking",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-004",
+            "label": "Caption formatting",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-010",
+            "label": "Plotly latex directive",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-link-001",
+            "label": "Markdown links in-series",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-003",
+            "label": "Square brackets for matrices",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-004",
+            "label": "No bold matrices/vectors",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-005",
+            "label": "Curly brackets for sequences",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-006",
+            "label": "aligned environment for PDF",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-007",
+            "label": "Automatic equation numbering",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-008",
+            "label": "Explain special notation",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-011",
+            "label": "Plain-letter distribution names",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-013",
+            "label": "{eq} equation references",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-ref-001",
+            "label": "Correct citation style",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-writing-009",
+            "label": "Write \"IID\"",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-admon-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Dropdown class for solutions"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Unicode Greek in code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — quantecon timeit for benchmarking"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Caption formatting"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-010"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plotly latex directive"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-link-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Markdown links in-series"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-003"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Square brackets for matrices"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — No bold matrices/vectors"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Curly brackets for sequences"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-006"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — aligned environment for PDF"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-007"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Automatic equation numbering"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-008"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Explain special notation"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-011"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plain-letter distribution names"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-013"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — {eq} equation references"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-ref-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Correct citation style"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-writing-009"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Write \"IID\""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`items` is empty but the fallback is a list rather than the empty-set notice",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a chip span re-describes itself with `contract`, `primitive`, `part` and a duplicate `chip` object; an inner node carries a class and nothing else, and the datum lives exactly twice",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "contract": "1.0",
+                        "primitive": "chips",
+                        "part": "chip",
+                        "chip": {
+                          "label": "Writing 4.6",
+                          "tone": "neutral",
+                          "variant": "tag"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "contract": "1.0",
+                        "primitive": "chips",
+                        "part": "chip",
+                        "chip": {
+                          "label": "Math 5.8",
+                          "tone": "neutral",
+                          "variant": "tag"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a chip span carries a top-level `label`, which `myst-cli`'s embed transform deletes; no node this primitive emits carries `label`, `identifier` or `html_id`",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "label": "writing-4-6",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item's `tone` differs from the set's; contract 1.0 resolves one tone onto every chip and has no per-chip override",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "good",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries a top-level `label`; `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the property works locally and silently disappears the first time the page is embedded elsewhere",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-clean-rules",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "pill",
+        "tone": "good",
+        "mark": "✓",
+        "items": [
+          {
+            "id": "qe-admon-002",
+            "label": "Dropdown class for solutions",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-002",
+            "label": "Unicode Greek in code",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-005",
+            "label": "quantecon timeit for benchmarking",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-004",
+            "label": "Caption formatting",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-010",
+            "label": "Plotly latex directive",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-link-001",
+            "label": "Markdown links in-series",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-003",
+            "label": "Square brackets for matrices",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-004",
+            "label": "No bold matrices/vectors",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-005",
+            "label": "Curly brackets for sequences",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-006",
+            "label": "aligned environment for PDF",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-007",
+            "label": "Automatic equation numbering",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-008",
+            "label": "Explain special notation",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-011",
+            "label": "Plain-letter distribution names",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-013",
+            "label": "{eq} equation references",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-ref-001",
+            "label": "Correct citation style",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-writing-009",
+            "label": "Write \"IID\"",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-admon-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Dropdown class for solutions"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Unicode Greek in code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — quantecon timeit for benchmarking"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Caption formatting"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-010"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plotly latex directive"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-link-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Markdown links in-series"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-003"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Square brackets for matrices"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — No bold matrices/vectors"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Curly brackets for sequences"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-006"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — aligned environment for PDF"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-007"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Automatic equation numbering"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-008"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Explain special notation"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-011"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plain-letter distribution names"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-013"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — {eq} equation references"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-ref-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Correct citation style"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-writing-009"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Write \"IID\""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "label": "series-priority-mix"
+      }
+    },
+    {
+      "because": "the retired `naLabel` is carried on the root: the draft let each block spell a missing value for itself, contract 1.0 spells it one way — `null` in the properties, an em dash in the fallback — so a node still carrying the option sends a consumer looking for a string that means nothing",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-clean-rules",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "pill",
+        "tone": "good",
+        "mark": "✓",
+        "items": [
+          {
+            "id": "qe-admon-002",
+            "label": "Dropdown class for solutions",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-002",
+            "label": "Unicode Greek in code",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-code-005",
+            "label": "quantecon timeit for benchmarking",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-004",
+            "label": "Caption formatting",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-fig-010",
+            "label": "Plotly latex directive",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-link-001",
+            "label": "Markdown links in-series",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-003",
+            "label": "Square brackets for matrices",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-004",
+            "label": "No bold matrices/vectors",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-005",
+            "label": "Curly brackets for sequences",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-006",
+            "label": "aligned environment for PDF",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-007",
+            "label": "Automatic equation numbering",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-008",
+            "label": "Explain special notation",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-011",
+            "label": "Plain-letter distribution names",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-math-013",
+            "label": "{eq} equation references",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-ref-001",
+            "label": "Correct citation style",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          },
+          {
+            "id": "qe-writing-009",
+            "label": "Write \"IID\"",
+            "tone": "good",
+            "variant": "pill",
+            "mark": "✓"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-admon-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Dropdown class for solutions"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-002"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Unicode Greek in code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-code-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — quantecon timeit for benchmarking"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Caption formatting"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-fig-010"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plotly latex directive"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-link-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Markdown links in-series"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-003"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Square brackets for matrices"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-004"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — No bold matrices/vectors"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-005"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Curly brackets for sequences"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-006"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — aligned environment for PDF"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-007"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Automatic equation numbering"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-008"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Explain special notation"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-011"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Plain-letter distribution names"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-math-013"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — {eq} equation references"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-ref-001"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Correct citation style"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ "
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "qe-writing-009"
+                          },
+                          {
+                            "type": "text",
+                            "value": " — Write \"IID\""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "naLabel": "N/A"
+      }
+    }
+  ]
+}

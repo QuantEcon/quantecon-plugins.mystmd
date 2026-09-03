@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/stacked-bar.json",
+  "title": "qe-dv stacked-bar",
+  "description": "Root node emitted by the datavis `stacked-bar` directive at contract 1.0: one or more proportional stacked bars sharing a single ordered set of categories. The node is a portable MyST `div`; the measured data rides as properties and the children are a genuine table carrying the same measured numbers, so a theme with no custom renderer still shows every value. The data lives exactly twice — once in the properties, once rendered in the fallback — and no node the directive emits carries a top-level `label`, `identifier` or `html_id`, because `myst-cli`'s embed transform deletes all three from any node that is not a crossReference, cite, footnote, captionNumber or link.",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "dimension",
+    "unit",
+    "labels",
+    "legend",
+    "size",
+    "categories",
+    "bars",
+    "children"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "const": "div",
+      "description": "Always the portable `div` node type. The contract defines no custom node types, because `myst-to-tex` silently drops a subtree whose node type it has no handler for."
+    },
+    "class": {
+      "type": "string",
+      "description": "The two canonical tokens in this order, then any author tokens from the directive's `:class:` option. The directive normalises: it splits `:class:` on whitespace, drops empty and duplicate tokens, and joins with single spaces.",
+      "pattern": "^qe-dv qe-dv-stacked-bar(?: (?!qe-dv(?: |$))(?!qe-dv-stacked-bar(?: |$))[^\\s]+)*$"
+    },
+    "contract": {
+      "const": "1.0",
+      "description": "Version of the datavis node contract this node conforms to. A consumer that does not recognise the version renders the children instead. Only the root carries it; no node inside the fallback does."
+    },
+    "primitive": {
+      "const": "stacked-bar",
+      "description": "Primitive name, for consumers that dispatch on a property rather than on a class selector. Only the root carries it; no node inside the fallback does."
+    },
+    "dimension": {
+      "type": "string",
+      "minLength": 1,
+      "default": "Category",
+      "description": "Name of the categorical dimension the bars are broken into, from the directive argument. Heads the first column of the fallback table and is the figure's natural accessible name."
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1,
+      "default": "count",
+      "description": "What the segment values count, in lower case. Always present in the fallback's corner header cell as `dimension (unit)`."
+    },
+    "labels": {
+      "enum": ["full", "value"],
+      "default": "full",
+      "description": "Inline segment label style for a drawing consumer: \"full\" renders category and value together (HIGH · 20), \"value\" renders the value alone (20)."
+    },
+    "legend": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether a drawing consumer should place a category colour key beneath the bars. The fallback table needs none: it names every category down its first column, under a corner cell naming the dimension."
+    },
+    "size": {
+      "enum": ["md", "sm"],
+      "default": "md",
+      "description": "Role hint, not a pixel height: \"md\" is a headline bar standing on its own, \"sm\" is one row in a stack of comparable bars."
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The stack order, shared by every bar and never re-ordered by a consumer. With a body table it comes from the header row, left to right; with `:file:` from `:categories:`.",
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "bars": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One entry per bar, in author order — one body row of the authored table, or one selected row of the CSV. Consumers never sort.",
+      "items": { "$ref": "#/$defs/bar" }
+    },
+    "children": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "description": "The portable fallback: exactly one child, the table carrying every measured number the props carry — every category label, every bar label, every segment value and every bar total. `share` is the one number it omits, being exactly reconstructible from `value` and `total`. One child and one shape is what lets a consumer or a test read the fallback without branching on `bars.length`.",
+      "prefixItems": [
+        {
+          "type": "object",
+          "title": "fallback table",
+          "description": "Row 0 is the one header row, naming the dimension, the unit and every bar; every following row is a body row — one per category, then a bold Total row.",
+          "required": ["type", "children"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "const": "table" },
+            "key": { "type": "string", "description": "Engine-assigned node id; present on every node of an emitted tree, absent from a hand-written one." },
+            "position": { "type": "object", "description": "Source position the parser leaves on the node." },
+            "data": { "type": "object", "description": "Engine-side node data. The family's diagnostics transform strips its own payload before the tree is written." },
+            "children": {
+              "type": "array",
+              "minItems": 3,
+              "description": "At least a header row, one category row and the Total row. Every row is either the header row — every cell a header — or a body row, in which no cell is a header, and the table holds exactly one of the former. Two things this cannot say, both asserted by the plugin's tests instead: that the header row is row 0 (JSON Schema pins a position only inside a closed tuple, and the row count is open), and that every row carries the same number of cells, `1 + bars.length`, since no keyword compares one array's length with another's.",
+              "items": {
+                "anyOf": [{ "$ref": "#/$defs/headerRow" }, { "$ref": "#/$defs/bodyRow" }]
+              },
+              "contains": { "$ref": "#/$defs/headerRow" },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          }
+        }
+      ]
+    },
+    "naLabel": false,
+    "label": false,
+    "identifier": false,
+    "html_id": false
+  },
+  "$defs": {
+    "inlineNode": {
+      "type": "object",
+      "required": ["type"],
+      "description": "The permitted inline subset inside a fallback cell — the family's allowed node types, narrowed to the ones that can appear inline. `myst-to-tex` has no handler for `grid`, `card` or a custom node type and drops the whole subtree silently while the build still exits 0, so the cell's content is held to types every export path handles.",
+      "properties": {
+        "type": {
+          "enum": ["text", "strong", "emphasis", "inlineCode", "link"]
+        },
+        "value": { "type": "string" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/inlineNode" }
+        }
+      }
+    },
+    "headerRow": {
+      "type": "object",
+      "title": "header row",
+      "description": "Row 0, and the only row in the table whose cells are headers. `myst-to-tex` writes an `\\hline` after every row whose first cell is a header, and its long-table path counts leading header rows to find where the body starts — so a header cell in a later row rules the table after every line, and in the long-table path makes the header count equal the row count and the body loop skip every row.",
+      "required": ["type", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "tableRow" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "description": "The corner cell, then one cell per bar in `bars` order.",
+          "items": { "$ref": "#/$defs/headerCell" }
+        }
+      }
+    },
+    "bodyRow": {
+      "type": "object",
+      "title": "body row",
+      "description": "One category row, or the final Total row. No cell in it is a header.",
+      "required": ["type", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "tableRow" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "description": "The row-label cell, then one value cell per bar in `bars` order — the same count as the header row's.",
+          "items": { "$ref": "#/$defs/bodyCell" }
+        }
+      }
+    },
+    "headerCell": {
+      "type": "object",
+      "title": "header cell",
+      "description": "One cell of row 0. Structure only: a cell carries no `contract`, no `primitive` and no copy of the datum it renders.",
+      "required": ["type", "header", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "tableCell" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
+        "header": {
+          "const": true,
+          "description": "True on every cell of row 0, and on no cell anywhere else."
+        },
+        "align": { "enum": ["left", "center", "right"] },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/inlineNode" }
+        }
+      }
+    },
+    "bodyCell": {
+      "type": "object",
+      "title": "body cell",
+      "description": "One cell of a row after row 0. Structure only: a cell carries no `contract`, no `primitive` and no copy of the datum it renders.",
+      "required": ["type", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "tableCell" },
+        "key": { "type": "string" },
+        "position": { "type": "object" },
+        "data": { "type": "object" },
+        "header": {
+          "const": false,
+          "description": "Never true outside row 0. The directive omits the property altogether on a body cell; `false` is tolerated so a tree round-tripped through a serialiser that fills defaults still validates."
+        },
+        "align": { "enum": ["left", "center", "right"] },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/inlineNode" }
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "title": "category",
+      "description": "One step of the stack, shared by every bar.",
+      "required": ["label", "tone"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display text for the category and simultaneously its key: `bars[].segments[i].category` equals this string. In a body table it is the header cell's text; with `:file:` it is also the CSV column header the values were read from."
+        },
+        "tone": {
+          "enum": ["neutral", "accent", "good", "warn", "bad"],
+          "description": "Closed-vocabulary colour hint, never a colour and never a threshold. Repeats are legal; a consumer must still render two adjacent same-tone segments distinguishably."
+        }
+      }
+    },
+    "bar": {
+      "type": "object",
+      "title": "bar",
+      "description": "One bar: a labelled composition over the shared categories.",
+      "required": ["label", "total", "segments"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Row label for this bar, and this bar's column header in the fallback table. Required on every bar, including a lone one, so that the fallback has one shape."
+        },
+        "total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Sum of this bar's segment values, denormalised so that no consumer has to reduce and the fallback's Total row cannot disagree with the drawn bar."
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Exactly parallel to `categories`: same length, same order, zero-valued entries included.",
+          "items": { "$ref": "#/$defs/segment" }
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "title": "segment",
+      "description": "One category's contribution to one bar.",
+      "required": ["category", "value", "share"],
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Equal to `categories[i].label` at the same index. Redundant with the index, kept so a segment is self-describing when logged on its own."
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The measured quantity for this category in this bar. Not necessarily an integer; never negative and never a silent zero standing in for missing data. A composition has no absent state, so `value` is never null and the family's em-dash rendering of an absent value never appears in this fallback: a source cell holding one of the family's null tokens is an error, not a null."
+        },
+        "share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "The number nearest `value / total * 100` at one decimal place, so every renderer sizes segments identically; 0 when `total` is 0."
+        }
+      }
+    }
+  }
+}

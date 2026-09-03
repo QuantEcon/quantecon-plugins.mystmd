@@ -1,0 +1,1575 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/chips.json",
+  "title": "qe-dv chips",
+  "description": "The root node emitted by the datavis `chips` directive: a wrapping set of small labelled chips, each an optional monospaced id and an optional short label carrying a tone hint. The structured data rides on `items`; `children` carry a portable fallback rendering of the same data, one list item per entry of `items`. The data lives exactly twice — once as `items`, once as the text of the chip spans — and a chip span carries a `class` and nothing else. The schema checks that both renderings are present and well formed, that the two lengths agree (see `$defs/chipCountFollowsItems`), and that the set-level `variant` and `tone` agree with every entry of `items` and with every span's class tokens; that the i-th span's children spell out `items[i]` is asserted by the test suite, which JSON Schema cannot express.",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "variant",
+    "tone",
+    "items",
+    "children"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "div"
+    },
+    "class": {
+      "type": "string",
+      "description": "Space-separated class tokens, exactly as the directive normalises them: the family token `qe-dv`, the primitive token `qe-dv-chips` and the derived token `qe-dv-chips--<variant>`, in that order and in the first three positions, then any author tokens from `:class:`, single-space joined. The directive drops empty tokens, tokens already present and any author token that is itself a base or variant token, so the tail never carries one; the `if`/`then` blocks below tie the variant token to the `variant` property.",
+      "pattern": "^qe-dv qe-dv-chips qe-dv-chips--(?:pill|tag)(?: (?!qe-dv(?: |$))(?!qe-dv-chips(?: |$))(?!qe-dv-chips--(?:pill|tag)(?: |$))\\S+)*$"
+    },
+    "contract": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "primitive": {
+      "type": "string",
+      "const": "chips"
+    },
+    "variant": {
+      "$ref": "#/$defs/variant",
+      "description": "Shape of every chip in the set, resolved onto every entry of `items`."
+    },
+    "tone": {
+      "$ref": "#/$defs/tone",
+      "description": "Set-level tone hint, and the tone of every chip: a set is uniform in tone. Already resolved onto every entry of `items`, so a consumer reading a chip never falls back to the root."
+    },
+    "mark": {
+      "$ref": "#/$defs/mark",
+      "description": "Decorative glyph drawn before every chip. Also rendered into each chip span, so the fallback shows it too."
+    },
+    "items": {
+      "type": "array",
+      "description": "The chips, in render order. Entry i is rendered as the text of the i-th chip span in `children`; the schema pins the two lengths together and the test suite checks that the span spells the entry out. May be empty.",
+      "items": {
+        "$ref": "#/$defs/chip"
+      }
+    },
+    "children": {
+      "type": "array",
+      "description": "Exactly one node: a `list` of chip spans when `items` is non-empty, otherwise a `paragraph` holding the empty-set notice.",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "naLabel": false,
+    "label": false,
+    "identifier": false,
+    "html_id": false
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "variant"
+        ],
+        "properties": {
+          "variant": {
+            "type": "string",
+            "const": "pill"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "`variant` is resolved onto every chip and derives a class token on the root and on every chip span.",
+        "properties": {
+          "class": {
+            "type": "string",
+            "pattern": "(^| )qe-dv-chips--pill( |$)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variant": {
+                  "type": "string",
+                  "const": "pill"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-chips__chip--pill( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "variant"
+        ],
+        "properties": {
+          "variant": {
+            "type": "string",
+            "const": "tag"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "`variant` is resolved onto every chip and derives a class token on the root and on every chip span.",
+        "properties": {
+          "class": {
+            "type": "string",
+            "pattern": "(^| )qe-dv-chips--tag( |$)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variant": {
+                  "type": "string",
+                  "const": "tag"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-chips__chip--tag( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "tone"
+        ],
+        "properties": {
+          "tone": {
+            "type": "string",
+            "const": "neutral"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "A set is uniform in tone: the root tone is resolved onto every entry of `items` and derives the tone token on every chip span. There is no per-chip override in contract 1.0.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tone": {
+                  "type": "string",
+                  "const": "neutral"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-tone-neutral( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "tone"
+        ],
+        "properties": {
+          "tone": {
+            "type": "string",
+            "const": "accent"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "A set is uniform in tone: the root tone is resolved onto every entry of `items` and derives the tone token on every chip span. There is no per-chip override in contract 1.0.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tone": {
+                  "type": "string",
+                  "const": "accent"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-tone-accent( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "tone"
+        ],
+        "properties": {
+          "tone": {
+            "type": "string",
+            "const": "good"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "A set is uniform in tone: the root tone is resolved onto every entry of `items` and derives the tone token on every chip span. There is no per-chip override in contract 1.0.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tone": {
+                  "type": "string",
+                  "const": "good"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-tone-good( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "tone"
+        ],
+        "properties": {
+          "tone": {
+            "type": "string",
+            "const": "warn"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "A set is uniform in tone: the root tone is resolved onto every entry of `items` and derives the tone token on every chip span. There is no per-chip override in contract 1.0.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tone": {
+                  "type": "string",
+                  "const": "warn"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-tone-warn( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "tone"
+        ],
+        "properties": {
+          "tone": {
+            "type": "string",
+            "const": "bad"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "description": "A set is uniform in tone: the root tone is resolved onto every entry of `items` and derives the tone token on every chip span. There is no per-chip override in contract 1.0.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tone": {
+                  "type": "string",
+                  "const": "bad"
+                }
+              }
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "class": {
+                                    "type": "string",
+                                    "pattern": "(^| )qe-dv-tone-bad( |$)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "children": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "$ref": "#/$defs/fallbackList"
+            }
+          }
+        }
+      },
+      "else": {
+        "type": "object",
+        "properties": {
+          "children": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "$ref": "#/$defs/emptyNotice"
+            }
+          }
+        }
+      }
+    },
+    {
+      "$ref": "#/$defs/chipCountFollowsItems"
+    }
+  ],
+  "$defs": {
+    "tone": {
+      "type": "string",
+      "enum": [
+        "neutral",
+        "accent",
+        "good",
+        "warn",
+        "bad"
+      ],
+      "description": "The family tone vocabulary, closed. A hint only: never a colour and never a threshold."
+    },
+    "variant": {
+      "type": "string",
+      "enum": [
+        "pill",
+        "tag"
+      ],
+      "description": "`pill` is the bordered, fully rounded chip; `tag` is the compact filled chip. Closed set."
+    },
+    "mark": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4,
+      "description": "A short glyph, not a label."
+    },
+    "chip": {
+      "type": "object",
+      "description": "One chip, fully resolved: `tone` and `variant` are always present, so a consumer reading one entry of `items` never falls back to the root.",
+      "required": [
+        "tone",
+        "variant"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Short identifier, rendered monospaced — an `inlineCode` node in the fallback."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Plain-text label. Chips are small: inline markup is flattened at build time."
+        },
+        "tone": {
+          "$ref": "#/$defs/tone",
+          "description": "The chip's resolved tone, which is the set's `tone`."
+        },
+        "variant": {
+          "$ref": "#/$defs/variant",
+          "description": "The chip's resolved shape, which is the set's `variant`."
+        },
+        "mark": {
+          "$ref": "#/$defs/mark"
+        }
+      }
+    },
+    "chipCountFollowsItems": {
+      "description": "`items.length === children[0].children.length`, encoded exactly for sets of one to twenty-four chips. Without it a set can carry sixteen chips in `items` and print one in its fallback, and nothing complains — which is precisely how a fallback rots. That the i-th span's children spell out `items[i]` is the AST conformance test's, because JSON Schema cannot compare two values in one document.",
+      "anyOf": [
+        {
+          "type": "object",
+          "description": "The empty set: no chips, and the sibling `allOf` pins the single child to the empty-set notice.",
+          "properties": {
+            "items": {
+              "type": "array",
+              "maxItems": 0
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 1
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 3,
+                      "maxItems": 3
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 4,
+                      "maxItems": 4
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 5,
+                      "maxItems": 5
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 6,
+              "maxItems": 6
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 6,
+                      "maxItems": 6
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 7,
+              "maxItems": 7
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 7,
+                      "maxItems": 7
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 8,
+              "maxItems": 8
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 8,
+                      "maxItems": 8
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 9,
+              "maxItems": 9
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 9,
+                      "maxItems": 9
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 10,
+              "maxItems": 10
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 10,
+                      "maxItems": 10
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 11,
+              "maxItems": 11
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 11,
+                      "maxItems": 11
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 12,
+              "maxItems": 12
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 12,
+                      "maxItems": 12
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 13,
+              "maxItems": 13
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 13,
+                      "maxItems": 13
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 14,
+              "maxItems": 14
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 14,
+                      "maxItems": 14
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 15,
+              "maxItems": 15
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 15,
+                      "maxItems": 15
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 16,
+              "maxItems": 16
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 16,
+                      "maxItems": 16
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 17,
+              "maxItems": 17
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 17,
+                      "maxItems": 17
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 18,
+              "maxItems": 18
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 18,
+                      "maxItems": 18
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 19,
+              "maxItems": 19
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 19,
+                      "maxItems": 19
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 20,
+              "maxItems": 20
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 20,
+                      "maxItems": 20
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 21,
+              "maxItems": 21
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 21,
+                      "maxItems": 21
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 22,
+              "maxItems": 22
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 22,
+                      "maxItems": 22
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 23,
+              "maxItems": 23
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 23,
+                      "maxItems": 23
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 24,
+              "maxItems": 24
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 24,
+                      "maxItems": 24
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "Above twenty-four chips both sides are only required to exceed twenty-four; the AST conformance test carries the equality there.",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 25
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 25
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "fallbackList": {
+      "type": "object",
+      "description": "The fallback: one list item per entry of `items`, in the same order.",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "list"
+        },
+        "ordered": {
+          "type": "boolean"
+        },
+        "spread": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fallbackListItem"
+          }
+        }
+      }
+    },
+    "fallbackListItem": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "listItem"
+        },
+        "spread": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/fallbackParagraph"
+          }
+        }
+      }
+    },
+    "fallbackParagraph": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "paragraph"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/chipSpan"
+          }
+        }
+      }
+    },
+    "chipSpan": {
+      "type": "object",
+      "description": "A chip span: a styling hook around the plain text of one chip. It carries a `class` and nothing else — no `contract`, no `primitive`, no `part`, and no second copy of the entry of `items` it renders, so the datum lives exactly twice. It carries no `label`, `identifier` or `html_id` either: `myst-cli`'s embed transform deletes all three from any non-reference node. Its class tokens are derived from the set's resolved `variant` and `tone`.",
+      "required": [
+        "type",
+        "class",
+        "children"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "span"
+        },
+        "class": {
+          "type": "string",
+          "allOf": [
+            {
+              "type": "string",
+              "pattern": "^\\S+( \\S+)*$"
+            },
+            {
+              "type": "string",
+              "pattern": "(^| )qe-dv( |$)"
+            },
+            {
+              "type": "string",
+              "pattern": "(^| )qe-dv-chips__chip( |$)"
+            }
+          ]
+        },
+        "children": {
+          "type": "array",
+          "description": "The chip as plain inline content: the mark, the id as `inlineCode`, and the label as text, with adjacent text runs merged. One to three nodes.",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/inline"
+          }
+        },
+        "contract": false,
+        "primitive": false,
+        "part": false,
+        "chip": false,
+        "label": false,
+        "identifier": false,
+        "html_id": false
+      }
+    },
+    "inline": {
+      "type": "object",
+      "required": [
+        "type",
+        "value"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "inlineCode"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The rendered text. Never empty: a chip span whose text runs are blank renders nothing."
+        }
+      }
+    },
+    "emptyNotice": {
+      "type": "object",
+      "description": "The empty-set fallback: a paragraph holding an emphasised `None.`",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "paragraph"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "emphasis"
+              },
+              "children": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "value"
+                  ],
+                  "additionalProperties": true,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "text"
+                    },
+                    "value": {
+                      "type": "string",
+                      "const": "None."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

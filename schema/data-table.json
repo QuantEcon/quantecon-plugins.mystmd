@@ -1,0 +1,794 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/data-table.json",
+  "title": "qe-dv data-table",
+  "description": "Root node of the datavis `data-table` primitive: a classed `div` carrying a typed, optionally re-sortable table as node properties, whose single child is the portable `table` node rendering exactly the same data. Contract version 1.0. Seven further invariants cannot be expressed in JSON Schema because they cross-reference values inside the instance; they are enforced by the plugin and listed in CONTRACT.md.",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "columns",
+    "rows",
+    "sortable",
+    "children"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "div",
+      "description": "Always `div`. No custom node types: `myst-to-tex` silently drops a subtree it has no handler for."
+    },
+    "class": {
+      "type": "string",
+      "pattern": "^qe-dv qe-dv-data-table(?: (?!qe-dv(?: |$))(?!qe-dv-data-table(?: |$))[^\\s]+)*$",
+      "description": "Space-separated class tokens, exactly as the directive emits them: `qe-dv qe-dv-data-table` first, then any author or wrapper tokens, single-spaced, no duplicates."
+    },
+    "contract": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Contract version this node conforms to."
+    },
+    "primitive": {
+      "type": "string",
+      "const": "data-table",
+      "description": "Primitive name, for consumers that dispatch on a property rather than a class selector."
+    },
+    "columns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/column"
+      },
+      "description": "Column definitions in display order. Keys are unique. The ordinal column added by `rank` is not listed here."
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/cell"
+        }
+      },
+      "description": "Rows in the emitted order. Row `i` holds exactly one cell per entry of `columns`, in the same order, and cell `j`'s `kind` equals `columns[j].type`."
+    },
+    "sortable": {
+      "type": "boolean",
+      "description": "True when a consumer should offer client-side re-sorting. A table with `sortable: false` carries no sortable columns, no `sort` and no `nulls`."
+    },
+    "rank": {
+      "type": "boolean",
+      "default": false,
+      "description": "True when the table carries a leading ordinal column labelled `#`, numbered 1..N over the emitted order and recomputed by a consumer after a re-sort."
+    },
+    "nulls": {
+      "$ref": "#/$defs/nullsPolicy"
+    },
+    "sort": {
+      "$ref": "#/$defs/sortState"
+    },
+    "children": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/table"
+        }
+      ],
+      "description": "Exactly one child: the portable `table` node. Its first row is the header row; body row `i` renders `rows[i]`."
+    },
+    "naLabel": false,
+    "label": false,
+    "identifier": false,
+    "html_id": false
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "sortable"
+        ],
+        "properties": {
+          "sortable": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "sort",
+          "nulls"
+        ],
+        "properties": {
+          "sort": {
+            "$ref": "#/$defs/sortState"
+          },
+          "nulls": {
+            "$ref": "#/$defs/nullsPolicy"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "sort": false,
+          "nulls": false
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": [
+          "sortable"
+        ],
+        "properties": {
+          "sortable": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sortable": {
+                  "const": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "inlineNode": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "description": "The permitted inline subset inside a fallback cell — the family's allowed node types, narrowed to the ones that can appear inline. `myst-to-tex` has no handler for `grid`, `card` or a custom node type and drops the whole subtree silently while the build still exits 0, so a cell's content is held to types every export path handles.",
+      "properties": {
+        "type": {
+          "enum": [
+            "text",
+            "strong",
+            "emphasis",
+            "inlineCode",
+            "link"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        }
+      }
+    },
+    "tone": {
+      "type": "string",
+      "enum": [
+        "neutral",
+        "accent",
+        "good",
+        "warn",
+        "bad"
+      ],
+      "description": "A presentation hint, never a colour and never a threshold. Absent means `neutral`."
+    },
+    "align": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right",
+        "center"
+      ]
+    },
+    "column": {
+      "type": "object",
+      "required": [
+        "key",
+        "label",
+        "type",
+        "align"
+      ],
+      "additionalProperties": false,
+      "description": "One column definition. `align` is always written out, so a column and its `tableCell`s never disagree.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "Stable identifier, unique within the table. The directive slugifies the header label; a wrapper sets it directly."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Header text, rendered verbatim in the header row."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "code",
+            "number",
+            "bar",
+            "fraction",
+            "badge",
+            "chips"
+          ],
+          "description": "The kind every cell in this column carries."
+        },
+        "align": {
+          "$ref": "#/$defs/align"
+        },
+        "sortable": {
+          "type": "boolean",
+          "description": "Whether a consumer may re-sort on this column. Only number, bar and fraction columns may be sortable in contract 1.0."
+        },
+        "max": {
+          "$ref": "#/$defs/barMax"
+        },
+        "decimals": {
+          "$ref": "#/$defs/decimals"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "bar"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "max"
+            ],
+            "properties": {
+              "max": {
+                "$ref": "#/$defs/barMax"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "max": false
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "required": [
+              "sortable"
+            ],
+            "properties": {
+              "sortable": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "number",
+                  "bar",
+                  "fraction"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "required": [
+              "decimals"
+            ],
+            "properties": {
+              "decimals": {
+                "$ref": "#/$defs/decimals"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "number",
+                  "bar",
+                  "fraction"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cell": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "description": "One cell. The `kind` selects the shape, and equals its column's `type`.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "text",
+            "code",
+            "number",
+            "bar",
+            "fraction",
+            "badge",
+            "chips"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/textCell"
+        },
+        {
+          "$ref": "#/$defs/codeCell"
+        },
+        {
+          "$ref": "#/$defs/numberCell"
+        },
+        {
+          "$ref": "#/$defs/barCell"
+        },
+        {
+          "$ref": "#/$defs/fractionCell"
+        },
+        {
+          "$ref": "#/$defs/badgeCell"
+        },
+        {
+          "$ref": "#/$defs/chipsCell"
+        }
+      ]
+    },
+    "linkedValue": {
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "url": false
+            }
+          }
+        }
+      ]
+    },
+    "textCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "A plain string cell. A null value renders as an em dash.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "text"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "The cell's whole content as plain text; null when there is no value."
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Link target. The plain rendering wraps the value in a `link`."
+        }
+      },
+      "$ref": "#/$defs/linkedValue"
+    },
+    "codeCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "An identifier rendered in the mono face: a rule id, a series or lecture name, a file path.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "code"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "The identifier; null when there is none, which renders as a plain em dash rather than an empty code span."
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Link target. The plain rendering wraps the `inlineCode` in a `link`."
+        }
+      },
+      "$ref": "#/$defs/linkedValue"
+    },
+    "numberCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "A measured value. Null means the measure does not apply and renders as an em dash.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "number"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tone": {
+          "$ref": "#/$defs/tone"
+        },
+        "strong": {
+          "type": "boolean",
+          "description": "Render the value with added weight. Separate from tone, which carries no weight."
+        }
+      }
+    },
+    "barCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "A value plotted against its column's `max`. Null renders as an em dash, like every other absent value, and a renderer draws an empty track behind it.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "bar"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "tone": {
+          "$ref": "#/$defs/tone"
+        }
+      }
+    },
+    "fractionCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value",
+        "of"
+      ],
+      "additionalProperties": false,
+      "description": "A count out of a total, rendered as a strong numerator, a slash and the denominator.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "fraction"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "of": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tone": {
+          "$ref": "#/$defs/tone"
+        }
+      }
+    },
+    "badgeCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "label"
+      ],
+      "additionalProperties": false,
+      "description": "A short categorical word. The label is the datum; the tone only says how to colour it.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "badge"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tone": {
+          "$ref": "#/$defs/tone"
+        }
+      }
+    },
+    "chipsCell": {
+      "type": "object",
+      "required": [
+        "kind",
+        "items"
+      ],
+      "additionalProperties": false,
+      "description": "A short list of labels. An empty list renders as an em dash, never as an empty cell.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "chips"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tone": {
+          "$ref": "#/$defs/tone"
+        }
+      }
+    },
+    "table": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "description": "The portable fallback. mdast nodes carry engine-added keys such as `key` and `position`, so unknown properties are allowed here; the family's forbidden keys are named and closed off individually.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "table"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/headerRow"
+              },
+              {
+                "$ref": "#/$defs/bodyRow"
+              }
+            ]
+          },
+          "contains": {
+            "$ref": "#/$defs/headerRow"
+          },
+          "minContains": 1,
+          "maxContains": 1,
+          "description": "Exactly one header row — row 0, which the plugin checks because JSON Schema cannot pin a position on a variable-length array — followed by one body row per entry of `rows`. A row is all header cells or none: a row with a header cell in one column and plain cells in the rest satisfies neither branch. Every row, header included, has the same number of cells; `myst-to-typst` emits cells as one flat positional sequence with no row delimiter, so a short row shifts every later cell one column left for the rest of the table."
+        },
+        "contract": false,
+        "primitive": false,
+        "label": false,
+        "identifier": false,
+        "html_id": false
+      }
+    },
+    "tableRow": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "description": "One row of the fallback table. Every row carries the same number of cells as every other row, including the header row.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "tableRow"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/tableCell"
+          }
+        },
+        "contract": false,
+        "primitive": false,
+        "label": false,
+        "identifier": false,
+        "html_id": false
+      }
+    },
+    "headerRow": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/tableRow"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/headerCell"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Row 0: every cell carries `header: true`, and no other row carries a header cell anywhere."
+    },
+    "bodyRow": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/tableRow"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/bodyCell"
+              }
+            }
+          }
+        }
+      ],
+      "description": "A row after row 0: no cell in it is a header. `myst-to-tex` writes a `\\hline` after every row whose first cell is a header, and its long-table path counts leading header rows to find the body, so a row header rules the table after every line and, once wrapped in a multipage container, empties the body entirely."
+    },
+    "tableCell": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": true,
+      "description": "A cell of the fallback table. `children` is never empty: a cell with nothing to say carries an em dash. A cell is a dumb inner node — it carries presentation and content only, never `contract`, `primitive` or a second copy of the cell object it renders.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "tableCell"
+        },
+        "header": {
+          "type": "boolean"
+        },
+        "align": {
+          "$ref": "#/$defs/align"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        },
+        "contract": false,
+        "primitive": false,
+        "kind": false,
+        "label": false,
+        "identifier": false,
+        "html_id": false
+      }
+    },
+    "headerCell": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/tableCell"
+        },
+        {
+          "type": "object",
+          "required": [
+            "header"
+          ],
+          "properties": {
+            "header": {
+              "const": true
+            }
+          }
+        }
+      ],
+      "description": "A cell of row 0. `header: true` is required on every one of them."
+    },
+    "bodyCell": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/tableCell"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "header": {
+              "const": false
+            }
+          }
+        }
+      ],
+      "description": "A cell of a body row. `header` is absent, or explicitly false; it is never true."
+    },
+    "nullsPolicy": {
+      "type": "string",
+      "const": "last",
+      "description": "Where null values go when a consumer re-sorts, in both directions. Present exactly when `sortable` is true; contract 1.0 fixes it to `last`."
+    },
+    "sortState": {
+      "type": "object",
+      "required": [
+        "key",
+        "order"
+      ],
+      "additionalProperties": false,
+      "description": "The key and direction the emitted rows are already ordered by, so the server-rendered view is correct with JavaScript disabled and a consumer can mark the active header. Present exactly when `sortable` is true.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "The `key` of a column whose own `sortable` is true."
+        },
+        "order": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      }
+    },
+    "barMax": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Full-scale value a bar is drawn against. Required on a bar column, forbidden on every other type."
+    },
+    "decimals": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "Fixed decimal places in the plain rendering. Absent means the shortest exact form. Numeric columns only; never applied to a null."
+    }
+  }
+}

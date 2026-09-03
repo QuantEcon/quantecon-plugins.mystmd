@@ -1,0 +1,3712 @@
+{
+  "valid": [
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-stats",
+      "contract": "1.0",
+      "primitive": "stats",
+      "variant": "headline",
+      "max": null,
+      "stats": [
+        {
+          "label": "rules checked by program over a pinned corpus snapshot",
+          "value": 41,
+          "display": "41",
+          "denominator": 49,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        },
+        {
+          "label": "judgment-only rules reviewed by reading — all 348 lectures covered",
+          "value": 8,
+          "display": "8",
+          "denominator": null,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        },
+        {
+          "label": "lectures through the judgment layer — cross-series comparison stands on its own",
+          "value": 348,
+          "display": "348",
+          "denominator": 348,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "rules checked by program over a pinned corpus snapshot"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "41"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 49"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "judgment-only rules reviewed by reading — all 348 lectures covered"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "lectures through the judgment layer — cross-series comparison stands on its own"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "348"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 348"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-stats qe-score-breakdown",
+      "contract": "1.0",
+      "primitive": "stats",
+      "variant": "metric",
+      "max": 10,
+      "stats": [
+        {
+          "label": "Writing",
+          "value": 3,
+          "display": "3",
+          "denominator": null,
+          "fraction": 0.3,
+          "tone": "bad",
+          "note": "qe-writing-006 ×10; qe-writing-005 ×3; qe-writing-002 ×2, +3 more."
+        },
+        {
+          "label": "Math",
+          "value": 9,
+          "display": "9",
+          "denominator": null,
+          "fraction": 0.9,
+          "tone": "good",
+          "note": "qe-math-012 (proposed) ×1."
+        },
+        {
+          "label": "Code",
+          "value": 7.5,
+          "display": "7.5",
+          "denominator": null,
+          "fraction": 0.75,
+          "tone": "warn",
+          "note": "qe-code-001 ×5."
+        },
+        {
+          "label": "Figures",
+          "value": 6.5,
+          "display": "6.5",
+          "denominator": null,
+          "fraction": 0.65,
+          "tone": "warn",
+          "note": "qe-fig-005 ×11; qe-fig-008 ×10."
+        },
+        {
+          "label": "References",
+          "value": null,
+          "display": null,
+          "denominator": null,
+          "fraction": null,
+          "tone": "neutral",
+          "note": "No citations in this lecture."
+        },
+        {
+          "label": "Links",
+          "value": 10,
+          "display": "10",
+          "denominator": null,
+          "fraction": 1,
+          "tone": "good",
+          "note": "No mechanical violations detected."
+        },
+        {
+          "label": "Admonitions",
+          "value": 7.5,
+          "display": "7.5",
+          "denominator": null,
+          "fraction": 0.75,
+          "tone": "warn",
+          "note": "qe-admon-003 ×2."
+        },
+        {
+          "label": "JAX",
+          "value": null,
+          "display": null,
+          "denominator": null,
+          "fraction": null,
+          "tone": "neutral",
+          "note": "Out of scope — JAX rules target lecture-jax."
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Note"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Writing"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-006"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×10; "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-005"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×3; "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-002"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×2, +3 more."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Math"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-math-012"
+                    },
+                    {
+                      "type": "text",
+                      "value": " (proposed) ×1."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Code"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "7.5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-code-001"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×5."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Figures"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "6.5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-fig-005"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×11; "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-fig-008"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×10."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "References"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "—"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "No citations in this lecture."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Links"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "No mechanical violations detected."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Admonitions"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "7.5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-admon-003"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×2."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "JAX"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "—"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Out of scope — JAX rules target "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "lecture-jax"
+                    },
+                    {
+                      "type": "text",
+                      "value": "."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-stats qe-score-strip",
+      "contract": "1.0",
+      "primitive": "stats",
+      "variant": "metric",
+      "max": 10,
+      "stats": [
+        {
+          "label": "Writing",
+          "value": 4.1,
+          "display": "4.1",
+          "denominator": null,
+          "fraction": 0.41,
+          "tone": "bad",
+          "note": null
+        },
+        {
+          "label": "Math",
+          "value": 9,
+          "display": "9.0",
+          "denominator": null,
+          "fraction": 0.9,
+          "tone": "good",
+          "note": null
+        },
+        {
+          "label": "Code",
+          "value": 8.4,
+          "display": "8.4",
+          "denominator": null,
+          "fraction": 0.84,
+          "tone": "warn",
+          "note": null
+        },
+        {
+          "label": "Figures",
+          "value": 7.3,
+          "display": "7.3",
+          "denominator": null,
+          "fraction": 0.73,
+          "tone": "warn",
+          "note": null
+        },
+        {
+          "label": "References",
+          "value": null,
+          "display": null,
+          "denominator": null,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        },
+        {
+          "label": "Links",
+          "value": 9.8,
+          "display": "9.8",
+          "denominator": null,
+          "fraction": 0.98,
+          "tone": "good",
+          "note": null
+        },
+        {
+          "label": "Admon",
+          "value": 9.9,
+          "display": "9.9",
+          "denominator": null,
+          "fraction": 0.99,
+          "tone": "good",
+          "note": null
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Writing"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "4.1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Math"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "9.0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Code"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "8.4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Figures"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "7.3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "References"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "—"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Links"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "9.8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Admon"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "9.9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-stats qe-score-breakdown",
+      "contract": "1.0",
+      "primitive": "stats",
+      "variant": "metric",
+      "max": 10,
+      "stats": [
+        {
+          "label": "Writing",
+          "value": 3,
+          "display": "3",
+          "denominator": null,
+          "fraction": 0.3,
+          "tone": "bad",
+          "note": "qe-writing-006 ×10; qe-writing-005 ×3; qe-writing-002 ×2, +3 more."
+        },
+        {
+          "label": "Math",
+          "value": 9,
+          "display": "9",
+          "denominator": null,
+          "fraction": 0.9,
+          "tone": "good",
+          "note": null
+        },
+        {
+          "label": "Code",
+          "value": 7.5,
+          "display": "7.5",
+          "denominator": null,
+          "fraction": 0.75,
+          "tone": "warn",
+          "note": "qe-code-001 ×5."
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Note"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Writing"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-006"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×10; "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-005"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×3; "
+                    },
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-writing-002"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×2, +3 more."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Math"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "—"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Code"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "7.5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 10"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "inlineCode",
+                      "value": "qe-code-001"
+                    },
+                    {
+                      "type": "text",
+                      "value": " ×5."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "because": "primitive is the singular \"stat\" rather than the registered primitive name, so a consumer dispatching on node.primitive would never match this block",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stat",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "primitive is missing altogether, leaving the class string as the only way to identify the node",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the class string is missing the qe-dv-stats primitive token, so the renderer key div[class~=qe-dv-stats] never matches and the block renders as a bare table forever",
+      "node": {
+        "type": "div",
+        "class": "qe-dv",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the class string was not normalised: an author token duplicates a family token, which is exactly the work core's addClassOptions does not do for us",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats qe-dv",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "tone is outside the closed family vocabulary neutral | accent | good | warn | bad, so no consumer has a colour role for it",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "critical",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item is missing the required display property, so a renderer would have to re-format value and lose the author's precision",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item carries a misspelt key (lable), which additionalProperties: false on the item must catch rather than read the item as label-less",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "lable": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an absent value carries the bespoke spelling \"N/A\" in display, when the family has exactly one: null in the properties, an em dash in the fallback",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": null,
+            "display": "N/A",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a scaled block leaves fraction null for a numeric value, so the mini bar silently never fills and nothing else flags it",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "metric",
+        "max": 10,
+        "stats": [
+          {
+            "label": "Writing",
+            "value": 3,
+            "display": "3",
+            "denominator": null,
+            "fraction": null,
+            "tone": "bad",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "3"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "denominator is zero, which is not a total anything can be measured against",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 0,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "three stats over two data rows: the props and the children disagree, which is the one defect the whole contract exists to prevent",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program over a pinned corpus snapshot",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "judgment-only rules reviewed by reading",
+            "value": 8,
+            "display": "8",
+            "denominator": null,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "lectures through the judgment layer",
+            "value": 348,
+            "display": "348",
+            "denominator": 348,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program over a pinned corpus snapshot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "judgment-only rules reviewed by reading"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback table is ragged — the note column exists but the second data row has only two cells, and myst-to-typst emits cells as one flat positional sequence with no row delimiter, so every cell after the short row shifts one column left for the rest of the table",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "metric",
+        "max": 10,
+        "stats": [
+          {
+            "label": "Writing",
+            "value": 3,
+            "display": "3",
+            "denominator": null,
+            "fraction": 0.3,
+            "tone": "bad",
+            "note": "qe-writing-006 ×10."
+          },
+          {
+            "label": "Math",
+            "value": 9,
+            "display": "9",
+            "denominator": null,
+            "fraction": 0.9,
+            "tone": "good",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Note"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "3"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "inlineCode",
+                        "value": "qe-writing-006"
+                      },
+                      {
+                        "type": "text",
+                        "value": " ×10."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "9"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "no item carries a note yet the fallback still emits a third column, so the table has a column the data does not have",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Note"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a data row carries header: true, when only row 0 may: myst-to-tex writes an \\hline after every row whose first cell is a header, and its long-table path then counts the whole table as running header and emits no body at all",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "row 0 holds the column names but no cell is marked header: true, so a plain theme renders them as ordinary <td> and myst-to-tex writes no \\hline — the reader gets a table whose first row only looks like a header",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "only the first cell of the header row carries header: true, so the row is half a header: the HTML has one <th> among <td>s and the accessible column vocabulary is incomplete",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a cell holds a card node, which myst-to-tex has no handler for: the whole subtree would be dropped from the PDF silently, with the build still exiting 0",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "card",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "rules checked by program"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "contract is the number 1.0 rather than the string \"1.0\", so a version comparison would silently coerce and 1.10 would sort below 1.9",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": 1,
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "variant is outside the closed set headline | metric, so a renderer has no anatomy to choose",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "tile",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback is a grid rather than a table: grid has no myst-to-tex handler, so the entire block would vanish from the PDF while the build exits 0",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "grid",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback container is empty: an empty div with the data hidden in props does not implement this contract",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": []
+      }
+    },
+    {
+      "because": "the fallback table carries a label, an identifier and an html_id, so it is enumerated as \"Table N\", registered as a cross-reference target, and stripped of all three the moment the page is embedded elsewhere — the contract emits the table bare precisely so a stats block never steals a table number from the page it sits on",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "label": "tbl-methodology",
+            "identifier": "tbl-methodology",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "html_id": "tbl-methodology"
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item with no note renders a blank third cell instead of the em dash; the family has one spelling of an absent value — null in the properties, an em dash in the fallback — and no cell of a fallback table is ever blank, so the gap stays legible rather than reading as a rendering failure",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats qe-score-breakdown",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "metric",
+        "max": 10,
+        "stats": [
+          {
+            "label": "Writing",
+            "value": 3,
+            "display": "3",
+            "denominator": null,
+            "fraction": 0.3,
+            "tone": "bad",
+            "note": "qe-writing-006 ×10; qe-writing-005 ×3; qe-writing-002 ×2, +3 more."
+          },
+          {
+            "label": "Math",
+            "value": 9,
+            "display": "9",
+            "denominator": null,
+            "fraction": 0.9,
+            "tone": "good",
+            "note": null
+          },
+          {
+            "label": "Code",
+            "value": 7.5,
+            "display": "7.5",
+            "denominator": null,
+            "fraction": 0.75,
+            "tone": "warn",
+            "note": "qe-code-001 ×5."
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Note"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "3"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "inlineCode",
+                        "value": "qe-writing-006"
+                      },
+                      {
+                        "type": "text",
+                        "value": " ×10; "
+                      },
+                      {
+                        "type": "inlineCode",
+                        "value": "qe-writing-005"
+                      },
+                      {
+                        "type": "text",
+                        "value": " ×3; "
+                      },
+                      {
+                        "type": "inlineCode",
+                        "value": "qe-writing-002"
+                      },
+                      {
+                        "type": "text",
+                        "value": " ×2, +3 more."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "9"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "7.5"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 10"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "inlineCode",
+                        "value": "qe-code-001"
+                      },
+                      {
+                        "type": "text",
+                        "value": " ×5."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the retired `naLabel` is carried on the root: the draft let each block spell a missing value for itself, contract 1.0 spells it one way — `null` in the properties, an em dash in the fallback — so a node still carrying the option sends a consumer looking for a string that means nothing",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program over a pinned corpus snapshot",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "judgment-only rules reviewed by reading — all 348 lectures covered",
+            "value": 8,
+            "display": "8",
+            "denominator": null,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "lectures through the judgment layer — cross-series comparison stands on its own",
+            "value": 348,
+            "display": "348",
+            "denominator": 348,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program over a pinned corpus snapshot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "judgment-only rules reviewed by reading — all 348 lectures covered"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "lectures through the judgment layer — cross-series comparison stands on its own"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "348"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 348"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "naLabel": "N/A"
+      }
+    }
+  ]
+}

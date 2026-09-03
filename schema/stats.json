@@ -1,0 +1,1502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/stats.json",
+  "title": "qe-dv stats node",
+  "description": "Root node emitted by the datavis `stats` directive: a portable div carrying big-number stat-tile data as properties, with exactly one child — a real table that is the plain fallback rendering of the same data. The contract's central rule is that the two agree index for index: row 0 of the table is the header row naming the columns, stats[i] is row i + 1, the note column exists for the whole block exactly when some item carries a note, and every row — the header row included — has the same number of cells. This schema enforces that agreement structurally: the row count is pinned to the item count for blocks of up to 12 tiles (beyond that the equality is left to the Phase 1a AST conformance test, which also checks that each cell's text matches the item's label, display, denominator and note — a text-level equality JSON Schema cannot express).",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "variant",
+    "max",
+    "stats",
+    "children"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "const": "div",
+      "description": "Always a div. The family emits no custom node types, because myst-to-tex silently drops the whole subtree of a node type it has no handler for."
+    },
+    "class": {
+      "type": "string",
+      "pattern": "^qe-dv qe-dv-stats(?: (?!qe-dv(?: |$))(?!qe-dv-stats(?: |$))[^\\s]+)*$",
+      "description": "The class string exactly as the directive normalises it: the two family tokens in this order, then each surviving token from the :class: option, separated by single spaces, with no duplicates, no empty tokens and no leading or trailing space. mystmd core does no normalisation of its own (addClassOptions is literally node.class = data.options.class), so the pattern describes work the directive must do."
+    },
+    "contract": {
+      "const": "1.0",
+      "description": "Contract version this node conforms to. Always the string, never a number."
+    },
+    "primitive": {
+      "const": "stats",
+      "description": "Names the primitive so a consumer can dispatch without parsing the class string. Only the root node carries contract and primitive; the table, its rows and its cells carry neither."
+    },
+    "variant": {
+      "enum": [
+        "headline",
+        "metric"
+      ],
+      "description": "Tile anatomy hint, always emitted. headline: the figure leads and the label reads as a caption beneath it. metric: a short label leads and the value follows. Whether a metric block renders as the compact stacked strip or the wider label/value row is derived from note presence, not from a third variant value."
+    },
+    "max": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0,
+      "description": "The shared upper bound every numeric value is measured against. Non-null means the tiles are comparable, a mini bar is wanted, and the fallback table uses it as the denominator for items carrying none of their own. Null means the figures are independent and no bar is drawn."
+    },
+    "stats": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The tiles, in display order. Item i is row i + 1 of the fallback table, row 0 being the header row. minItems 1 is the constraint; two to eight is editorial guidance, not a rule.",
+      "items": {
+        "$ref": "#/$defs/statItem"
+      }
+    },
+    "children": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "description": "Exactly one node: the fallback table. One header row, then one row per stat, in the same order as the stats array.",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/fallbackTable"
+        }
+      ]
+    },
+    "naLabel": false,
+    "label": {
+      "not": {},
+      "description": "Never present. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link — so a div, table, row or cell carrying one loses it, and only when the page is embedded elsewhere. The family therefore emits none of the three on any node. A `label` key inside the stats array is a different thing and is required there."
+    },
+    "identifier": {
+      "not": {},
+      "description": "Never present, for the same reason as label."
+    },
+    "html_id": {
+      "not": {},
+      "description": "Never present, for the same reason as label."
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/$defs/fractionFollowsScale"
+    },
+    {
+      "$ref": "#/$defs/fractionAbsentWithoutScale"
+    },
+    {
+      "$ref": "#/$defs/noteColumnFollowsData"
+    },
+    {
+      "$ref": "#/$defs/rowCountFollowsStats"
+    }
+  ],
+  "$defs": {
+    "statItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "value",
+        "display",
+        "denominator",
+        "fraction",
+        "tone",
+        "note"
+      ],
+      "description": "One tile. Every key is present on every item, optional ones as null, so a consumer never needs a presence check and a misspelt key is caught here rather than read as missing data.",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Plain-text caption. The rich inline form of the same text is cell 1 of the matching table row."
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "The machine-readable figure. Null is the family's one spelling of an absent value: it means the measure does not apply to this item, and the fallback prints an em dash for it."
+        },
+        "display": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "Exactly what to print for the value, carrying the author's or producer's chosen precision (\"9\" and \"9.0\" are both legal and differ typographically). A renderer prints this and never re-formats value. Null exactly when value is null: an absent value has no figure to print, and the fallback renders it as the em dash — rather than any bespoke spelling of nothing."
+        },
+        "denominator": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "description": "This item's own total, printed after the value as \"/ n\". Independent of max: max is one scale for the whole block, denominator is this item's total."
+        },
+        "fraction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Pre-computed bar fill, value / max, clamped to [0, 1] and rounded to four decimal places, so a consumer never divides. Null means draw no fill: either the block has no max, or the value is absent."
+        },
+        "tone": {
+          "enum": [
+            "neutral",
+            "accent",
+            "good",
+            "warn",
+            "bad"
+          ],
+          "description": "Colour hint from the closed family vocabulary. A hint, never a colour and never a threshold; this plugin never derives it from the number."
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "Plain-text one-line note. The rich inline form is cell 3 of the matching table row. Null when the item has no note."
+        }
+      },
+      "allOf": [
+        {
+          "description": "An absent value carries no display string and no bar fill. The em dash lives in the fallback children, never in the properties.",
+          "if": {
+            "type": "object",
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "null"
+              },
+              "fraction": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "description": "A value that is present has a display string to print it with.",
+          "if": {
+            "type": "object",
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fractionFollowsScale": {
+      "description": "A scaled block computes a fraction for every numeric value. A null fraction there draws no bar and nothing else would flag it.",
+      "if": {
+        "type": "object",
+        "required": [
+          "max"
+        ],
+        "properties": {
+          "max": {
+            "type": "number"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "stats": {
+            "type": "array",
+            "items": {
+              "if": {
+                "type": "object",
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              },
+              "then": {
+                "type": "object",
+                "properties": {
+                  "fraction": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "fractionAbsentWithoutScale": {
+      "description": "An unscaled block has no bars, so every fraction is null.",
+      "if": {
+        "type": "object",
+        "required": [
+          "max"
+        ],
+        "properties": {
+          "max": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "stats": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fraction": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "noteColumnFollowsData": {
+      "description": "The note column exists for the whole block exactly when some item carries a note, and then every row has three cells — the header row included, and an item without a note getting an empty third cell. Ragged rows are the failure this rules out: myst-to-typst declares the column count from the first row and then emits every cell as one flat positional sequence with no row delimiter, so a single short row shifts every cell after it one column left for the rest of the table.",
+      "if": {
+        "type": "object",
+        "required": [
+          "stats"
+        ],
+        "properties": {
+          "stats": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "required": [
+                "note"
+              ],
+              "properties": {
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/threeCellRows"
+      },
+      "else": {
+        "$ref": "#/$defs/twoCellRows"
+      }
+    },
+    "twoCellRows": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "threeCellRows": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "children": {
+                        "type": "array",
+                        "minItems": 3,
+                        "maxItems": 3
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "rowCountFollowsStats": {
+      "description": "children[0].children.length === stats.length + 1, the extra row being the header row, encoded exactly for blocks of one to twelve tiles: row 0 is the header row and rows 1 to n are the stats, in order. Above twelve only the row count is bounded and the header row is pinned by the table's contains clause alone; the AST conformance test carries the rest there. Without this the props and the children can disagree silently, which is precisely how the fallback rots.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 4,
+                      "maxItems": 4,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 5,
+                      "maxItems": 5,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 5,
+              "maxItems": 5
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 6,
+                      "maxItems": 6,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 6,
+              "maxItems": 6
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 7,
+                      "maxItems": 7,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 7,
+              "maxItems": 7
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 8,
+                      "maxItems": 8,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 8,
+              "maxItems": 8
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 9,
+                      "maxItems": 9,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 9,
+              "maxItems": 9
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 10,
+                      "maxItems": 10,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 10,
+              "maxItems": 10
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 11,
+                      "maxItems": 11,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 11,
+              "maxItems": 11
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 12,
+                      "maxItems": 12,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 12,
+              "maxItems": 12
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 13,
+                      "maxItems": 13,
+                      "prefixItems": [
+                        {
+                          "$ref": "#/$defs/headerRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        },
+                        {
+                          "$ref": "#/$defs/tableRow"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "stats": {
+              "type": "array",
+              "minItems": 13
+            },
+            "children": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "children": {
+                      "type": "array",
+                      "minItems": 14
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "fallbackTable": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "description": "The fallback table, emitted bare: no wrapping container, no caption, no label, no identifier and no html_id, so it is never enumerated as \"Table N\" and never registered as a cross-reference target. All of it is enforced rather than merely asserted: the wrapping container and the caption by the `type` const and the row items, the three identity properties by the `not`s below.",
+      "properties": {
+        "type": {
+          "const": "table"
+        },
+        "label": {
+          "not": {},
+          "description": "Never present. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link — so a div, table, row or cell carrying one loses it, and only when the page is embedded elsewhere. The family therefore emits none of the three on any node. A `label` key inside the stats array is a different thing and is required there."
+        },
+        "identifier": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "html_id": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "description": "Row 0 is the header row; every row after it is one stat, in the stats array's order. Exactly one row in the table is a header row — contains/maxContains says so for any size, and rowCountFollowsStats pins it at index 0, with n data rows after it, for the one-to-twelve-tile blocks it enumerates.",
+          "items": {
+            "$ref": "#/$defs/anyRow"
+          },
+          "contains": {
+            "$ref": "#/$defs/headerRow"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    "anyRow": {
+      "description": "Any row of the fallback table: the header row, or one stat. The two are mutually exclusive — a header row carries header: true on every cell, and no cell of a data row may carry it — so oneOf is exact rather than merely convenient.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/headerRow"
+        },
+        {
+          "$ref": "#/$defs/tableRow"
+        }
+      ]
+    },
+    "headerRow": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "description": "Row 0, and the only header row: the column vocabulary the reader of a plain build needs, given that this primitive invents its columns rather than taking them from the author. Two cells, or three when the block has a note column. Every cell carries header: true, and no cell in any other row does.",
+      "properties": {
+        "type": {
+          "const": "tableRow"
+        },
+        "label": {
+          "not": {},
+          "description": "Never present. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link — so a div, table, row or cell carrying one loses it, and only when the page is embedded elsewhere. The family therefore emits none of the three on any node. A `label` key inside the stats array is a different thing and is required there."
+        },
+        "identifier": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "html_id": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "children": {
+          "type": "array",
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "$ref": "#/$defs/measureHeaderCell"
+                },
+                {
+                  "$ref": "#/$defs/valueHeaderCell"
+                }
+              ]
+            },
+            {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [
+                {
+                  "$ref": "#/$defs/measureHeaderCell"
+                },
+                {
+                  "$ref": "#/$defs/valueHeaderCell"
+                },
+                {
+                  "$ref": "#/$defs/noteHeaderCell"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "measureHeaderCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "header",
+        "children"
+      ],
+      "description": "Header cell 1: names the label column. Left aligned, matching the column beneath it.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "left"
+        },
+        "header": {
+          "const": true,
+          "description": "True on every cell of row 0, and only there. myst-to-tex writes an \\hline after any row whose FIRST cell is a header, and its long-table path counts leading header rows to find where the body starts, so a header cell in a later row rules the table after every line and, in longtable mode, empties the body altogether."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "const": "text"
+                },
+                "value": {
+                  "const": "Measure"
+                }
+              }
+            }
+          ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "valueHeaderCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "header",
+        "children"
+      ],
+      "description": "Header cell 2: names the figure column. Right aligned, matching the column beneath it.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "right"
+        },
+        "header": {
+          "const": true,
+          "description": "True on every cell of row 0, and only there. myst-to-tex writes an \\hline after any row whose FIRST cell is a header, and its long-table path counts leading header rows to find where the body starts, so a header cell in a later row rules the table after every line and, in longtable mode, empties the body altogether."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "const": "text"
+                },
+                "value": {
+                  "const": "Value"
+                }
+              }
+            }
+          ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "noteHeaderCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "header",
+        "children"
+      ],
+      "description": "Header cell 3: names the note column, present exactly when the block has one.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "left"
+        },
+        "header": {
+          "const": true,
+          "description": "True on every cell of row 0, and only there. myst-to-tex writes an \\hline after any row whose FIRST cell is a header, and its long-table path counts leading header rows to find where the body starts, so a header cell in a later row rules the table after every line and, in longtable mode, empties the body altogether."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "const": "text"
+                },
+                "value": {
+                  "const": "Note"
+                }
+              }
+            }
+          ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "tableRow": {
+      "type": "object",
+      "required": [
+        "type",
+        "children"
+      ],
+      "description": "One stat as a data row: label cell, value cell, and a note cell when the block has a note column. A row is one shape or the other, never a mixture, and noteColumnFollowsData decides which shape the whole block takes.",
+      "properties": {
+        "type": {
+          "const": "tableRow"
+        },
+        "label": {
+          "not": {},
+          "description": "Never present. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link — so a div, table, row or cell carrying one loses it, and only when the page is embedded elsewhere. The family therefore emits none of the three on any node. A `label` key inside the stats array is a different thing and is required there."
+        },
+        "identifier": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "html_id": {
+          "not": {},
+          "description": "Never present, for the same reason as label."
+        },
+        "children": {
+          "type": "array",
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "$ref": "#/$defs/labelCell"
+                },
+                {
+                  "$ref": "#/$defs/valueCell"
+                }
+              ]
+            },
+            {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [
+                {
+                  "$ref": "#/$defs/labelCell"
+                },
+                {
+                  "$ref": "#/$defs/valueCell"
+                },
+                {
+                  "$ref": "#/$defs/noteCell"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "labelCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "children"
+      ],
+      "description": "Cell 1: the label's inline content. Left aligned.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "left"
+        },
+        "header": {
+          "const": false,
+          "description": "Never true outside row 0. Only the header row is a header row; a header cell in a data row makes myst-to-tex rule the table after that line."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "valueCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "children"
+      ],
+      "description": "Cell 2: the figure in strong, followed by plain text \" / n\" for the denominator. An item whose value is absent is the bare em dash —, unemphasised and with no denominator. Right aligned.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "right"
+        },
+        "header": {
+          "const": false,
+          "description": "Never true outside row 0. Only the header row is a header row; a header cell in a data row makes myst-to-tex rule the table after that line."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "noteCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "align",
+        "children"
+      ],
+      "description": "Cell 3: the note's inline content. An item whose note is null renders the em dash, the family's single spelling of an absent value, so no cell of the fallback is ever blank and the gap is legible rather than invisible. Never empty. Left aligned.",
+      "properties": {
+        "type": {
+          "const": "tableCell"
+        },
+        "align": {
+          "const": "left"
+        },
+        "header": {
+          "const": false,
+          "description": "Never true outside row 0. Only the header row is a header row; a header cell in a data row makes myst-to-tex rule the table after that line."
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "inlineNode": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "description": "The permitted inline subset inside a fallback cell. Author-supplied inline MyST is reduced to this list because myst-to-tex drops the subtree of a node type it has no handler for, silently and with exit code 0.",
+      "properties": {
+        "type": {
+          "enum": [
+            "text",
+            "strong",
+            "emphasis",
+            "inlineCode",
+            "link"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inlineNode"
+          }
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,11 @@ jobs:
       - name: Bundle
         run: npm run bundle
 
+      # The contract check needs no engine: it compiles every schema and runs the fixtures.
+      # It runs first because a broken contract is the cheapest failure to read.
+      - name: Contract schemas and samples
+        run: npm run test:contract
+
       - name: Unit tests
         run: npm run test:unit
 

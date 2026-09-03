@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/heatmap.json",
+  "title": "qe-dv heatmap",
+  "description": "Root node of the datavis `heatmap` primitive: a classed `div` carrying a rectangular matrix of numeric-or-missing cells, the numeric domain a consumer's colour ramp spans, and a tone hint saying what a high value means. Its two children are the same matrix rendered plainly — a `table` and a legend `paragraph` — so the node stays readable in a theme with no renderer and in LaTeX or Typst export. The structured properties and the children are two renderings of one dataset and must agree index for index; the rules JSON Schema cannot express (values.length === columns.length, key uniqueness, scale.max > scale.min, every table row carrying columns.length + 1 cells, and the table agreeing cell for cell with rows and columns) are enforced by the directive, which defers a diagnostic onto the node for the family's document-stage transform to re-raise so that `myst build --strict` counts it. `additionalProperties` is true at the root because the engine adds its own keys (`key`, `position`) to every mdast node, and true inside the fallback nodes for the same reason; it is false on the plain data objects — `columns` items, `rows` items and `scale` — where a typo must be caught.",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "columns",
+    "rows",
+    "scale",
+    "tone",
+    "precision",
+    "children"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "div",
+      "description": "Portable container node. `div` is the only wrapper myst-to-react, myst-to-tex and myst-to-typst all handle; `grid` and `card` have no LaTeX handler and their whole subtree is dropped silently."
+    },
+    "class": {
+      "type": "string",
+      "pattern": "^qe-dv qe-dv-heatmap(?: (?!qe-dv(?: |$))(?!qe-dv-heatmap(?: |$))[^\\s]+)*$",
+      "description": "Whitespace-separated class tokens, exactly as the directive normalises them: the family token `qe-dv` and the primitive token `qe-dv-heatmap` first and in that order, then any author tokens from the `:class:` option in the order written, split on whitespace, empties and duplicates dropped, joined with single spaces. Core performs no normalisation of its own (`node.class = data.options.class`), so this shape is the directive's responsibility. The negative lookaheads are what make the pattern reject a class the directive would never emit: a repeated `qe-dv` or `qe-dv-heatmap` among the author tokens."
+    },
+    "contract": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Version of the datavis node contract this node was emitted against, so a renderer can refuse a node it does not understand."
+    },
+    "primitive": {
+      "type": "string",
+      "const": "heatmap",
+      "description": "Primitive name, for consumers that dispatch on a property rather than on a class selector."
+    },
+    "corner": {
+      "type": "string",
+      "description": "Accessible name of the row-label column, printed in the fallback table's top-left cell (for example the CSV header `series`). The upgraded rendering may hide it visually — the design's grid shows an empty corner — but it must still name the row headers for assistive technology. Absent, or the empty string, means no corner label and an empty corner cell."
+    },
+    "columns": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The matrix columns, in display order. Every `rows[].values` array is index-aligned with this one.",
+      "items": { "$ref": "#/$defs/column" }
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The matrix rows, in display order. The plugin never sorts: the order given is the order rendered, and the order the fallback table prints.",
+      "items": { "$ref": "#/$defs/row" }
+    },
+    "scale": {
+      "type": "object",
+      "required": ["min", "max"],
+      "additionalProperties": false,
+      "description": "The numeric domain a colour ramp spans. The consumer computes t = clamp((v - min) / (max - min), 0, 1); values outside the domain clamp rather than extend it. `max` must be strictly greater than `min` — a comparison JSON Schema cannot make, so the directive makes it. Both endpoints are printed in the fallback's legend paragraph.",
+      "properties": {
+        "min": { "type": "number", "description": "Value mapped to t = 0." },
+        "max": { "type": "number", "description": "Value mapped to t = 1." }
+      }
+    },
+    "tone": {
+      "type": "string",
+      "enum": ["neutral", "accent", "good", "warn", "bad"],
+      "description": "Hint naming what a value at `scale.max` means: `good` high reads positively, `bad` high reads negatively, `warn` high is cautionary, `accent` magnitude only in the theme accent hue, `neutral` magnitude only in greys. A hint, never a colour and never a threshold. Always written by the directive, whose option default is `accent`; `good`, `bad` and `warn` are glossed in words in the legend paragraph, `accent` and `neutral` say nothing there because they claim no domain sense."
+    },
+    "precision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Decimal places used to format numeric cells, always written by the directive (option default 1). The fallback already carries the formatted text; this is how a renderer drawing its own grid reproduces it, and it is not recoverable from `rows[].values`, because JSON numbers carry no trailing zeros — the cell printed `10.0` is the number `10` on the wire."
+    },
+    "children": {
+      "type": "array",
+      "description": "The portable fallback, and exactly two nodes: the matrix as a `table`, then the legend as a `paragraph`. Both types have handlers in myst-to-react, myst-to-tex and myst-to-typst. Nothing else is permitted — a third child of an unhandled type would be dropped silently from a LaTeX export, which is the failure the div-rooted design exists to prevent.",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [{ "$ref": "#/$defs/fallbackTable" }, { "$ref": "#/$defs/legendParagraph" }],
+      "items": false
+    }
+  },
+  "allOf": [
+    { "$ref": "#/$defs/portableNode" },
+    {
+      "$comment": "A missing value has one spelling family-wide: `null` in the properties, an em dash in the fallback. `naLabel`, the draft's per-block spelling of it, is retired. `additionalProperties` has to stay open for the engine's own keys, so the one retired property a stale wrapper would still emit is named and refused here rather than passing silently.",
+      "propertyNames": { "not": { "const": "naLabel" } }
+    }
+  ],
+  "$defs": {
+    "portableNode": {
+      "$comment": "Applied to the root and to every node in the fallback. Referenced rather than repeated so the rule cannot drift between the nodes it protects.",
+      "type": "object",
+      "description": "A node this primitive emits, which carries no top-level `label`, `identifier` or `html_id`. `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link` (`packages/myst-cli/src/transforms/embed.ts:61-66`), so a `div`, `tableCell` or `paragraph` carrying one loses it — and loses it only when the page is embedded elsewhere, which is the worst place to find out. This forbids the properties on the node itself, not the property named `label` inside `columns` and `rows`: those live in arrays and the transform never reaches them.",
+      "propertyNames": { "not": { "enum": ["label", "identifier", "html_id"] } }
+    },
+    "dumbInnerNode": {
+      "$comment": "Every node of the fallback, and nothing else. `portableNode` is applied to the root too, so the contract/primitive ban lives here rather than there.",
+      "type": "object",
+      "description": "An inner node carries a class and nothing else: no `contract`, no `primitive`, and no second copy of the datum it renders. Only the root is self-describing, so a consumer that finds a node carrying `primitive` knows it is a root without walking upwards, and there is no third copy of a value to drift from the other two.",
+      "allOf": [{ "$ref": "#/$defs/portableNode" }],
+      "propertyNames": { "not": { "enum": ["contract", "primitive"] } }
+    },
+    "column": {
+      "type": "object",
+      "required": ["key", "label"],
+      "additionalProperties": false,
+      "description": "One matrix column. `key` identifies it, `label` is what the header cell prints.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable machine identifier, unique across `columns` (for example the CSV column name `references`). Uniqueness is checked by the directive."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display text for the column header (for example `Refs`), printed verbatim in the fallback's header row."
+        }
+      }
+    },
+    "row": {
+      "type": "object",
+      "required": ["key", "label", "values"],
+      "additionalProperties": false,
+      "description": "One matrix row: an identifier, the label the fallback prints, and one cell value per column.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable machine identifier, unique across `rows` (for example the CSV series id `lecture-python-advanced.myst`). Uniqueness is checked by the directive."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display text for the row label (for example `advanced`), printed verbatim in the fallback's first cell of this row."
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "description": "One entry per column, index-aligned with `columns`; its length must equal `columns.length`, which the directive checks because JSON Schema cannot compare two properties. `null` means the cell has no value; the fallback prints an em dash for it, which is the family's one spelling of a missing value.",
+          "items": {
+            "type": ["number", "null"],
+            "description": "A cell value, or null for a missing cell — never a string, and never a sentinel number standing in for absence."
+          }
+        }
+      }
+    },
+    "fallbackTable": {
+      "type": "object",
+      "required": ["type", "class", "children"],
+      "additionalProperties": true,
+      "description": "The matrix as a plain mdast table: a header row of the corner label and the column labels, then one row per `rows` entry. Its row count is `rows.length + 1`, and every row carries the same number of cells — `columns.length + 1`, the header row included, a column that is empty for a row getting an empty cell rather than no cell. JSON Schema cannot compare one row's length with another's, so the directive builds both agreements in one pass and the test suite asserts them; the cost of getting it wrong is in `myst-to-typst`, which takes the column count from the first row alone (`countColumns`, `packages/myst-to-typst/src/table.ts:4-10`) and then emits cells as one flat positional sequence with no row delimiter (`tableRowHandler`, `:49-51`), so one short row shifts every later cell a column left.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "table" },
+        "class": {
+          "type": "string",
+          "const": "qe-dv-fallback",
+          "description": "Family token marking the plain rendering, so a CSS-only theme can style it and an upgrading theme can hide it. myst-to-html's table handler overwrites `node.data` and does not forward `class`, so the token is a convenience on the site path, not a guarantee on every export path."
+        },
+        "children": {
+          "type": "array",
+          "description": "One header row and one row per `rows` entry. Only row 0 carries `header: true`, on every one of its cells, and no cell in any other row is ever a header: every row is wholly a header row or wholly a data row — a row that mixes the two is rejected — and there is exactly one header row. That it is the FIRST row is the directive's guarantee and the test suite's assertion, not a constraint here. JSON Schema 2020-12 can express it — `prefixItems` pins index 0 while `items` constrains the open tail, with no length cap — but ajv's `strictTuples`, which `strict: true` turns on in the contract harness, refuses a tuple whose tail is left open, so the positional rule is asserted in the test suite instead.",
+          "minItems": 2,
+          "contains": { "$ref": "#/$defs/headerRow" },
+          "minContains": 1,
+          "maxContains": 1,
+          "items": { "$ref": "#/$defs/tableRow" }
+        }
+      }
+    },
+    "tableRow": {
+      "type": "object",
+      "description": "A row of the fallback table: either the header row or a data row.",
+      "anyOf": [{ "$ref": "#/$defs/headerRow" }, { "$ref": "#/$defs/bodyRow" }]
+    },
+    "headerRow": {
+      "type": "object",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "description": "The first row of the fallback table, and the only header row: every cell in it carries `header: true`, and no cell outside it does. `myst-to-typst` counts every all-header row and repeats each as a running header (`countHeaderRows`, `packages/myst-to-typst/src/table.ts:12-22`), and `myst-to-tex` rules the table after any row whose first cell is a header, so a second header row is visible damage in both exports.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/headerCell" }
+        }
+      }
+    },
+    "bodyRow": {
+      "type": "object",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "description": "One data row of the fallback table: the row label, then one cell per column.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/bodyCell" }
+        }
+      }
+    },
+    "headerCell": {
+      "type": "object",
+      "required": ["type", "header", "align", "children"],
+      "additionalProperties": true,
+      "description": "A cell of the header row. The corner cell is `align: left` with no children when `corner` is absent or empty; column headers are `align: right`.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "header": { "type": "boolean", "const": true },
+        "align": { "type": "string", "enum": ["left", "right", "center"] },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/textNode" } }
+      }
+    },
+    "bodyCell": {
+      "type": "object",
+      "required": ["type", "align", "children"],
+      "additionalProperties": true,
+      "description": "A cell of a data row: the row label (`align: left`) or a formatted value (`align: right`). It must not be marked as a header — myst-to-tex writes an \\hline after any row whose first cell is a header and, in the long-table path, counts such rows as header rows and then skips them from the body, which empties the table.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "header": { "type": "boolean", "const": false },
+        "align": { "type": "string", "enum": ["left", "right", "center"] },
+        "children": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/textNode" } }
+      }
+    },
+    "legendParagraph": {
+      "type": "object",
+      "required": ["type", "class", "children"],
+      "additionalProperties": true,
+      "description": "The legend as one plain paragraph, so the ramp domain and the sense of `tone` survive in a theme with no renderer and in export. Its text is `Scale: <min> to <max>` — endpoints as authored, without applying `precision` — then, for a tone that claims a domain sense, `; higher is better` (`good`), `; higher is worse` (`bad`) or `; higher needs attention` (`warn`), a full stop, and, only when some cell is null, ` — means no value.`, naming the glyph the empty cells print.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "paragraph" },
+        "class": { "type": "string", "const": "qe-dv-legend" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/textNode" }
+        }
+      }
+    },
+    "textNode": {
+      "type": "object",
+      "required": ["type", "value"],
+      "additionalProperties": true,
+      "description": "A plain mdast text node. The fallback carries no inline markup: every string in it is one of `corner`, a column label, a row label, a formatted value, the em dash standing for a missing value, or the legend sentence.",
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "properties": {
+        "type": { "type": "string", "const": "text" },
+        "value": { "type": "string" }
+      }
+    }
+  }
+}
