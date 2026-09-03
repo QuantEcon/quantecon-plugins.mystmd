@@ -22,22 +22,8 @@
     },
     "class": {
       "type": "string",
-      "description": "Space-separated class tokens, exactly as the directive normalises them: the family token `qe-dv`, the primitive token `qe-dv-chips`, the derived token `qe-dv-chips--<variant>`, then any author tokens from `:class:`, deduplicated and single-space joined.",
-      "allOf": [
-        {
-          "type": "string",
-          "pattern": "^\\S+( \\S+)*$",
-          "description": "Single-space joined, with no leading or trailing whitespace."
-        },
-        {
-          "type": "string",
-          "pattern": "(^| )qe-dv( |$)"
-        },
-        {
-          "type": "string",
-          "pattern": "(^| )qe-dv-chips( |$)"
-        }
-      ]
+      "description": "Space-separated class tokens, exactly as the directive normalises them: the family token `qe-dv`, the primitive token `qe-dv-chips` and the derived token `qe-dv-chips--<variant>`, in that order and in the first three positions, then any author tokens from `:class:`, single-space joined. The directive drops empty tokens, tokens already present and any author token that is itself a base or variant token, so the tail never carries one; the `if`/`then` blocks below tie the variant token to the `variant` property.",
+      "pattern": "^qe-dv qe-dv-chips qe-dv-chips--(?:pill|tag)(?: (?!qe-dv(?: |$))(?!qe-dv-chips(?: |$))(?!qe-dv-chips--(?:pill|tag)(?: |$))\\S+)*$"
     },
     "contract": {
       "type": "string",

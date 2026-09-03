@@ -1114,6 +1114,228 @@
       }
     },
     {
+      "because": "`class` carries every token but in the wrong order: the family, primitive and variant tokens come first and in that order",
+      "node": {
+        "type": "div",
+        "class": "qe-dv-chips qe-dv qe-dv-chips--pill",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` repeats the `qe-dv` family token as an author token; the directive drops a token already present, so a repeat is a defect rather than a harmless duplicate",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-dv",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`class` carries a second variant token in the author tail; the variant is derived from the property, and the directive drops any author token that is itself a variant token",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "because": "`tone` is a colour name rather than a member of the closed tone vocabulary",
       "node": {
         "type": "div",

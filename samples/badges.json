@@ -867,6 +867,96 @@
       }
     },
     {
+      "because": "the class string repeats the `qe-dv` family token as an author token; the directive drops a token already present, so a repeat is a defect rather than a harmless duplicate",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-dv",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "because": "`tone` is \"danger\", which is outside the closed set neutral | accent | good | warn | bad",
       "node": {
         "type": "div",

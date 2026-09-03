@@ -16,7 +16,8 @@
  * schemas checked by a partial implementation of the spec are not checked.
  *
  * Usage: node scripts/validate-contract.mjs [--verbose]
- * Exit codes: 0 all checks passed · 1 a check failed · 2 the fixtures are malformed
+ * Exit codes: 0 all checks passed · 1 a check failed · 2 the fixtures could not be read — a
+ * schema or sample file is missing, or is not valid JSON — so no verdict on the checks exists.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -44,22 +45,38 @@ const PRIMITIVES = [
 const problems = [];
 const notes = [];
 let checks = 0;
+/** Set when a schema or sample file is missing or unparsable: the run cannot reach a verdict. */
+let unreadable = false;
 
 function fail(message) {
   problems.push(message);
 }
 
 function readJson(file) {
+  const where = path.relative(repoRoot, file);
+  let text;
   try {
-    return JSON.parse(fs.readFileSync(file, 'utf8'));
+    text = fs.readFileSync(file, 'utf8');
   } catch (error) {
-    fail(`${path.relative(repoRoot, file)}: not readable as JSON — ${error.message}`);
+    unreadable = true;
+    fail(`${where}: cannot be read — ${error.code ?? error.message}`);
+    return null;
+  }
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    unreadable = true;
+    fail(`${where}: not valid JSON — ${error.message}`);
     return null;
   }
 }
 
 function listJson(dir) {
-  if (!fs.existsSync(dir)) return [];
+  if (!fs.existsSync(dir)) {
+    unreadable = true;
+    fail(`${path.relative(repoRoot, dir)}/ is missing`);
+    return [];
+  }
   return fs
     .readdirSync(dir)
     .filter((name) => name.endsWith('.json'))
@@ -72,8 +89,14 @@ const sampleNames = listJson(sampleDir);
 
 // 1. Every primitive has a schema and a sample file, and nothing else is present.
 for (const primitive of PRIMITIVES) {
-  if (!schemaNames.includes(primitive)) fail(`schema/${primitive}.json is missing`);
-  if (!sampleNames.includes(primitive)) fail(`samples/${primitive}.json is missing`);
+  if (!schemaNames.includes(primitive)) {
+    unreadable = true;
+    fail(`schema/${primitive}.json is missing`);
+  }
+  if (!sampleNames.includes(primitive)) {
+    unreadable = true;
+    fail(`samples/${primitive}.json is missing`);
+  }
 }
 for (const name of schemaNames) {
   if (!PRIMITIVES.includes(name)) fail(`schema/${name}.json is not one of the eight primitives`);
@@ -172,7 +195,7 @@ if (problems.length > 0) {
   console.error(`\n${problems.length} problem${problems.length > 1 ? 's' : ''}:\n`);
   for (const problem of problems) console.error(`  - ${problem}`);
   console.error('');
-  process.exit(schemaNames.length === 0 || sampleNames.length === 0 ? 2 : 1);
+  process.exit(unreadable ? 2 : 1);
 }
 
 console.log(

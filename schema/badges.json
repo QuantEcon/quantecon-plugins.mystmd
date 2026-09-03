@@ -13,8 +13,8 @@
     },
     "class": {
       "type": "string",
-      "pattern": "^qe-dv qe-dv-badges(?: [^\\s]+)*$",
-      "description": "The family token, the primitive token, then the normalised tokens from the directive's :class: option. The directive splits :class: on /\\s+/, drops empty tokens and tokens already present, and joins the survivors with single spaces, so the string never carries a leading, trailing or doubled space."
+      "pattern": "^qe-dv qe-dv-badges(?: (?!qe-dv(?: |$))(?!qe-dv-badges(?: |$))[^\\s]+)*$",
+      "description": "The family token, the primitive token, then the normalised tokens from the directive's :class: option. The directive splits :class: on /\\s+/, drops empty tokens and tokens already present, and joins the survivors with single spaces, so the string never carries a leading, trailing or doubled space, and never repeats a base token in the tail."
     },
     "contract": {
       "type": "string",

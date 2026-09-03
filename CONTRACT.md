@@ -4056,11 +4056,13 @@ variant or tone token disagrees with the root's resolved value.
 
 Core does no normalisation of `:class:` whatsoever — `addClassOptions` is literally
 `node.class = data.options.class` — so the directive does it: split the option value on
-whitespace, drop empty tokens, drop tokens already present, append the survivors to the base
-tokens, and join with single spaces. The schema's `class` pattern matches exactly that output —
-`^\S+( \S+)*$` plus a whole-token match on `qe-dv` and on `qe-dv-chips` — so an un-normalised
-class string with a double or trailing space is a defect, not a cosmetic difference. The
-patterns avoid lookahead so that RE2-based validators can compile them.
+whitespace, drop empty tokens, drop tokens already present, drop any author token that is
+itself a variant token (the variant is derived from the property, never from `:class:`), append
+the survivors to the three derived tokens, and join with single spaces. The schema's `class`
+pattern matches exactly that output — `qe-dv`, `qe-dv-chips` and `qe-dv-chips--<variant>` first,
+in that order, then author tokens none of which is a base or variant token — so a double or
+trailing space, a reordered head, or a repeated base or variant token is a defect, not a
+cosmetic difference. It uses the same lookahead form as the other seven schemas.
 
 ### Authoring
 
