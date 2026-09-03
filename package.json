@@ -10,11 +10,13 @@
   },
   "scripts": {
     "bundle": "node scripts/bundle.mjs",
+    "test:contract": "node scripts/validate-contract.mjs",
     "test:unit": "cd tests/unit && node --test",
     "test:plugin": "npm run bundle && cd tests/plugin && node --test",
-    "test": "npm run test:unit && npm run test:plugin"
+    "test": "npm run test:contract && npm run test:unit && npm run test:plugin"
   },
   "devDependencies": {
+    "ajv": "^8.18.0",
     "esbuild": "^0.25.0"
   }
 }

@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/delta-list.json",
+  "title": "qe-dv delta-list",
+  "description": "Root node of the datavis 'delta-list' primitive: named items whose measured value moved between two comparable periods, arranged in one to four labelled groups. Emitted by one directive, '{delta-list}' (documented alias '{dv-delta-list}'), whose body is a MyST bullet list; there are no item directives. The structured data on the root node and the children are two renderings of the same data. groups[i] describes children[i] and the length equality between them IS enforced here, one branch per permitted length; the item-by-item correspondence (groups[i].items[j] and the j-th listItem of that group's list) and the exact text of a formatted value are contractual but not expressible in JSON Schema, so the plugin's conformance test asserts them against the emitted AST. The root is the only node that carries 'contract' and 'primitive', and no node carries a top-level label, identifier or html_id.",
+  "type": "object",
+  "required": ["type", "class", "contract", "primitive", "groups", "children"],
+  "properties": {
+    "type": { "const": "div" },
+    "class": {
+      "type": "string",
+      "description": "Family token then primitive token, in that order, then any author tokens the directive's ':class:' option contributed. The directive normalises: it splits the option on whitespace, drops empty and already-present tokens, appends the survivors and joins with single spaces. The pattern holds it to that: single spaces, no leading or trailing space, and neither base token repeated among the author tokens, because normalisation cannot produce one. Match with div[class~=qe-dv-delta-list], never on equality.",
+      "pattern": "^qe-dv qe-dv-delta-list(?: (?!qe-dv(?: |$))(?!qe-dv-delta-list(?: |$))[^\\s]+)*$"
+    },
+    "contract": { "const": "1.0" },
+    "primitive": { "const": "delta-list" },
+    "unit": {
+      "type": "string",
+      "description": "Suffix appended with no separating space to every formatted number, in the properties' intended rendering and in the emitted fallback text alike. Include a leading space yourself if the unit needs one (' pp').",
+      "maxLength": 12
+    },
+    "precision": {
+      "type": "integer",
+      "description": "Decimal places the emitter used when formatting 'from' and 'to' into the fallback text, as toFixed(precision). A renderer re-formatting the raw numbers must use the same value.",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "groups": {
+      "type": "array",
+      "description": "The groups of the list, in display order: one per top-level bullet of the body, or a single implicit group named by the directive's argument when the bullets are items rather than groups. The canonical compliance shape is exactly two: improving, then regressing. Never sorted and never truncated.",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/group" }
+    },
+    "children": {
+      "type": "array",
+      "description": "The portable fallback: one group div per entry in 'groups', in the same order.",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/groupFallback" }
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "required": ["groups"],
+        "properties": { "groups": { "type": "array", "minItems": 1, "maxItems": 1 } }
+      },
+      "then": {
+        "type": "object",
+        "properties": { "children": { "type": "array", "minItems": 1, "maxItems": 1 } }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": ["groups"],
+        "properties": { "groups": { "type": "array", "minItems": 2, "maxItems": 2 } }
+      },
+      "then": {
+        "type": "object",
+        "properties": { "children": { "type": "array", "minItems": 2, "maxItems": 2 } }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": ["groups"],
+        "properties": { "groups": { "type": "array", "minItems": 3, "maxItems": 3 } }
+      },
+      "then": {
+        "type": "object",
+        "properties": { "children": { "type": "array", "minItems": 3, "maxItems": 3 } }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "required": ["groups"],
+        "properties": { "groups": { "type": "array", "minItems": 4, "maxItems": 4 } }
+      },
+      "then": {
+        "type": "object",
+        "properties": { "children": { "type": "array", "minItems": 4, "maxItems": 4 } }
+      }
+    },
+    { "$ref": "#/$defs/noNodeIdentity" }
+  ],
+  "$defs": {
+    "noNodeIdentity": {
+      "type": "object",
+      "description": "No node this primitive emits carries a top-level label, identifier or html_id. myst-cli/src/transforms/embed.ts runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it silently, and only once the page is embedded elsewhere. This bans the property on a node; it says nothing about a label INSIDE an array or object, which is where groups[].label and items[].label live. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
+      "properties": { "label": false, "identifier": false, "html_id": false, "naLabel": false }
+    },
+    "dumbInnerNode": {
+      "type": "object",
+      "description": "An inner node carries a class and nothing else: no contract, no primitive, and no second copy of the data it renders. Only the root is self-describing, so a consumer that finds a qe-dv node knows it is the root without walking upwards, and there is no third copy of an item to drift from the other two.",
+      "allOf": [{ "$ref": "#/$defs/noNodeIdentity" }],
+      "properties": { "contract": false, "primitive": false, "groups": false, "item": false }
+    },
+    "tone": {
+      "type": "string",
+      "description": "Closed tone vocabulary shared by the whole family. A hint only: never a colour, never a threshold, and never derived from the sign of the change. Resolved onto the leaf at build time: the directive pushes its ':tone:' default onto every group that names none, and each group's tone onto every item that names none, so tone is required on both here and no consumer implements inheritance. A renderer that meets a tone it does not handle draws neutral rather than failing.",
+      "enum": ["neutral", "accent", "good", "warn", "bad"]
+    },
+    "group": {
+      "type": "object",
+      "description": "One labelled group of items, authored as one top-level bullet of the directive body whose nested sublist holds the items. Described by children[i] of the root, at the same index.",
+      "required": ["label", "tone", "items"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "The group heading, plain text: no direction glyph, no count, no colon. A renderer derives the marker from the tone.",
+          "minLength": 1
+        },
+        "tone": { "$ref": "#/$defs/tone" },
+        "items": {
+          "type": "array",
+          "description": "The rows of the group, in the producer's order. The plugin never sorts and never truncates.",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/item" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "description": "One measured item, authored as one bullet of the directive body. Every field here except 'tone' is visible in the matching listItem of the fallback; 'tone' is a colour hint with nothing to say once the colour is gone.",
+      "required": ["label", "tone", "from", "to"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "The item's identifier, e.g. 'qe-writing-008'. Authored as the leading code span of the bullet and reproduced verbatim as the inlineCode value of the matching list item, so keep it short and identifier-like. A property of an item object, not a property of a node, so the embed transform's label deletion does not reach it.",
+          "minLength": 1
+        },
+        "from": {
+          "type": "number",
+          "description": "The value in the earlier period. A number, never null: 1.0 has no representation for an item that did not exist in one of the two periods, so a producer excludes non-comparable items rather than spelling the gap. The family null tokens ('', 'n/a', 'na', '-', '\u2014', 'null', trimmed and matched case-insensitively) in a 'from' or 'to' source cell are a deferred error, not a value."
+        },
+        "to": {
+          "type": "number",
+          "description": "The value in the later period. The signed change is derived as to - from; the contract does not carry it, so the two can never disagree."
+        },
+        "description": {
+          "description": "What the item is, in words: whatever followed the separator in the item's bullet. A string when that parsed to a single text node (always so for a ':file:' source); an array of inline MyST nodes when it carried markup. Either way it MUST equal the content of the matching span.qe-dv-delta-desc: the string form as that span's single text node, the array form as that span's children. Absent when the bullet carried none, and then the matching row has three inline children rather than five: an unwritten description has no placeholder and no null spelling.",
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/inlineNode" }
+            }
+          ]
+        },
+        "tone": { "$ref": "#/$defs/tone" }
+      },
+      "additionalProperties": false
+    },
+    "inlineNode": {
+      "type": "object",
+      "description": "One inline MyST node of a description. The allowed set is exactly text, strong, emphasis, inlineCode and link, and it is enforced rather than described: myst-to-tex has a handler for each of those five, and a node of any other type — a grid, a card, an image — is dropped from the .tex export while the build still exits 0. Nested children are held to the same set.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["text", "strong", "emphasis", "inlineCode", "link"]
+        },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/inlineNode" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "groupFallback": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "The plain rendering of one group: a label paragraph followed by a list of its items.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "const": "div" },
+        "class": { "const": "qe-dv-delta-group" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "prefixItems": [
+            { "$ref": "#/$defs/groupLabelParagraph" },
+            { "$ref": "#/$defs/itemList" }
+          ],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "groupLabelParagraph": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "children"],
+      "properties": {
+        "type": { "const": "paragraph" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/groupLabelSpan" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "groupLabelSpan": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "Carries the group's label. A span because myst-to-react passes node.class through on div, span and link only.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "const": "span" },
+        "class": { "const": "qe-dv-delta-group-label" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/strongText" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "strongText": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "children"],
+      "properties": {
+        "type": { "const": "strong" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/textNode" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "itemList": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "One listItem per entry in the group's items array, in the same order.",
+      "required": ["type", "ordered", "spread", "children"],
+      "properties": {
+        "type": { "const": "list" },
+        "ordered": { "const": false },
+        "spread": { "const": false },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/itemFallback" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "itemFallback": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "spread", "children"],
+      "properties": {
+        "type": { "const": "listItem" },
+        "spread": { "const": true },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/itemParagraph" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "itemParagraph": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "Five inline children when the item has a description, three when it has none.",
+      "required": ["type", "children"],
+      "properties": {
+        "type": { "const": "paragraph" },
+        "children": {
+          "type": "array",
+          "oneOf": [
+            { "$ref": "#/$defs/itemInlineWithDescription" },
+            { "$ref": "#/$defs/itemInlineWithoutDescription" }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "itemInlineWithDescription": {
+      "type": "array",
+      "minItems": 5,
+      "prefixItems": [
+        { "$ref": "#/$defs/idSpan" },
+        { "$ref": "#/$defs/separator" },
+        { "$ref": "#/$defs/descSpan" },
+        { "$ref": "#/$defs/separator" },
+        { "$ref": "#/$defs/valueSpan" }
+      ],
+      "items": false
+    },
+    "itemInlineWithoutDescription": {
+      "type": "array",
+      "minItems": 3,
+      "prefixItems": [
+        { "$ref": "#/$defs/idSpan" },
+        { "$ref": "#/$defs/separator" },
+        { "$ref": "#/$defs/valueSpan" }
+      ],
+      "items": false
+    },
+    "idSpan": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "The item's identifier, as a monospace chip.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "const": "span" },
+        "class": { "const": "qe-dv-delta-id" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/inlineCodeNode" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "inlineCodeNode": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "const": "inlineCode" },
+        "value": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "separator": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "The em dash that separates the parts of a row in the fallback.",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "const": "text" },
+        "value": { "const": " — " }
+      },
+      "additionalProperties": true
+    },
+    "descSpan": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "The item's description. Its content equals the item's 'description' property.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "const": "span" },
+        "class": { "const": "qe-dv-delta-desc" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/inlineNode" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "valueSpan": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "description": "The formatted change, e.g. '78% to 68%'. No arrow glyph: myst-to-tex consults its text replacements before its math ones and emits a bare \\rightarrow in text mode, which stops pdflatex.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "const": "span" },
+        "class": { "const": "qe-dv-delta-value" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/strongValue" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "strongValue": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "children"],
+      "properties": {
+        "type": { "const": "strong" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/valueText" }],
+          "items": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "valueText": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "const": "text" },
+        "value": {
+          "type": "string",
+          "description": "format(from) + ' to ' + format(to), where format(n) is n.toFixed(precision) + unit.",
+          "pattern": "^.+ to .+$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "textNode": {
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }],
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "const": "text" },
+        "value": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    }
+  }
+}

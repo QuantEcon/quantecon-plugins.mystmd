@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/badges.json",
+  "title": "qe-dv badges",
+  "description": "Root node of the datavis `badges` primitive: a row of short pill badges carrying page metadata. The node is a portable `div`; `items` is the machine-readable record and the `paragraph` child is a plain rendering of the same badges, in the same order. items[i] describes the i-th badge span, and the two must agree exactly. The datum therefore lives exactly twice — once as a root property, once rendered in the children — and never a third time: only the root carries `contract` and `primitive`, and a span inside the paragraph carries a `class` and nothing else.",
+  "type": "object",
+  "required": ["type", "class", "contract", "primitive", "items", "children"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "div",
+      "description": "Portable node type. `myst-to-tex` and `myst-to-typst` both have a `div` handler, so the row survives PDF export."
+    },
+    "class": {
+      "type": "string",
+      "pattern": "^qe-dv qe-dv-badges(?: [^\\s]+)*$",
+      "description": "The family token, the primitive token, then the normalised tokens from the directive's :class: option. The directive splits :class: on /\\s+/, drops empty tokens and tokens already present, and joins the survivors with single spaces, so the string never carries a leading, trailing or doubled space."
+    },
+    "contract": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Contract revision the node was emitted against."
+    },
+    "primitive": {
+      "type": "string",
+      "const": "badges",
+      "description": "Primitive name, so a consumer dispatches on a property rather than parsing the class string."
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One entry per badge, in display order. A row with no badges is a build error, never an empty node.",
+      "items": { "$ref": "#/$defs/badge" }
+    },
+    "children": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The fallback rendering. Revision 1.0 emits exactly one paragraph; the tail is left open so a later revision may add a second row additively.",
+      "items": { "$ref": "#/$defs/row" }
+    },
+    "naLabel": false,
+    "label": false,
+    "identifier": false,
+    "html_id": false
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "tone": {
+      "type": "string",
+      "enum": ["neutral", "accent", "good", "warn", "bad"],
+      "description": "Colour-family hint. The plugin encodes no threshold; the consumer maps a tone to a colour family and does nothing else with it."
+    },
+    "emphasis": {
+      "type": "string",
+      "enum": ["outline", "solid"],
+      "description": "Fill hint, orthogonal to tone: the bordered metadata pill or the filled pill."
+    },
+    "badge": {
+      "type": "object",
+      "description": "One badge. Every field here is visible in the matching badge span, and every field the span renders is recorded here. There is no null state: label, tone and emphasis are always resolved, and `href` is absent rather than null when the badge does not link.",
+      "required": ["label", "tone", "emphasis"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Depth-first flattening of the badge span's inline content: the `value` of every `text` and `inlineCode` descendant in document order, whitespace runs collapsed to single spaces, trimmed. Code delimiters are not included."
+        },
+        "tone": { "$ref": "#/$defs/tone" },
+        "emphasis": { "$ref": "#/$defs/emphasis" },
+        "href": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$",
+          "description": "Present when, and only when, the badge span's whole content is a single `link`; equals that link's `url`. A renderer reading `items` alone can therefore still link the badge."
+        }
+      },
+      "additionalProperties": false
+    },
+    "row": {
+      "type": "object",
+      "description": "The fallback paragraph: badge spans separated by separator spans, opening and closing with a badge span.",
+      "required": ["type", "children"],
+      "properties": {
+        "type": { "type": "string", "const": "paragraph" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [{ "$ref": "#/$defs/badgeSpan" }, { "$ref": "#/$defs/sepSpan" }]
+          },
+          "contains": { "$ref": "#/$defs/badgeSpan" },
+          "minContains": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "badgeSpan": {
+      "type": "object",
+      "description": "One badge in the fallback row. It carries a class and nothing else: tone and emphasis reach a CSS-only theme as the two class tokens and a renderer as `items[i].tone` and `items[i].emphasis`, so the span never repeats them as properties.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "type": "string", "const": "span" },
+        "class": {
+          "type": "string",
+          "pattern": "^qe-dv-badge qe-dv-tone-(neutral|accent|good|warn|bad) qe-dv-emph-(outline|solid)$"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Inline mdast for the label. A badge whose class carries `qe-dv-emph-solid` wraps its whole content in one `strong`, which is how emphasis stays visible with no renderer."
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [
+        { "$ref": "#/$defs/dumbInnerNode" },
+        {
+          "if": {
+            "type": "object",
+            "required": ["class"],
+            "properties": {
+              "class": { "type": "string", "pattern": " qe-dv-emph-solid$" }
+            }
+          },
+          "then": {
+            "properties": {
+              "children": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["type"],
+                  "properties": { "type": { "type": "string", "const": "strong" } }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sepSpan": {
+      "type": "object",
+      "description": "The separator between two badges. It is load-bearing: adjacent inline spans render with no gap, so without it the labels run together in a plain theme.",
+      "required": ["type", "class", "children"],
+      "properties": {
+        "type": { "type": "string", "const": "span" },
+        "class": { "type": "string", "const": "qe-dv-badge-sep" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": { "type": "string", "const": "text" },
+              "value": { "type": "string", "const": " · " }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/dumbInnerNode" }]
+    },
+    "dumbInnerNode": {
+      "type": "object",
+      "description": "The family's inner-node rule, asserted rather than assumed. An inner node carries a class and nothing else: no `contract` or `primitive`, because only the root self-describes; no copy of the item it renders, because the datum already lives in `items` and in the rendered children and a third copy is a drift surface; and none of `label`, `identifier` or `html_id`, which `myst-cli/src/transforms/embed.ts` deletes from every node that is not a crossReference, cite, footnote node, captionNumber or link. Unknown keys stay allowed, because downstream MyST transforms add their own.",
+      "properties": {
+        "contract": false,
+        "primitive": false,
+        "item": false,
+        "items": false,
+        "tone": false,
+        "emphasis": false,
+        "label": false,
+        "identifier": false,
+        "html_id": false
+      }
+    }
+  }
+}

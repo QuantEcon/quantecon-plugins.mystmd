@@ -32,15 +32,19 @@ that renders them and emit the same node shapes these families define.
 ## Principles
 
 - **Portable AST.** Every directive emits standard MyST nodes — classed `div`/`span`,
-  tables, lists, the core `grid`/`card` — with structured data as node properties and a
-  small set of tone hints. Content renders in any theme and in PDF export; a theme may
-  upgrade the nodes by implementing the documented contract (`CONTRACT.md` and
-  `schema/`, forthcoming).
+  tables and lists — with structured data as node properties and a small set of tone hints,
+  and with children that are a genuine plain rendering of the same data. Content renders in
+  any theme and survives PDF export; a theme may upgrade the nodes by implementing
+  [`CONTRACT.md`](./CONTRACT.md) and the schemas in [`schema/`](./schema). The core `grid`
+  and `card` nodes are deliberately **not** used: `myst-to-tex` has no handler for them and
+  silently drops the whole subtree from a LaTeX export.
 - **Self-contained bundles.** A remotely loaded plugin cannot import npm packages or
   other bundles, so each family is bundled to one file using Node built-ins only.
 - **One registration per family.** mystmd keeps the first directive registered under a
-  name and warns on duplicates, so a family is loaded once; names stay plain nouns with a
-  documented alias fallback.
+  name and warns on duplicates, and core registers before any plugin, so a plugin claiming a
+  core name is ignored with no error at all. A family is loaded exactly once per project;
+  names stay plain nouns with a documented `dv-` alias fallback, and the test suite re-checks
+  every name against the engine on each run.
 - **Share the contract, not the code.** Consumers emitting the same nodes duplicate a few
   helpers rather than depending on this repository at build time.
 

@@ -1,0 +1,2122 @@
+{
+  "valid": [
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-badges qe-pass-badges",
+      "contract": "1.0",
+      "primitive": "badges",
+      "items": [
+        {
+          "label": "Pass 2026-08",
+          "tone": "neutral",
+          "emphasis": "solid"
+        },
+        {
+          "label": "vs 2026-05",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "348 lectures · 5 series",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "49 rules",
+          "tone": "neutral",
+          "emphasis": "outline"
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+              "children": [
+                {
+                  "type": "strong",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Pass 2026-08"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "vs 2026-05"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "348 lectures · 5 series"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "49 rules"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-badges qe-lecture-badges",
+      "contract": "1.0",
+      "primitive": "badges",
+      "items": [
+        {
+          "label": "lectures/python_by_example.md",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "audited 2026-08-26",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "snapshot ceec881028",
+          "tone": "neutral",
+          "emphasis": "outline",
+          "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "lectures/python_by_example.md"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "audited 2026-08-26"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "link",
+                  "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "snapshot ceec881028"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-badges qe-series-badges md:mb-6",
+      "contract": "1.0",
+      "primitive": "badges",
+      "items": [
+        {
+          "label": "Pass 2026-08",
+          "tone": "accent",
+          "emphasis": "solid"
+        },
+        {
+          "label": "27 lectures",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "Math 9.0",
+          "tone": "good",
+          "emphasis": "outline"
+        },
+        {
+          "label": "Figures 7.3",
+          "tone": "warn",
+          "emphasis": "outline"
+        },
+        {
+          "label": "Writing 4.1",
+          "tone": "bad",
+          "emphasis": "outline"
+        },
+        {
+          "label": "qe-writing-006",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "snapshot ceec881028",
+          "tone": "neutral",
+          "emphasis": "outline",
+          "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-accent qe-dv-emph-solid",
+              "children": [
+                {
+                  "type": "strong",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Pass 2026-08"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "27 lectures"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-good qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Math 9.0"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-warn qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Figures 7.3"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-bad qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Writing 4.1"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "inlineCode",
+                  "value": "qe-writing-006"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "link",
+                  "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "snapshot ceec881028"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-badges",
+      "contract": "1.0",
+      "primitive": "badges",
+      "items": [
+        {
+          "label": "lectures/python_by_example.md",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "audited 2026-08-26",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "snapshot ceec881028",
+          "tone": "neutral",
+          "emphasis": "outline",
+          "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+        },
+        {
+          "label": "rule qe-admon-003",
+          "tone": "neutral",
+          "emphasis": "outline"
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "lectures/python_by_example.md"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "audited 2026-08-26"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "link",
+                  "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "snapshot ceec881028"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "rule "
+                },
+                {
+                  "type": "inlineCode",
+                  "value": "qe-admon-003"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "because": "`primitive` is \"badge\", not \"badges\", so a consumer dispatching on the property would never match the node",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badge",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`primitive` is missing altogether, leaving the class string as the only way to identify the node",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the class string is missing the `qe-dv-badges` token, so `div[class~=qe-dv-badges]` would never match it",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the class string carries a trailing space: the directive normalises `:class:`, so an un-normalised class is a defect rather than cosmetic",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges ",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`tone` is \"danger\", which is outside the closed set neutral | accent | good | warn | bad",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "danger",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-danger qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item is missing the required `emphasis` field, so a consumer would have to invent a default",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`label` is a number rather than a string",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": 27,
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item carries an unknown property (`colour`), which is how a typo in an item object is caught",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+            "colour": "red"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`href` contains a space, so it is not a usable link target",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://example.com/a commit"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://example.com/a commit",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a badge span repeats the item's `tone` and `emphasis` as properties, so the datum lives three times — in `items`, in the span's class tokens and again in the span. An inner node carries a class and nothing else.",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ],
+                "tone": "neutral",
+                "emphasis": "outline"
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a solid badge whose span content is bare text: `emphasis: \"solid\"` must be visible in the fallback as a single `strong` wrapper",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Pass 2026-08",
+            "tone": "neutral",
+            "emphasis": "solid"
+          },
+          {
+            "label": "vs 2026-05",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "348 lectures · 5 series",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "49 rules",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Pass 2026-08"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "vs 2026-05"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "348 lectures · 5 series"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "49 rules"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the separator span carries \" | \" instead of the house middle dot, so the fallback row no longer reads as the contract says it does",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " | "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "`items` is empty — a row with no badges is a build error, never an empty node",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback children are empty, so a theme with no renderer would show nothing at all",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": []
+      }
+    },
+    {
+      "because": "a badge span carries `contract` and `primitive`, inventing a ninth primitive: only the root node self-describes",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ],
+                "contract": "1.0",
+                "primitive": "badge"
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a badge span carries a top-level `label`: `myst-cli`'s embed transform deletes `label`, `identifier` and `html_id` from every node that is not a crossReference, cite, footnote node, captionNumber or link, so the property would vanish only once the page is embedded elsewhere",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "lectures/python_by_example.md",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "audited 2026-08-26",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "snapshot ceec881028",
+            "tone": "neutral",
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "lectures/python_by_example.md"
+                  }
+                ],
+                "label": "lectures/python_by_example.md"
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "audited 2026-08-26"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "snapshot ceec881028"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries a top-level `label`; `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the property works locally and silently disappears the first time the page is embedded elsewhere",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Pass 2026-08",
+            "tone": "neutral",
+            "emphasis": "solid"
+          },
+          {
+            "label": "vs 2026-05",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "348 lectures · 5 series",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "49 rules",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "strong",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Pass 2026-08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "vs 2026-05"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "348 lectures · 5 series"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "49 rules"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "label": "series-priority-mix"
+      }
+    },
+    {
+      "because": "the retired `naLabel` is carried on the root: the draft let each block spell a missing value for itself, contract 1.0 spells it one way — `null` in the properties, an em dash in the fallback — so a node still carrying the option sends a consumer looking for a string that means nothing",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Pass 2026-08",
+            "tone": "neutral",
+            "emphasis": "solid"
+          },
+          {
+            "label": "vs 2026-05",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "348 lectures · 5 series",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "49 rules",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "strong",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Pass 2026-08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "vs 2026-05"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "348 lectures · 5 series"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "49 rules"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "naLabel": "N/A"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3945 @@
+{
+  "valid": [
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-heatmap qec-chart",
+      "contract": "1.0",
+      "primitive": "heatmap",
+      "corner": "series",
+      "columns": [
+        {
+          "key": "writing",
+          "label": "Writing"
+        },
+        {
+          "key": "math",
+          "label": "Math"
+        },
+        {
+          "key": "code",
+          "label": "Code"
+        },
+        {
+          "key": "figures",
+          "label": "Figures"
+        },
+        {
+          "key": "references",
+          "label": "Refs"
+        },
+        {
+          "key": "links",
+          "label": "Links"
+        },
+        {
+          "key": "admonitions",
+          "label": "Admon"
+        }
+      ],
+      "rows": [
+        {
+          "key": "lecture-python-advanced.myst",
+          "label": "advanced",
+          "values": [
+            4.6,
+            5.8,
+            7.3,
+            6.3,
+            9.2,
+            9.2,
+            10
+          ]
+        },
+        {
+          "key": "lecture-python.myst",
+          "label": "python.myst",
+          "values": [
+            4.5,
+            7,
+            7.6,
+            6.5,
+            9.5,
+            9.8,
+            10
+          ]
+        },
+        {
+          "key": "lecture-dp",
+          "label": "dp",
+          "values": [
+            4.7,
+            6.6,
+            7.7,
+            6.4,
+            9.3,
+            9.5,
+            10
+          ]
+        },
+        {
+          "key": "lecture-python-programming",
+          "label": "programming",
+          "values": [
+            4.1,
+            9,
+            8.4,
+            7.3,
+            null,
+            9.8,
+            9.9
+          ]
+        },
+        {
+          "key": "lecture-python-intro",
+          "label": "intro",
+          "values": [
+            5.2,
+            8.6,
+            7.3,
+            6.5,
+            9.3,
+            9.7,
+            10
+          ]
+        }
+      ],
+      "scale": {
+        "min": 4,
+        "max": 10
+      },
+      "tone": "good",
+      "precision": 1,
+      "children": [
+        {
+          "type": "table",
+          "class": "qe-dv-fallback",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "series"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Writing"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Math"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Code"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Figures"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Refs"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Links"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Admon"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "advanced"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "4.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "5.8"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.2"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.2"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "10.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "python.myst"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "4.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.8"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "10.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "dp"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "4.7"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.7"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.4"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "10.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "programming"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "4.1"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "8.4"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "—"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.8"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "intro"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "5.2"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "8.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.3"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.7"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "10.0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "class": "qe-dv-legend",
+          "children": [
+            {
+              "type": "text",
+              "value": "Scale: 4 to 10; higher is better. — means no value."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-heatmap",
+      "contract": "1.0",
+      "primitive": "heatmap",
+      "corner": "series",
+      "columns": [
+        {
+          "key": "HIGH",
+          "label": "High"
+        },
+        {
+          "key": "MEDIUM",
+          "label": "Medium"
+        },
+        {
+          "key": "LOW",
+          "label": "Low"
+        },
+        {
+          "key": "NONE",
+          "label": "None"
+        }
+      ],
+      "rows": [
+        {
+          "key": "lecture-python-intro",
+          "label": "intro",
+          "values": [
+            19,
+            0,
+            28,
+            9
+          ]
+        },
+        {
+          "key": "lecture-python-programming",
+          "label": "programming",
+          "values": [
+            20,
+            0,
+            5,
+            2
+          ]
+        },
+        {
+          "key": "lecture-python.myst",
+          "label": "python.myst",
+          "values": [
+            81,
+            1,
+            46,
+            17
+          ]
+        },
+        {
+          "key": "lecture-python-advanced.myst",
+          "label": "advanced",
+          "values": [
+            43,
+            0,
+            20,
+            5
+          ]
+        },
+        {
+          "key": "lecture-dp",
+          "label": "dp",
+          "values": [
+            34,
+            0,
+            9,
+            9
+          ]
+        }
+      ],
+      "scale": {
+        "min": 0,
+        "max": 81
+      },
+      "tone": "bad",
+      "precision": 0,
+      "children": [
+        {
+          "type": "table",
+          "class": "qe-dv-fallback",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "series"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "High"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Medium"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Low"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "None"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "intro"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "19"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "28"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "programming"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "20"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "python.myst"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "81"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "1"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "46"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "17"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "advanced"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "43"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "20"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "5"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "dp"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "34"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "class": "qe-dv-legend",
+          "children": [
+            {
+              "type": "text",
+              "value": "Scale: 0 to 81; higher is worse."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-heatmap",
+      "contract": "1.0",
+      "primitive": "heatmap",
+      "columns": [
+        {
+          "key": "writing",
+          "label": "Writing"
+        },
+        {
+          "key": "math",
+          "label": "Math"
+        },
+        {
+          "key": "code",
+          "label": "Code"
+        },
+        {
+          "key": "figures",
+          "label": "Figures"
+        },
+        {
+          "key": "references",
+          "label": "Refs"
+        },
+        {
+          "key": "links",
+          "label": "Links"
+        },
+        {
+          "key": "admonitions",
+          "label": "Admon"
+        }
+      ],
+      "rows": [
+        {
+          "key": "TOTAL",
+          "label": "All 348 lectures",
+          "values": [
+            4.6,
+            7,
+            7.5,
+            6.5,
+            9.4,
+            9.6,
+            10
+          ]
+        }
+      ],
+      "scale": {
+        "min": 4,
+        "max": 10
+      },
+      "tone": "accent",
+      "precision": 1,
+      "children": [
+        {
+          "type": "table",
+          "class": "qe-dv-fallback",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": []
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Writing"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Math"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Code"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Figures"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Refs"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Links"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Admon"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "All 348 lectures"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "4.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.0"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "7.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "6.5"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.4"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "9.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "10.0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "class": "qe-dv-legend",
+          "children": [
+            {
+              "type": "text",
+              "value": "Scale: 4 to 10."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "because": "primitive is misspelt, so a consumer dispatching on the property would never match this node",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heat-map",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the primitive property is missing altogether; class alone must not be enough to pass",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "class is missing the qe-dv-heatmap token, so no div[class~=qe-dv-heatmap] renderer selector matches",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "tone is outside the closed vocabulary neutral | accent | good | warn | bad",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "green",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a columns entry has a typo for label, so the header cell it should name has no source property",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "labl": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a rows entry carries a value as a string, which no consumer can put on a numeric ramp",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              "7.0"
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a rows entry has no key, so the row cannot be identified across a rebuild",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "scale is missing max, leaving the ramp domain open-ended",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "precision is outside 0-3, so cell text and a consumer-drawn grid could not agree on a format",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 5,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a second child of a type myst-to-tex has no handler for would be dropped silently from a LaTeX export",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          },
+          {
+            "type": "grid",
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "because": "a body row marks its label cell as a header, which empties the body of a long table in myst-to-tex",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ],
+                    "header": true
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback table is missing, leaving the data reachable only by scraping props",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the class string was not normalised: an author token repeats the family token qe-dv, which is exactly the work core's addClassOptions does not do for us",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap qe-dv",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries a top-level label, which myst-cli's embed transform deletes from every node it is not expecting to see one on, so the node would lose it silently the first time the page was embedded elsewhere",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ],
+        "label": "series-heatmap"
+      }
+    },
+    {
+      "because": "a fallback table cell carries an identifier: the same embed transform strips it, and an inner node of this primitive carries a class and nothing else",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ],
+                    "identifier": "total-writing"
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the retired naLabel is carried: the draft let each block spell a missing value for itself, contract 1.0 spells it one way — null in the properties, an em dash in the fallback — so a node still carrying the option sends a consumer looking for a string that means nothing",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              null
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10. — means no value."
+              }
+            ]
+          }
+        ],
+        "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "a fallback table cell re-describes itself with `contract` and `primitive`; only the root is self-describing, so a consumer that finds one of those knows it has the root without walking upwards, and an inner node carries a class and nothing else",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap qec-chart",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          },
+          {
+            "key": "code",
+            "label": "Code"
+          },
+          {
+            "key": "figures",
+            "label": "Figures"
+          },
+          {
+            "key": "references",
+            "label": "Refs"
+          },
+          {
+            "key": "links",
+            "label": "Links"
+          },
+          {
+            "key": "admonitions",
+            "label": "Admon"
+          }
+        ],
+        "rows": [
+          {
+            "key": "lecture-python-advanced.myst",
+            "label": "advanced",
+            "values": [
+              4.6,
+              5.8,
+              7.3,
+              6.3,
+              9.2,
+              9.2,
+              10
+            ]
+          },
+          {
+            "key": "lecture-python.myst",
+            "label": "python.myst",
+            "values": [
+              4.5,
+              7,
+              7.6,
+              6.5,
+              9.5,
+              9.8,
+              10
+            ]
+          },
+          {
+            "key": "lecture-dp",
+            "label": "dp",
+            "values": [
+              4.7,
+              6.6,
+              7.7,
+              6.4,
+              9.3,
+              9.5,
+              10
+            ]
+          },
+          {
+            "key": "lecture-python-programming",
+            "label": "programming",
+            "values": [
+              4.1,
+              9,
+              8.4,
+              7.3,
+              null,
+              9.8,
+              9.9
+            ]
+          },
+          {
+            "key": "lecture-python-intro",
+            "label": "intro",
+            "values": [
+              5.2,
+              8.6,
+              7.3,
+              6.5,
+              9.3,
+              9.7,
+              10
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "good",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Figures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Refs"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Links"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Admon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "advanced"
+                      }
+                    ],
+                    "contract": "1.0",
+                    "primitive": "heatmap"
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "5.8"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "6.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "10.0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "python.myst"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "6.5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.8"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "10.0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "dp"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.7"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "6.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.7"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "6.4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "10.0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "programming"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.0"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "8.4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "—"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.8"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.9"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "intro"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "5.2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "8.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "6.5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "9.7"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "10.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10; higher is better. — means no value."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

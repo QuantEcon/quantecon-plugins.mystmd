@@ -1,0 +1,5652 @@
+{
+  "valid": [
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-bar-list qe-systemic",
+      "contract": "1.0",
+      "primitive": "bar-list",
+      "layout": "labelled",
+      "max": 27,
+      "total": 27,
+      "columns": [
+        "Rule",
+        "Title",
+        "Lectures reached (of 27)"
+      ],
+      "items": [
+        {
+          "label": "qe-writing-006",
+          "value": 23,
+          "note": "Capitalize lecture titles properly",
+          "secondary": "178×",
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-005",
+          "value": 21,
+          "note": "Descriptive figure names for cross-referencing",
+          "secondary": "128×",
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-008",
+          "value": 16,
+          "note": "Remove excessive whitespace between words",
+          "secondary": "43×",
+          "tone": "accent"
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Rule"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Title"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Lectures reached (of 27)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-006"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Capitalize lecture titles properly"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "23"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/27 · 178×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-005"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Descriptive figure names for cross-referencing"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "21"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/27 · 128×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-008"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Remove excessive whitespace between words"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "16"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/27 · 43×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-bar-list qe-rule-reach-chart",
+      "contract": "1.0",
+      "primitive": "bar-list",
+      "layout": "compact",
+      "max": 348,
+      "total": null,
+      "columns": [
+        "Rule",
+        "Title",
+        "Lectures (of 348)"
+      ],
+      "items": [
+        {
+          "label": "qe-fig-005",
+          "value": 273,
+          "note": "Descriptive figure names for cross-referencing",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-008",
+          "value": 237,
+          "note": "Remove excessive whitespace",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-001",
+          "value": 224,
+          "note": "Do not set figure size unless necessary",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-008",
+          "value": 196,
+          "note": "Use lw=2 for line charts",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-001",
+          "value": 175,
+          "note": "One sentence per paragraph",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-003",
+          "value": 165,
+          "note": "No matplotlib embedded titles",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-006",
+          "value": 132,
+          "note": "Capitalize lecture titles properly",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-math-010*",
+          "value": 124,
+          "note": "Blackboard \\mathbb{E}/\\mathbb{P}/\\mathbb{V}",
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "qe-ref-001",
+          "value": 106,
+          "note": "Correct citation style",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-004",
+          "value": 105,
+          "note": "Avoid unnecessary capitalization",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-link-002",
+          "value": 73,
+          "note": "Doc links for cross-series references",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-code-002",
+          "value": 66,
+          "note": "Unicode Greek letters in code",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-math-002",
+          "value": 63,
+          "note": "Use \\top for transpose",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-006",
+          "value": 60,
+          "note": "Lowercase axis labels",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-004",
+          "value": 60,
+          "note": "Caption formatting conventions",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-math-003",
+          "value": 46,
+          "note": "Square brackets for matrices",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-002",
+          "value": 38,
+          "note": "Prefer code-generated figures",
+          "secondary": null,
+          "tone": "accent"
+        },
+        {
+          "label": "qe-math-011*",
+          "value": 34,
+          "note": "Plain-letter distribution names",
+          "secondary": null,
+          "tone": "neutral"
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Rule"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Title"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Lectures (of 348)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-005"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Descriptive figure names for cross-referencing"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "273"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-008"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Remove excessive whitespace"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "237"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-001"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Do not set figure size unless necessary"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "224"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-008"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Use lw=2 for line charts"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "196"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-001"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "One sentence per paragraph"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "175"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-003"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "No matplotlib embedded titles"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "165"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-006"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Capitalize lecture titles properly"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "132"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-math-010*"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Blackboard \\mathbb{E}/\\mathbb{P}/\\mathbb{V}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "124"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-ref-001"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Correct citation style"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "106"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-004"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Avoid unnecessary capitalization"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "105"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-link-002"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Doc links for cross-series references"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "73"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-code-002"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Unicode Greek letters in code"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "66"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-math-002"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Use \\top for transpose"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "63"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-006"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Lowercase axis labels"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "60"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-004"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Caption formatting conventions"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "60"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-math-003"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Square brackets for matrices"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "46"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-002"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Prefer code-generated figures"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "38"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-math-011*"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Plain-letter distribution names"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "34"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-bar-list",
+      "contract": "1.0",
+      "primitive": "bar-list",
+      "layout": "labelled",
+      "max": 23,
+      "total": null,
+      "columns": [
+        "Item",
+        "Note",
+        "Value"
+      ],
+      "items": [
+        {
+          "label": "qe-writing-006",
+          "value": 23,
+          "note": "Capitalize lecture titles properly",
+          "secondary": "178×",
+          "tone": "accent"
+        },
+        {
+          "label": "qe-fig-005",
+          "value": 21,
+          "note": null,
+          "secondary": "128×",
+          "tone": "accent"
+        },
+        {
+          "label": "qe-writing-008",
+          "value": 16,
+          "note": "Remove excessive whitespace between words",
+          "secondary": "43×",
+          "tone": "accent"
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Item"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Note"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-006"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Capitalize lecture titles properly"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "23"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " · 178×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-fig-005"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "—"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "21"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " · 128×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "qe-writing-008"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__note",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Remove excessive whitespace between words"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "16"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " · 43×"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-bar-list qe-series-sizes",
+      "contract": "1.0",
+      "primitive": "bar-list",
+      "layout": "labelled",
+      "max": 348,
+      "total": 348,
+      "columns": [
+        "Series",
+        "Lectures (of 348)"
+      ],
+      "items": [
+        {
+          "label": "advanced",
+          "value": 68,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "python.myst",
+          "value": 145,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "dp",
+          "value": 52,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "programming",
+          "value": 27,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "intro",
+          "value": 56,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Series"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Lectures (of 348)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "advanced"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "68"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/348"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "python.myst"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "145"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/348"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "dp"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "52"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/348"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "programming"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "27"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/348"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "intro"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "56"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": "/348"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "because": "primitive names another primitive, so a consumer would dispatch on the wrong shape",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "stacked-bar",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "primitive is missing entirely, so the node cannot be dispatched without the class string",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "class is missing the qe-dv-bar-list token that every consumer selects on",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-systemic",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "class repeats a base token, which the directive's normalisation never produces",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list qe-dv",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "tone is outside the closed vocabulary neutral|accent|good|warn|bad",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "info"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item is missing the required note key, which must be an explicit null, not absent",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item value is a string, so bar length and the printed number are not a number",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": "23",
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an item carries a misspelt key, which additionalProperties must catch rather than ignore",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent",
+            "secondry": "178×"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "total is zero, which cannot be a denominator",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 0,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "items is empty, so there is nothing to draw and the fallback carries a header row and no data rows",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback value cell carries the wrong span class, so a theme cannot style it",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__val",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "children hold a card node, which myst-to-tex drops silently from a LaTeX export",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "card",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "qe-writing-006"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "contract is a number rather than the version string",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": 1,
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a data row carries a header cell, which makes myst-to-tex rule the table after every line and, on the long-table path, count every row as a header until the body loop skips them all",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ],
+                    "header": true
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback table has no header row, so the plain rendering leaves the reader with three unnamed columns of ids, titles and numbers",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "a note-less row omits its note cell, and myst-to-typst emits cells as one flat positional sequence, so every later cell shifts one column left for the rest of the table",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": null,
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "an inner span carries contract and primitive, which only the root node may do",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ],
+                        "contract": "1.0",
+                        "primitive": "bar-list"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries a top-level label, which myst-cli's embed transform deletes from every node that is not a crossReference, cite, footnote reference, caption number or link",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "label": "top-systemic-issues"
+      }
+    },
+    {
+      "because": "the retired `naLabel` is carried on the root: the draft let each block spell a missing value for itself, contract 1.0 spells it one way — `null` in the properties, an em dash in the fallback — so a node still carrying the option sends a consumer looking for a string that means nothing",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list qe-systemic",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "labelled",
+        "max": 27,
+        "total": 27,
+        "columns": [
+          "Rule",
+          "Title",
+          "Lectures reached (of 27)"
+        ],
+        "items": [
+          {
+            "label": "qe-writing-006",
+            "value": 23,
+            "note": "Capitalize lecture titles properly",
+            "secondary": "178×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-fig-005",
+            "value": 21,
+            "note": "Descriptive figure names for cross-referencing",
+            "secondary": "128×",
+            "tone": "accent"
+          },
+          {
+            "label": "qe-writing-008",
+            "value": 16,
+            "note": "Remove excessive whitespace between words",
+            "secondary": "43×",
+            "tone": "accent"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Rule"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Title"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures reached (of 27)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-006"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Capitalize lecture titles properly"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "23"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 178×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-fig-005"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Descriptive figure names for cross-referencing"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "21"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 128×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "qe-writing-008"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__note",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Remove excessive whitespace between words"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": "/27 · 43×"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "naLabel": "N/A"
+      }
+    }
+  ]
+}

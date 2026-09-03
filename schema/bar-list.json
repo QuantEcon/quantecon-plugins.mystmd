@@ -1,0 +1,453 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/bar-list.json",
+  "title": "datavis bar-list root node",
+  "description": "The root node emitted by the datavis {bar-list} directive, and by any wrapper that reuses the contract: a div carrying the family and primitive class tokens, the bar data as node properties, and a portable table of the same data as its children. The schema validates SHAPE. It cannot express the contract's central invariant — that the properties and the fallback table are two renderings of the same data, row for row — because JSON Schema has no way to compare the TEXT of one part of an instance with another. That invariant (children[0] holds the header row followed by one tableRow per items entry, in the same order; row i's label cell text equals items[i].label; its value cell's strong text equals String(items[i].value); a null note renders as the em dash) is asserted by the repository's plugin tests, not here. What the schema does enforce is the family's structural rules: exactly one header row and it is row 0, every row the same width, that width agreeing with the length of columns, no inner node carrying anything but its class, and no node carrying a top-level label, identifier or html_id. The item objects are closed, so a misspelt field is caught.",
+  "type": "object",
+  "required": [
+    "type",
+    "class",
+    "contract",
+    "primitive",
+    "layout",
+    "max",
+    "total",
+    "columns",
+    "items",
+    "children"
+  ],
+  "additionalProperties": true,
+  "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+  "oneOf": [
+    {
+      "title": "two-column fallback",
+      "description": "No item has a note, so columns names two columns and every row holds two cells.",
+      "properties": {
+        "columns": { "type": "array", "minItems": 2, "maxItems": 2 },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/table2" } }
+      }
+    },
+    {
+      "title": "three-column fallback",
+      "description": "At least one item has a note, so columns names three columns and every row holds three cells.",
+      "properties": {
+        "columns": { "type": "array", "minItems": 3, "maxItems": 3 },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/table3" } }
+      }
+    }
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "div",
+      "description": "Always the portable div node type. The contract defines no custom node types, because myst-to-tex silently drops a subtree it has no handler for."
+    },
+    "class": {
+      "type": "string",
+      "description": "Space-separated class tokens exactly as the directive normalises them: the family token qe-dv, then the primitive token qe-dv-bar-list, then the tokens from :class: in the order written, with empty tokens and tokens already present dropped, joined by single spaces.",
+      "pattern": "^qe-dv qe-dv-bar-list(?: (?!qe-dv(?= |$))(?!qe-dv-bar-list(?= |$))\\S+)*$"
+    },
+    "contract": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Version of the datavis node contract. A consumer that does not recognise the value falls through to the children rather than guessing."
+    },
+    "primitive": {
+      "type": "string",
+      "const": "bar-list",
+      "description": "Primitive name, so a renderer or a downstream transform dispatches without splitting the class string. Only the root node carries contract and primitive; every node below it carries a class and nothing else."
+    },
+    "layout": {
+      "type": "string",
+      "enum": ["labelled", "compact"],
+      "description": "Presentation variant, always emitted rather than left to a renderer default. 'labelled' gives the note its own column and a chip-styled label (the series report's systemic-rules list). 'compact' moves the note to the bar's title tooltip, right-aligns a plain label and uses a taller bar (the charts page's rule-reach list). It is a rendering hint: the fallback carries the note in both.",
+      "default": "labelled"
+    },
+    "max": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "The value a full-width bar represents; the bar fraction is items[].value / max, clamped to a full bar by the renderer rather than rejected. Resolved as :max: if given, else :total: if given, else the largest items[].value, else 1."
+    },
+    "total": {
+      "type": ["number", "null"],
+      "exclusiveMinimum": 0,
+      "description": "The denominator printed after each value as value/total. Null when the denominator belongs in the surrounding prose instead of on every row, as on the charts page where '(of 348)' is stated once above the list. The key is always present; absence is an explicit null."
+    },
+    "columns": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "description": "Column names for the fallback table's header row, in the fallback's column order: label, note (only when the table is three columns wide), value. Never null: the fallback always carries a header row, so a reader of the plain rendering always has a column vocabulary. When the author gives no :columns: the directive supplies the contract's own field names, 'Item', 'Note' and 'Value', sliced to the table's width. The length always equals the fallback's column count, which the root's oneOf enforces.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The bars, in render order. The plugin never sorts: source order is render order. Every item carries all five keys, with explicit nulls for absent values, so a renderer never branches on undefined.",
+      "items": { "$ref": "#/$defs/item" }
+    },
+    "children": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "description": "Exactly one table node: the portable fallback carrying the same data as readable rows. A renderer that upgrades the node ignores it entirely.",
+      "items": {
+        "oneOf": [{ "$ref": "#/$defs/table2" }, { "$ref": "#/$defs/table3" }]
+      }
+    }
+  },
+  "$defs": {
+    "noEmbedKeys": {
+      "type": "object",
+      "description": "No node the primitive emits carries a top-level label, identifier or html_id. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it — and only when the page is embedded elsewhere. This forbids the property on a node; it says nothing about a property called label inside an array or object, which is what items[].label is. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
+      "properties": {
+        "label": false,
+        "identifier": false,
+        "html_id": false,
+        "naLabel": false
+      }
+    },
+    "item": {
+      "type": "object",
+      "description": "One bar. Closed, so a misspelt field is an error rather than a silently ignored property.",
+      "required": ["label", "value", "note", "secondary", "tone"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "The row label as it must read in plain text, including any textual marker. The charts page suffixes proposed rules with an asterisk, and that marker lives here precisely so it survives print, LaTeX export and monochrome viewing where the tone colour does not."
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The quantity the bar length encodes and the number printed at the right of the row. Never null: a bar with no length is not a bar, so a blank value in the source is an error, not an absent value. Signed quantities belong to delta-list."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "maxLength": 160,
+          "description": "A short plain-text gloss on the label — in the compliance pages, the rule's title. Plain text, no markup, or null; a null note renders as an em dash in the fallback."
+        },
+        "secondary": {
+          "type": ["string", "null"],
+          "maxLength": 16,
+          "description": "A short pre-formatted fragment printed after the value behind ' · ', such as '178×'. Pre-formatted because the unit glyph is the author's vocabulary, not the plugin's. Plain text, no markup, or null."
+        },
+        "tone": {
+          "type": "string",
+          "enum": ["neutral", "accent", "good", "warn", "bad"],
+          "description": "Colour hint for the bar fill, and nothing else. A hint only: the plugin encodes no thresholds and never lets tone be the sole carrier of a distinction.",
+          "default": "accent"
+        }
+      }
+    },
+    "table2": {
+      "type": "object",
+      "description": "The two-column fallback table: the header row, then one two-cell data row per item.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "table" },
+        "children": {
+          "type": "array",
+          "description": "The header row and the data rows. Every element is one or the other, exactly one is the header row, and at least one is a data row. That the header row is children[0] is the one part of the rule ajv's strict mode cannot be asked to check — it rejects a prefixItems tuple with an open tail — so the plugin tests assert the position.",
+          "minItems": 2,
+          "items": {
+            "oneOf": [{ "$ref": "#/$defs/headerRow2" }, { "$ref": "#/$defs/dataRow2" }]
+          },
+          "contains": { "$ref": "#/$defs/headerRow2" },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    "table3": {
+      "type": "object",
+      "description": "The three-column fallback table: the header row, then one three-cell data row per item.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "table" },
+        "children": {
+          "type": "array",
+          "description": "The header row and the data rows. Every element is one or the other, exactly one is the header row, and at least one is a data row. That the header row is children[0] is the one part of the rule ajv's strict mode cannot be asked to check — it rejects a prefixItems tuple with an open tail — so the plugin tests assert the position.",
+          "minItems": 2,
+          "items": {
+            "oneOf": [{ "$ref": "#/$defs/headerRow3" }, { "$ref": "#/$defs/dataRow3" }]
+          },
+          "contains": { "$ref": "#/$defs/headerRow3" },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    "headerRow2": {
+      "type": "object",
+      "description": "Row 0 of a two-column table. Every cell is a header cell, and no cell in any other row ever is.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            { "$ref": "#/$defs/headerCellLeft" },
+            { "$ref": "#/$defs/headerCellRight" }
+          ]
+        }
+      }
+    },
+    "headerRow3": {
+      "type": "object",
+      "description": "Row 0 of a three-column table. Every cell is a header cell, and no cell in any other row ever is.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            { "$ref": "#/$defs/headerCellLeft" },
+            { "$ref": "#/$defs/headerCellLeft" },
+            { "$ref": "#/$defs/headerCellRight" }
+          ]
+        }
+      }
+    },
+    "dataRow2": {
+      "type": "object",
+      "description": "One row per item, in items order: the label cell then the value cell. No cell is a header cell — myst-to-tex writes an \\hline after every row whose first cell is a header, and its long-table path counts leading header rows to find where the body starts.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            { "$ref": "#/$defs/labelCell" },
+            { "$ref": "#/$defs/valueCell" }
+          ]
+        }
+      }
+    },
+    "dataRow3": {
+      "type": "object",
+      "description": "One row per item, in items order: the label cell, the note cell, then the value cell. The note cell is present on every row even when the note is null, because myst-to-typst emits cells as one flat positional sequence with no row delimiter and a single short row shifts every later cell one column left.",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "tableRow" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            { "$ref": "#/$defs/labelCell" },
+            { "$ref": "#/$defs/noteCell" },
+            { "$ref": "#/$defs/valueCell" }
+          ]
+        }
+      }
+    },
+    "headerCellLeft": {
+      "type": "object",
+      "description": "A left-aligned header cell holding one text node: the label or note column's name.",
+      "required": ["type", "header", "align", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "header": { "type": "boolean", "const": true },
+        "align": { "type": "string", "const": "left" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/text" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "headerCellRight": {
+      "type": "object",
+      "description": "The right-aligned header cell holding one text node: the value column's name.",
+      "required": ["type", "header", "align", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "header": { "type": "boolean", "const": true },
+        "align": { "type": "string", "const": "right" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/text" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "labelCell": {
+      "type": "object",
+      "description": "The label column. Left-aligned; one span carrying the label text verbatim from items[i].label.",
+      "required": ["type", "align", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "align": { "type": "string", "const": "left" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/labelSpan" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "noteCell": {
+      "type": "object",
+      "description": "The note column, present on every row of a three-column table. A null note renders as one text node whose value is the em dash, the family's single spelling of an absent value, so the column count never varies between rows and the gap is legible rather than invisible.",
+      "required": ["type", "align", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "align": { "type": "string", "const": "left" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/noteSpan" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "valueCell": {
+      "type": "object",
+      "description": "The value column. Right-aligned; one span holding a strong node with the value, followed by the trailing text node when total or secondary contribute anything.",
+      "required": ["type", "align", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "tableCell" },
+        "align": { "type": "string", "const": "right" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/valueSpan" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "valueSpan": {
+      "type": "object",
+      "description": "The value span. Closed but for the engine's own key and position: an inner node carries its class and nothing else — no contract, no primitive, no second copy of the item it renders.",
+      "required": ["type", "class", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "span" },
+        "class": { "type": "string", "const": "qe-dv-bar-list__value" },
+        "children": {
+          "type": "array",
+          "description": "The strong node holding the value, and the trailing text node when it has anything to say; the text node is omitted entirely when total and secondary are both null.",
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [{ "$ref": "#/$defs/strong" }]
+            },
+            {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [{ "$ref": "#/$defs/strong" }, { "$ref": "#/$defs/text" }]
+            }
+          ]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "labelSpan": {
+      "type": "object",
+      "description": "The label span, wrapping one text node whose value is items[i].label verbatim. Closed but for the engine's own key and position.",
+      "required": ["type", "class", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "span" },
+        "class": { "type": "string", "const": "qe-dv-bar-list__label" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/text" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "noteSpan": {
+      "type": "object",
+      "description": "The note span, wrapping one text node whose value is items[i].note, or the em dash when the note is null. Closed but for the engine's own key and position.",
+      "required": ["type", "class", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "const": "span" },
+        "class": { "type": "string", "const": "qe-dv-bar-list__note" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/text" }]
+        },
+        "key": { "type": "string" },
+        "position": { "type": "object" }
+      }
+    },
+    "strong": {
+      "type": "object",
+      "required": ["type", "children"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "strong" },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [{ "$ref": "#/$defs/text" }]
+        }
+      }
+    },
+    "text": {
+      "type": "object",
+      "required": ["type", "value"],
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+      "properties": {
+        "type": { "type": "string", "const": "text" },
+        "value": { "type": "string" }
+      }
+    }
+  }
+}

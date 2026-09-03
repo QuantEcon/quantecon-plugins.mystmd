@@ -12,6 +12,9 @@ Last updated: 2026-09-03
 | `src/index.mjs` | The `datavis` bundle entry: the directive and transform registry |
 | `src/lib/` | The shared toolchain — CSV reading, project-root resolution, the file cache, diagnostics |
 | `scripts/bundle.mjs` | The esbuild step that turns `src/` into a single-file release asset |
+| `CONTRACT.md` | The node contract: what the directives emit and what a theme implements |
+| `schema/` | JSON Schema for each contract primitive, the machine-readable half of `CONTRACT.md` |
+| `samples/` | Fixtures per primitive: `valid` nodes, and `invalid` ones that must be rejected |
 | `tests/unit/` | Module tests, no engine required |
 | `tests/plugin/` | End-to-end tests that drive the real `myst` CLI |
 | `tests/fixtures/` | The probe plugin and the do-nothing site template the plugin tests build against |
@@ -23,7 +26,7 @@ Last updated: 2026-09-03
 nvm use              # Node 24, per .nvmrc
 npm ci
 npm run bundle       # writes dist/datavis.mjs
-npm test             # unit tests, then the myst-driven plugin tests
+npm test             # the contract check, then unit tests, then the myst-driven plugin tests
 ```
 
 The plugin tests need the `myst` CLI on `PATH`. Locally they skip themselves with a message
@@ -85,6 +88,14 @@ resolved by walking up to `myst.yml` and read with `readFileSync`. Transform plu
 no options, so configuration is a directive option or an environment variable.
 
 ## Tests
+
+`npm run test:contract` checks the contract on its own and needs no engine: every schema in
+`schema/` compiles under ajv in strict mode, every sample in `samples/` marked valid
+validates, every sample marked invalid is rejected, and every valid sample satisfies the
+invariants `CONTRACT.md` states in prose. `ajv` is a devDependency, which the bundle
+constraint permits — nothing in `scripts/` or `tests/` is bundled — and hand-rolling a
+partial JSON Schema checker would mean the schemas were checked by an implementation that
+does not implement the spec they are written in.
 
 Unit tests cover the toolchain modules directly. The plugin tests are the ones that matter
 most: each builds a throwaway MyST project, runs the real `myst` CLI over it and asserts
