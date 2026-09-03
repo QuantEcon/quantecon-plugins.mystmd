@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit and plugin tests
+    runs-on: ubuntu-latest
+    # The suite takes well under a minute; a registry outage during the mystmd install
+    # should not hold the branch's concurrency group for GitHub's six-hour default.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The plugin tests drive the real myst CLI, which is what makes them worth running:
+      # they assert the AST mystmd actually emits, not what we believe it emits.
+      #
+      # What is installed here is UPSTREAM mystmd 1.10.1 from the npm registry. The themes
+      # are developed against QuantEcon's fork of that same version (qe-v10), which has no
+      # published package or release asset to install from. The lecture theme's own CI has
+      # the same gap and installs upstream unpinned; this one at least pins the version the
+      # fork tracks. A fork-only change to plugin loading or --strict accounting would
+      # therefore pass here and differ locally, or the reverse. Bump the pin deliberately.
+      - name: Install mystmd
+        run: npm install --no-save mystmd@1.10.1
+
+      - name: Add mystmd to PATH
+        run: echo "$PWD/node_modules/.bin" >> "$GITHUB_PATH"
+
+      - name: Report versions
+        run: |
+          node --version
+          myst --version
+
+      - name: Bundle
+        run: npm run bundle
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Plugin tests
+        run: npm run test:plugin
+
+      # A bundle is only useful if it is reproducible from source. If bundling again changes
+      # the file, something in the build is non-deterministic and a release asset could
+      # differ from what CI tested.
+      - name: Bundle is reproducible
+        run: |
+          shasum -a 256 dist/*.mjs > /tmp/before.sha
+          npm run bundle
+          shasum -a 256 dist/*.mjs > /tmp/after.sha
+          diff /tmp/before.sha /tmp/after.sha
