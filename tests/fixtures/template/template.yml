@@ -1,0 +1,10 @@
+jtex: v1
+title: Toolchain Test Template
+description: >-
+  A do-nothing MyST site template. `myst build --site` requires a site template to exist,
+  and the default resolves over the network from the template registry; pointing the test
+  fixtures at this directory instead keeps the plugin tests offline and fast. It renders
+  nothing, because the tests assert on the page JSON under `_build/site/content/`, never on
+  rendered HTML.
+version: 1.0.0
+license: MIT

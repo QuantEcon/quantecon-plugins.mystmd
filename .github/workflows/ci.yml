@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit and plugin tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The plugin tests drive the real myst CLI, which is what makes them worth running:
+      # they assert the AST mystmd actually emits, not what we believe it emits. The version
+      # is pinned to the engine the themes build against; bump it deliberately.
+      - name: Install mystmd
+        run: npm install --no-save mystmd@1.10.1
+
+      - name: Add mystmd to PATH
+        run: echo "$PWD/node_modules/.bin" >> "$GITHUB_PATH"
+
+      - name: Report versions
+        run: |
+          node --version
+          myst --version
+
+      - name: Bundle
+        run: npm run bundle
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Plugin tests
+        run: npm run test:plugin
+
+      # A bundle is only useful if it is reproducible from source. If bundling again changes
+      # the file, something in the build is non-deterministic and a release asset could
+      # differ from what CI tested.
+      - name: Bundle is reproducible
+        run: |
+          shasum -a 256 dist/*.mjs > /tmp/before.sha
+          npm run bundle
+          shasum -a 256 dist/*.mjs > /tmp/after.sha
+          diff /tmp/before.sha /tmp/after.sha
