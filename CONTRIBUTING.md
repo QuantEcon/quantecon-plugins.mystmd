@@ -117,7 +117,40 @@ Two asymmetries are worth remembering when adding a test:
 ## Releases
 
 Each family is bundled to one `.mjs` file and attached to a GitHub Release; projects pin a
-tagged asset URL in `myst.yml`. Release tooling arrives with the first release,
+tagged asset URL in `myst.yml`:
+
+```yaml
+project:
+  plugins:
+    - https://github.com/QuantEcon/quantecon-plugins.mystmd/releases/download/v0.0.1/datavis.mjs
+```
+
+That is the estate-wide rule for plugin distribution, decided on
+QuantEcon/workspace-themes#12, and it is forced rather than chosen: `myst-config` accepts a
+local path or a URL and nothing else, so a release asset is the only remote form there is.
+
+To cut a release:
+
+1. Bump `version` in `package.json`.
+2. Add a `## [X.Y.Z]` section to `CHANGELOG.md`. It becomes the release notes verbatim, so
+   write it for someone deciding whether to upgrade, not as a commit log.
+3. Push a `vX.Y.Z` tag on `main`. `release.yml` does the rest.
+
+Four guards fail the release rather than publishing something wrong: the tag must match
+`package.json`, `CHANGELOG.md` must have that version's section, the full suite must pass
+including the tests that drive the real `myst` CLI, and the bundle must be byte-identical
+when built twice. A fifth check greps the built asset for the version its banner should
+carry, which closes the loop the first guard opens — the tag matches `package.json`, and so
+do the published bytes.
+
+**Two versions, moving independently.** `package.json` versions the bundle; `CONTRACT.md`
+carries a `contract` version stamped onto every emitted node. A release that changes only a
+renderer hint leaves the contract where it is. The rule for which is which is in
+`CONTRACT.md`, "The plugin's release version and the contract version".
+
+`v0.0.1` is the pipeline itself, with no directives registered — landed ahead of the
+directive groups so that downstream repositories have a real URL to pin before there is
+anything worth pinning. `v0.1.0` is the release that carries the eight primitives. See
 QuantEcon/quantecon-plugins.mystmd#7.
 
 ## Conventions
