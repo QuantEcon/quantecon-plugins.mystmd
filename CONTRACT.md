@@ -173,9 +173,11 @@ and grids* and named here so this rule and that section stop contradicting each 
    an encoding, which is the thing this contract exists to avoid. The engine behaviour that
    killed `{stat}` does not bite here, but only because the container obeys a rule the
    `{stat}` design did not: see *The re-parenting rule* below.
-2. **A container whose body may hold executable content takes the gated form** —
-   `{qe-wins-start}` … `{qe-wins-end}` — and that is the **only** supported way to put a
-   `code-cell` inside a container in this family. See *Gated containers*.
+2. **Every container in the card kit takes two forms** — nested in one fence, or gated as
+   `{qe-wins-start}` … `{qe-wins-end}`. Both are supported and both carry a `code-cell`;
+   the gated form is the one to reach for when a body holds executable content, because it
+   needs no fence nesting and its structural mistakes fail the build. See *The two container
+   forms*.
 
 That is not a style preference. Verified behaviour: `myst-parser` collects every unprocessed
 directive in the document with one `selectAll` in document order and runs them in a single
@@ -223,7 +225,7 @@ Three ways to get this wrong, all of which exit 0 under `--strict`:
 | --- | --- |
 | Dropping a body child instead of re-parenting it | Nothing. The child's `run()` still fired, so any side effect happened, but its output was assigned to a detached node |
 | Cloning a body child | The child's raw directive scaffolding, rendered as prose |
-| Declaring `body: {type: String}` | The body's literal source text, code fences and all — see *Gated containers* |
+| Declaring `body: {type: String}` | The body's literal source text, code fences and all. The engine marks a non-`myst` body's nested directives processed, so none of them runs — see *The two container forms* |
 
 There is no diagnostic for any of them. A container that filters its body must account for
 every child it discards and report it itself, because the engine will not.
@@ -6002,21 +6004,70 @@ Then the variant's own properties, specified below. Cards carry no `label`, `ide
 
 **Agreement rule.** Every value in a card's properties appears verbatim in that card's children, and the children introduce no fact that is not either a property or authored prose. A test asserts property-by-property containment against the flattened text of the matching child. This is the cards' form of the invariant the primitives express as index-for-index correspondence, and it is what makes the fallback honest rather than decorative.
 
-### Gated containers
+### The two container forms: nested and gated
 
-*How a container holds executable content — and why that is a different syntax rather than a deeper nest.*
+*A container takes its cards either nested in one fence or between a pair of gate markers. Both are supported,
+both hold executable content, and this section says what each costs.*
 
 A card's body is authored prose, and on the charts page and in a lecture report that prose may need to contain a
-`code-cell`. Nesting one inside a container works — the engine puts no obstacle in the way, and it was verified
-end to end with a real kernel — but it makes the author nest a code fence inside one or two directive fences, and
-that is one of the more expensive things this corpus asks an author to do. The ledger's own rule set says so:
-`qe-admon-003`, *tick-count management for nested directives*, is one of only two rules in it flagged `build-risk`
-— a rule where a single occurrence is graded **critical** because it breaks the build rather than the prose — and
-`qe-admon-001`, *use gated syntax for executable code in exercises*, already makes the gated form QuantEcon's
-answer for exactly this situation.
+`code-cell`. **Both forms carry one**, and both were verified end to end against mystmd 1.10.1 (qe-v10) with a
+real kernel — a nested cell executes at any depth, because the executable-node collector is a whole-tree
+`selectAll` and knows nothing about containers.
 
-**So: a container whose body may hold executable content offers a gated form, and the gated form is the only
-supported way to put a `code-cell` inside a container in this family.**
+**Every container in this family therefore offers both.** The nested form is the natural one and stays the
+default; the gated form is the one to reach for when a body holds executable content or grows complicated. The
+choice is the author's, and the table under *Which form to use* below is the guidance, not a rule.
+
+The gated form exists because nesting has one cost and one risk, neither of which is about whether the code runs.
+
+**The cost is the colon-fence count, and it is smaller than it looks.** Colon fences escalate with depth — a
+`{qe-win}` at `:::` needs its `{qe-wins}` container at `::::` — but a backtick code fence is a different fence
+type and does **not** escalate with them. A `code-cell` two container levels deep is written at plain three
+backticks and executes: verified end to end with a real kernel, output attached in place. So the burden is one
+extra colon per nesting level, not a three-way tick negotiation, and it falls on the container fences rather than
+on the code.
+
+It is still the burden `qe-admon-003`, *tick-count management for nested directives*, exists to measure — one of
+only two rules in the ledger flagged `build-risk`, where a single occurrence is graded **critical** because it
+breaks the build rather than the prose. And `qe-admon-001`, *use gated syntax for executable code in exercises*,
+means the gated form is already QuantEcon's convention for this situation rather than a new invention. Neither
+makes nesting wrong; together they are why the gated form is worth offering.
+
+The risk is what happens when the nesting is wrong, and it is covered under *Which form to use*.
+
+#### The nested form
+
+Nothing special: the container declares `body: {type: 'myst'}`, reads what it needs off the raw `mystDirective`
+children, and returns those same objects as the children of its wrapper. A `code-cell` among them becomes an
+executable `block` exactly as it would at document level, and its outputs are attached in place.
+
+````markdown
+::::{qe-wins} Biggest wins
+:layout: grid
+
+:::{qe-win} Descriptive figure names
+:rule: qe-fig-005
+
+The fix and why it matters.
+
+```{code-cell} python
+plot_reach(rule_reach)
+```
+:::
+::::
+````
+
+Note what that example does **not** need: the code fence stays at three backticks two container levels down.
+Only the colon fences escalate. That page was built with a real kernel and the cell's output was attached inside
+the card's `__body`.
+
+The one hard requirement is the identity rule under *The re-parenting rule*: the container must return the very
+node objects it was handed, never copies. That is the container implementer's obligation, not the author's, and
+it is the same obligation whichever form the author writes in.
+
+#### The gated form
+
+The cards are written between a pair of markers, at document level:
 
 ````markdown
 :::{qe-wins-start} Biggest wins
@@ -6036,9 +6087,10 @@ plot_reach(rule_reach)
 The content between the markers is written at document level. There is no nesting, so there is no tick count to
 manage, and a three-backtick code fence is legal wherever it appears.
 
-#### The mechanism
+There is no nesting, so there is no tick count to manage, and a three-backtick code fence is legal wherever it
+appears.
 
-`joinGatesTransform` (`myst-transforms/src/joinGates.ts`) walks each parent's children and folds everything
+**The mechanism.** `joinGatesTransform` (`myst-transforms/src/joinGates.ts`) walks each parent's children and folds everything
 between a node carrying `gate: "start"` and the next sibling carrying `gate: "end"` into the first node's
 `children`, then deletes the `gate` key. It is **entirely type-agnostic**: it never looks at a directive name and
 matches only on the property, so a plugin gets the behaviour by emitting the property. It runs inside
@@ -6092,11 +6144,30 @@ Two rules on the emitted nodes:
 
 #### Which form to use
 
-| Situation | Form |
-| --- | --- |
-| The card bodies are prose, and no cell is executed | Either. The nested form reads better and keeps the card set in one fence |
-| Any card body contains a `code-cell` | **Gated, always** |
-| The author is unsure | Gated. It is the form whose mistakes the build catches |
+Both work. This is guidance, and a page that mixes the two is fine.
+
+| Situation | Suggested form | Why |
+| --- | --- | --- |
+| Card bodies are prose | **Nested** | It reads better, keeps the card set in one fence, and the container can validate its own children |
+| A card body contains a `code-cell` | **Gated**, mildly | Both execute. The gated form needs no container fences to escalate, and it is what `qe-admon-001` already asks for |
+| A long card set, or one being edited often | **Gated** | Its structural mistake fails the build; the nested form's does not |
+| The container must reject a bad item with a line number | **Nested** | `run()` sees the raw children and can report on any of them |
+
+The asymmetry worth knowing, because it is the only one that bites silently:
+
+**A mis-nested container exits 0 and takes the rest of the page with it.** Write the container and its item at
+the same colon depth — `:::{qe-wins}` around `:::{qe-win}`, the escalation forgotten — and the parser pairs the
+first closing marker with the inner directive. The card renders, so the page looks half right; but the outer
+container's closing `:::` is then loose, and **every line after it is swallowed into a `code` node**. Verified:
+a page ending "After." emits `code` with the value `"\nAfter."`, and `myst build --site --strict` exits **0**
+with no error and no warning. Neither the engine nor the plugin has anything to say, because by the time any
+plugin code runs the tree is already the wrong shape.
+
+**An unclosed gate exits 1**, named and located: `Gated node is not closed, expected a {div-end} directive.`
+
+That is the reason to prefer the gated form for anything long or often-edited. It is not a reason to avoid
+nesting, which is the more readable form, the one where a container can validate its own children, and the right
+default for a set of prose cards.
 
 #### Known rough edge
 
@@ -6191,7 +6262,7 @@ The other seven cards follow the same shape: Collapse double spaces `qe-writing-
 
 **The band ramp is the theme's, not the contract's.** The design bands the bar and the percentage badge by share — `≥ 75%` `#173f6d`, `≥ 60%` `#2c72b8`, `≥ 45%` `#5f8fc2`, `≥ 30%` `#96b3d2` — four steps of one hue, which the five-tone vocabulary cannot express and should not try to. The card carries `share`; the theme bands it, exactly as `heatmap` carries `scale` and the theme owns the oklch ramp. The band legend beneath the grid ("Share of corpus · ≥ 75% · ≥ 60% …") is theme chrome generated from the theme's own thresholds, and no node is emitted for it.
 
-**Authoring.** Either form: `{qe-wins}` nesting its items in one fence, or the gated `{qe-wins-start}` … `{qe-wins-end}` pair when any card body holds a `code-cell` (see *Gated containers*). `{qe-wins}` wraps `{qe-win}` items; the title is the item's argument, the description its markdown body, and `:rule:` and `:effort:` its options. All eight wins in the design map onto a `rule_reach.csv` row whose `lectures_affected` is exactly the reach the canvas shows, so **`reach`, `total` and `share` are read and derived, never typed** — `:reach:` is refused with a `fileError`, `total` comes from the `TOTAL` row of `series_summary.csv`, and goal 2's "the visuals cannot drift from the measured data" holds for this region without a verification step.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-wins}` nesting its items in one fence, or the gated `{qe-wins-start}` … `{qe-wins-end}` pair. See *The two container forms* for which to reach for. `{qe-wins}` wraps `{qe-win}` items; the title is the item's argument, the description its markdown body, and `:rule:` and `:effort:` its options. All eight wins in the design map onto a `rule_reach.csv` row whose `lectures_affected` is exactly the reach the canvas shows, so **`reach`, `total` and `share` are read and derived, never typed** — `:reach:` is refused with a `fileError`, `total` comes from the `TOTAL` row of `series_summary.csv`, and goal 2's "the visuals cannot drift from the measured data" holds for this region without a verification step.
 
 ### `qe-issue` — issue cards
 
@@ -6306,7 +6377,7 @@ A filterable list of rule violations found in one lecture. Container `layout: "s
 
 Acceptance criterion 7 is met structurally: every card is a child, so the unfiltered list is what the server renders and what a reader with JavaScript disabled sees. The filter is a pure client-side narrowing of nodes already on the page. Because the chip row is an interaction rather than content, no node is emitted for it — and in its place the container emits the `qe-dv-cards__summary` paragraph, which puts the same counts in the text where a plain theme, a printed page and a PDF can all read them.
 
-**Authoring.** Either form: `{qe-issues}` nesting its items in one fence, or the gated `{qe-issues-start}` … `{qe-issues-end}` pair when any card body holds a `code-cell` (see *Gated containers*). `{qe-issues}` wraps `{qe-issue}` items: title as the argument, example prose as the markdown body, `:severity:`, `:rule:`, `:count:` and `:lines:` as options. Issue text is necessarily authored (REVIEW §6: lines and examples exist only in the generated report markdown), and `:count:` is the typed number the plugin verifies.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-issues}` nesting its items in one fence, or the gated `{qe-issues-start}` … `{qe-issues-end}` pair. See *The two container forms* for which to reach for. `{qe-issues}` wraps `{qe-issue}` items: title as the argument, example prose as the markdown body, `:severity:`, `:rule:`, `:count:` and `:lines:` as options. Issue text is necessarily authored (REVIEW §6: lines and examples exist only in the generated report markdown), and `:count:` is the typed number the plugin verifies.
 
 ### `qe-finding` — fix-immediately cards
 
@@ -6443,7 +6514,7 @@ A structural defect, where it is, and the state of the issue and pull request th
 
 **The `⇋`, `⎇` and `·` status icons are not emitted.** None of them has an entry in `myst-to-tex`'s replacement tables (`packages/myst-to-tex/src/utils.ts`), so they would reach the `.tex` file raw. They are decoration; `pr.state` already carries the meaning, and the theme draws the glyph. `×` and `—` are safe and are used: `—` maps to `---`, and `×` is in `mathReplacements`, which `stringToLatexText` wraps in `$…$`. `→` is deliberately avoided everywhere in this family — `arrows` is spread into `textReplacements`, so it emits a bare `\rightarrow` in text mode and stops `pdflatex`, the same trap the `delta-list` specification records.
 
-**Authoring.** Either form: `{qe-findings}` nesting its items in one fence, or the gated `{qe-findings-start}` … `{qe-findings-end}` pair when any card body holds a `code-cell` (see *Gated containers*). `{qe-findings}` wraps `{qe-finding}` items; a lone `{qe-finding}` emits a bare card. The location is the argument, the problem statement the markdown body, and `:rule:` the one option. `issue`, `pr` and `checked` come from `findings.csv` (`where, rule, issue_url, issue_state, pr_url, pr_state, checked_at`) keyed on the location and rule, per D4 — never typed in the page. `url` is composed from the series repository and the pinned commit in `snapshot.json`. The "Note — a correction to the previous pass" block that closes the same section in the design is a standard admonition (§5.5) and is not part of this kit.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-findings}` nesting its items in one fence, or the gated `{qe-findings-start}` … `{qe-findings-end}` pair. See *The two container forms* for which to reach for. `{qe-findings}` wraps `{qe-finding}` items; a lone `{qe-finding}` emits a bare card. The location is the argument, the problem statement the markdown body, and `:rule:` the one option. `issue`, `pr` and `checked` come from `findings.csv` (`where, rule, issue_url, issue_state, pr_url, pr_state, checked_at`) keyed on the location and rule, per D4 — never typed in the page. `url` is composed from the series repository and the pinned commit in `snapshot.json`. The "Note — a correction to the previous pass" block that closes the same section in the design is a standard admonition (§5.5) and is not part of this kit.
 
 ### Fallback rendering
 
