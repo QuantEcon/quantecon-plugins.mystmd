@@ -1,6 +1,6 @@
 {
   "name": "@quantecon/plugins.mystmd",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "QuantEcon plugin families for the mystmd engine, shipped as single-file .mjs bundles.",
   "license": "MIT",
