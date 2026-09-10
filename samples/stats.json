@@ -1255,6 +1255,178 @@
           ]
         }
       ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-stats",
+      "contract": "1.0",
+      "primitive": "stats",
+      "variant": "headline",
+      "label": "stats-audit-coverage",
+      "identifier": "stats-audit-coverage",
+      "html_id": "stats-audit-coverage",
+      "max": null,
+      "stats": [
+        {
+          "label": "rules checked by program over a pinned corpus snapshot",
+          "value": 41,
+          "display": "41",
+          "denominator": 49,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        },
+        {
+          "label": "judgment-only rules reviewed by reading — all 348 lectures covered",
+          "value": 8,
+          "display": "8",
+          "denominator": null,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        },
+        {
+          "label": "lectures through the judgment layer — cross-series comparison stands on its own",
+          "value": 348,
+          "display": "348",
+          "denominator": 348,
+          "fraction": null,
+          "tone": "neutral",
+          "note": null
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "header": true,
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "rules checked by program over a pinned corpus snapshot"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "41"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 49"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "judgment-only rules reviewed by reading — all 348 lectures covered"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "lectures through the judgment layer — cross-series comparison stands on its own"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "348"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "value": " / 348"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "invalid": [
@@ -2446,6 +2618,7 @@
     },
     {
       "because": "no item carries a note yet the fallback still emits a third column, so the table has a column the data does not have",
+      "rejectedAt": "/children/0/children/0/children",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-stats",
@@ -2541,7 +2714,12 @@
                   {
                     "type": "tableCell",
                     "align": "left",
-                    "children": []
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "—"
+                      }
+                    ]
                   }
                 ]
               }
@@ -3706,6 +3884,272 @@
           }
         ],
         "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "the fallback table carries a contract stamp of its own, when only the root describes itself: the fallback is the rendering of the data, not a second node announcing the version, and a table free to carry contract is equally free to carry primitive or a duplicate copy of the item its rows render — the drift the family's \"the data lives exactly twice\" rule exists to stop",
+      "rejectedAt": "/children/0",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "contract": "1.0",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries an identifier with no label and no html_id, when the target transform stamps all three together or none: dependentRequired must catch the lone key rather than let a root that no cross-reference can resolve pass as anchored",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stats",
+        "contract": "1.0",
+        "primitive": "stats",
+        "variant": "headline",
+        "identifier": "stats-audit-coverage",
+        "max": null,
+        "stats": [
+          {
+            "label": "rules checked by program over a pinned corpus snapshot",
+            "value": 41,
+            "display": "41",
+            "denominator": 49,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "judgment-only rules reviewed by reading — all 348 lectures covered",
+            "value": 8,
+            "display": "8",
+            "denominator": null,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          },
+          {
+            "label": "lectures through the judgment layer — cross-series comparison stands on its own",
+            "value": 348,
+            "display": "348",
+            "denominator": 348,
+            "fraction": null,
+            "tone": "neutral",
+            "note": null
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Measure"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "rules checked by program over a pinned corpus snapshot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "41"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 49"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "judgment-only rules reviewed by reading — all 348 lectures covered"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "lectures through the judgment layer — cross-series comparison stands on its own"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "348"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": " / 348"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]

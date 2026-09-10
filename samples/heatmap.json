@@ -2473,7 +2473,136 @@
       }
     },
     {
-      "because": "a second child of a type myst-to-tex has no handler for would be dropped silently from a LaTeX export",
+      "because": "the legend is a grid where the contract fixes a paragraph: myst-to-tex and myst-to-typst have no grid handler, so the legend and its whole subtree produce no output — myst-to-tex raises Unhandled LaTeX conversion for node of \"grid\" and does not recurse, and the build still exits 0, because --strict accounting lives only in the site build path — which is the failure the div-rooted fallback exists to prevent",
+      "rejectedAt": "/children/1/type",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "grid",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the fallback carries three children where the contract fixes it at exactly two, a table then a legend paragraph, so a consumer reading children[1] as the legend cannot say what the third node is or which of the two to print",
+      "rejectedAt": "/children",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-heatmap",
@@ -2597,8 +2726,14 @@
             ]
           },
           {
-            "type": "grid",
-            "children": []
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
           }
         ]
       }
@@ -2732,7 +2867,8 @@
       }
     },
     {
-      "because": "the fallback table is missing, leaving the data reachable only by scraping props",
+      "because": "the fallback carries one child where the contract fixes it at exactly two, a table then a legend paragraph, so the ramp domain and the sense of tone have nowhere to be read from and children.minItems is what catches it — the table in slot 0 is well formed, so no other rule fires",
+      "rejectedAt": "/children",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-heatmap",
@@ -2766,6 +2902,134 @@
         "tone": "accent",
         "precision": 1,
         "children": [
+          {
+            "type": "table",
+            "class": "qe-dv-fallback",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Math"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "All 348 lectures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "4.6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the legend paragraph stands in children[0] where the contract fixes the fallback table: the matrix then has no plain rendering at all, so a theme with no renderer and every export path lose the data the block exists to carry. There are exactly two children and children[1] is a well-formed legend, so the slot-0 rule — prefixItems[0]'s reference to fallbackTable — is the only rule that can reject it: the type const is where the rejection lands, and the same paragraph misses the fallback class and the header row too, because a paragraph is not a table in any respect",
+      "rejectedAt": "/children/0/type",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-heatmap",
+        "contract": "1.0",
+        "primitive": "heatmap",
+        "corner": "series",
+        "columns": [
+          {
+            "key": "writing",
+            "label": "Writing"
+          },
+          {
+            "key": "math",
+            "label": "Math"
+          }
+        ],
+        "rows": [
+          {
+            "key": "TOTAL",
+            "label": "All 348 lectures",
+            "values": [
+              4.6,
+              7
+            ]
+          }
+        ],
+        "scale": {
+          "min": 4,
+          "max": 10
+        },
+        "tone": "accent",
+        "precision": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "class": "qe-dv-legend",
+            "children": [
+              {
+                "type": "text",
+                "value": "Scale: 4 to 10."
+              }
+            ]
+          },
           {
             "type": "paragraph",
             "class": "qe-dv-legend",
@@ -2907,7 +3171,7 @@
       }
     },
     {
-      "because": "the root carries a top-level label, which myst-cli's embed transform deletes from every node it is not expecting to see one on, so the node would lose it silently the first time the page was embedded elsewhere",
+      "because": "the legend paragraph inside the fallback carries a label: nothing in the pipeline stamps an anchor key onto a node the directive built, so one there is an emitter's typo, and myst-cli's embed transform would strip it the first time the page was embedded elsewhere. The root is exempt from this ban, because a `(target)=` line before the block legitimately stamps label, identifier and html_id there.",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-heatmap",
@@ -3028,10 +3292,10 @@
                 "type": "text",
                 "value": "Scale: 4 to 10."
               }
-            ]
+            ],
+            "label": "heatmap-legend"
           }
-        ],
-        "label": "series-heatmap"
+        ]
       }
     },
     {

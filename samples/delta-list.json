@@ -747,6 +747,179 @@
           ]
         }
       ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-delta-list qe-trend",
+      "contract": "1.0",
+      "primitive": "delta-list",
+      "precision": 1,
+      "groups": [
+        {
+          "label": "Like for like, evidence layer alone",
+          "tone": "neutral",
+          "items": [
+            {
+              "label": "overall",
+              "from": 8.2,
+              "to": 8.4,
+              "description": [
+                {
+                  "type": "text",
+                  "value": "Mean of in-scope categories, measured from "
+                },
+                {
+                  "type": "inlineCode",
+                  "value": "history_mechanical.csv"
+                }
+              ],
+              "tone": "good"
+            },
+            {
+              "label": "writing",
+              "from": 6.6,
+              "to": 7.1,
+              "tone": "good"
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "div",
+          "class": "qe-dv-delta-group",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "span",
+                  "class": "qe-dv-delta-group-label",
+                  "children": [
+                    {
+                      "type": "strong",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Like for like, evidence layer alone"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "spread": false,
+              "children": [
+                {
+                  "type": "listItem",
+                  "spread": true,
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "span",
+                          "class": "qe-dv-delta-id",
+                          "children": [
+                            {
+                              "type": "inlineCode",
+                              "value": "overall"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " — "
+                        },
+                        {
+                          "type": "span",
+                          "class": "qe-dv-delta-desc",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "Mean of in-scope categories, measured from "
+                            },
+                            {
+                              "type": "inlineCode",
+                              "value": "history_mechanical.csv"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " — "
+                        },
+                        {
+                          "type": "span",
+                          "class": "qe-dv-delta-value",
+                          "children": [
+                            {
+                              "type": "strong",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "value": "8.2 to 8.4"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "spread": true,
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "span",
+                          "class": "qe-dv-delta-id",
+                          "children": [
+                            {
+                              "type": "inlineCode",
+                              "value": "writing"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "value": " — "
+                        },
+                        {
+                          "type": "span",
+                          "class": "qe-dv-delta-value",
+                          "children": [
+                            {
+                              "type": "strong",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "value": "6.6 to 7.1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "label": "compliance-trend",
+      "identifier": "compliance-trend",
+      "html_id": "compliance-trend"
     }
   ],
   "invalid": [
@@ -5730,7 +5903,8 @@
       }
     },
     {
-      "because": "the fallback is empty: a primitive whose children render nothing does not implement this contract",
+      "because": "the fallback is empty, and two independent rules refuse that at once rather than one: 'children' has minItems 1, because a primitive whose children render nothing does not implement this contract, and the two-group branch of the allOf requires exactly two group divs, so an empty array is also a length disagreement with 'groups'. Neither can be isolated from the other here — 'groups' has minItems 1, so an empty 'children' is always short of 'groups' as well — which is why this fixture names both instead of pretending to test one.",
+      "rejectedAt": "/children",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-delta-list",
@@ -8716,7 +8890,8 @@
       }
     },
     {
-      "because": "the root carries a top-level 'label'; myst-cli's embed transform deletes label, identifier and html_id from every node it does not exempt, so the property would vanish silently once the page is embedded",
+      "because": "a group div carries a top-level 'label', which only the root may do; myst-cli's embed transform deletes label, identifier and html_id from every node it does not exempt, so an emitter that copied the group's label onto the node would lose it silently once the page is embedded",
+      "rejectedAt": "/children/0/label",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-delta-list",
@@ -8798,6 +8973,7 @@
           {
             "type": "div",
             "class": "qe-dv-delta-group",
+            "label": "Largest improvements",
             "children": [
               {
                 "type": "paragraph",
@@ -9293,8 +9469,7 @@
               }
             ]
           }
-        ],
-        "label": "compliance-trend"
+        ]
       }
     },
     {
@@ -10457,6 +10632,181 @@
           }
         ],
         "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "the root's 'identifier' is a number; the target transform writes the three anchor keys as strings, so a non-string is a wrapper inventing them rather than the engine stamping them",
+      "rejectedAt": "/identifier",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-delta-list qe-trend",
+        "contract": "1.0",
+        "primitive": "delta-list",
+        "precision": 1,
+        "groups": [
+          {
+            "label": "Like for like, evidence layer alone",
+            "tone": "neutral",
+            "items": [
+              {
+                "label": "overall",
+                "from": 8.2,
+                "to": 8.4,
+                "description": [
+                  {
+                    "type": "text",
+                    "value": "Mean of in-scope categories, measured from "
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "history_mechanical.csv"
+                  }
+                ],
+                "tone": "good"
+              },
+              {
+                "label": "writing",
+                "from": 6.6,
+                "to": 7.1,
+                "tone": "good"
+              }
+            ]
+          }
+        ],
+        "children": [
+          {
+            "type": "div",
+            "class": "qe-dv-delta-group",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "span",
+                    "class": "qe-dv-delta-group-label",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Like for like, evidence layer alone"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list",
+                "ordered": false,
+                "spread": false,
+                "children": [
+                  {
+                    "type": "listItem",
+                    "spread": true,
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "span",
+                            "class": "qe-dv-delta-id",
+                            "children": [
+                              {
+                                "type": "inlineCode",
+                                "value": "overall"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": " — "
+                          },
+                          {
+                            "type": "span",
+                            "class": "qe-dv-delta-desc",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Mean of in-scope categories, measured from "
+                              },
+                              {
+                                "type": "inlineCode",
+                                "value": "history_mechanical.csv"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": " — "
+                          },
+                          {
+                            "type": "span",
+                            "class": "qe-dv-delta-value",
+                            "children": [
+                              {
+                                "type": "strong",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "8.2 to 8.4"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "spread": true,
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "span",
+                            "class": "qe-dv-delta-id",
+                            "children": [
+                              {
+                                "type": "inlineCode",
+                                "value": "writing"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "value": " — "
+                          },
+                          {
+                            "type": "span",
+                            "class": "qe-dv-delta-value",
+                            "children": [
+                              {
+                                "type": "strong",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "value": "6.6 to 7.1"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "identifier": 17
       }
     }
   ]

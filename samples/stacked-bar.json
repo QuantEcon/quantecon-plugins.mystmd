@@ -1925,7 +1925,8 @@
       }
     },
     {
-      "because": "a category carries a typo key \"tint\" and no \"tone\"; additionalProperties is false inside categories[]",
+      "because": "a category carries a typo key \"tint\" beside its \"tone\"; additionalProperties is false inside categories[], so an unknown key there is an emitter defect and not an extension point",
+      "rejectedAt": "/categories/3",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-stacked-bar",
@@ -1951,6 +1952,7 @@
           },
           {
             "label": "NONE",
+            "tone": "good",
             "tint": "good"
           }
         ],
@@ -4967,7 +4969,8 @@
       }
     },
     {
-      "because": "the root carries a top-level `label`; `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the property works locally and silently disappears the first time the page is embedded elsewhere",
+      "because": "the fallback's corner header cell carries a `label`; `headerCell` is closed with `additionalProperties: false`, which admits `key`, `position` and `data` and no anchor key, so the three keys a `(target)=` line has the target transform stamp are tolerated on the root alone and a `label` on a cell is an emitter typo — one that `myst-cli`'s embed transform would delete in any case, since it runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and strips all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`",
+      "rejectedAt": "/children/0/children/0/children/0",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-stacked-bar",
@@ -5034,6 +5037,7 @@
                   {
                     "type": "tableCell",
                     "header": true,
+                    "label": "series-priority-mix",
                     "children": [
                       {
                         "type": "text",
@@ -5186,8 +5190,7 @@
               }
             ]
           }
-        ],
-        "label": "series-priority-mix"
+        ]
       }
     },
     {

@@ -69,17 +69,31 @@
     },
     "naLabel": false,
     "label": {
-      "not": {},
-      "description": "Never present. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link — so a div, table, row or cell carrying one loses it, and only when the page is embedded elsewhere. The family therefore emits none of the three on any node. A `label` key inside the stats array is a different thing and is required there."
+      "type": "string",
+      "description": "Present exactly when the author wrote a `(target)=` line immediately before the directive: mystmd's target transform lifts that target onto the block it precedes, so the root arrives at a consumer already carrying label, identifier and html_id. The root is the one node in the tree where the three are permitted, and only as strings, and only all three at once — dependentRequired below enforces that rather than leaving it asserted, because a root carrying one of them alone did not come from the target transform and no consumer resolving a cross-reference would find it; no node below the root may carry them, because down there the key can only be an emitter's mistake; closed inner definitions catch it, and where one is open the rule still binds the emitter. Permitted is not emitted — this plugin never writes them itself, and myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from a div, so nothing downstream may depend on their being present. A `label` key inside the stats array is a different thing and is required there."
     },
     "identifier": {
-      "not": {},
-      "description": "Never present, for the same reason as label."
+      "type": "string",
+      "description": "Present exactly when label is, and for the same reason: the target transform stamps all three keys together, or none of them. dependentRequired below is what makes that a rule rather than a note."
     },
     "html_id": {
-      "not": {},
-      "description": "Never present, for the same reason as label."
+      "type": "string",
+      "description": "Present exactly when label is, and for the same reason: the target transform stamps all three keys together, or none of them. dependentRequired below is what makes that a rule rather than a note."
     }
+  },
+  "dependentRequired": {
+    "label": [
+      "identifier",
+      "html_id"
+    ],
+    "identifier": [
+      "label",
+      "html_id"
+    ],
+    "html_id": [
+      "label",
+      "identifier"
+    ]
   },
   "allOf": [
     {
@@ -1030,11 +1044,12 @@
     },
     "fallbackTable": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "type",
         "children"
       ],
-      "description": "The fallback table, emitted bare: no wrapping container, no caption, no label, no identifier and no html_id, so it is never enumerated as \"Table N\" and never registered as a cross-reference target. All of it is enforced rather than merely asserted: the wrapping container and the caption by the `type` const and the row items, the three identity properties by the `not`s below.",
+      "description": "The fallback table, emitted bare: no wrapping container, no caption, no label, no identifier and no html_id, so it is never enumerated as \"Table N\" and never registered as a cross-reference target. All of it is enforced rather than merely asserted: the wrapping container and the caption by the `type` const and the row items, the three identity properties by the `not`s below. The definition is closed, admitting nothing beyond the properties named here and the engine's own key, position and data, so a contract or primitive stamp on the table, or a second copy of the stats array hung off it, is caught here: only the root describes itself, and the data lives exactly twice — once in the root's properties and once as these rows.",
       "properties": {
         "type": {
           "const": "table"
@@ -1063,6 +1078,15 @@
           },
           "minContains": 1,
           "maxContains": 1
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
         }
       }
     },
@@ -1079,11 +1103,12 @@
     },
     "headerRow": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "type",
         "children"
       ],
-      "description": "Row 0, and the only header row: the column vocabulary the reader of a plain build needs, given that this primitive invents its columns rather than taking them from the author. Two cells, or three when the block has a note column. Every cell carries header: true, and no cell in any other row does.",
+      "description": "Row 0, and the only header row: the column vocabulary the reader of a plain build needs, given that this primitive invents its columns rather than taking them from the author. Two cells, or three when the block has a note column. Every cell carries header: true, and no cell in any other row does. The definition is closed, admitting nothing beyond the properties named here and the engine's own key, position and data, so a contract or primitive stamp on the row is caught rather than read as a second node describing the block: only the root describes itself.",
       "properties": {
         "type": {
           "const": "tableRow"
@@ -1133,6 +1158,15 @@
               ]
             }
           ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
         }
       }
     },
@@ -1300,11 +1334,12 @@
     },
     "tableRow": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "type",
         "children"
       ],
-      "description": "One stat as a data row: label cell, value cell, and a note cell when the block has a note column. A row is one shape or the other, never a mixture, and noteColumnFollowsData decides which shape the whole block takes.",
+      "description": "One stat as a data row: label cell, value cell, and a note cell when the block has a note column. A row is one shape or the other, never a mixture, and noteColumnFollowsData decides which shape the whole block takes. The definition is closed, admitting nothing beyond the properties named here and the engine's own key, position and data, so a contract or primitive stamp on the row, or a copy of the stat item the row renders carried alongside its cells, is caught here: only the root describes itself, and the data lives exactly twice — once in the root's stats array and once as this row's cells.",
       "properties": {
         "type": {
           "const": "tableRow"
@@ -1354,6 +1389,15 @@
               ]
             }
           ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "data": {
+          "type": "object"
         }
       }
     },

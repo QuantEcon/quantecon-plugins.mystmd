@@ -81,9 +81,18 @@
       "description": "Exactly one child: the portable `table` node. Its first row is the header row; body row `i` renders `rows[i]`."
     },
     "naLabel": false,
-    "label": false,
-    "identifier": false,
-    "html_id": false
+    "label": {
+      "type": "string",
+      "description": "Written by the engine's target transform when a `(target)=` line precedes the block. The directive never emits it, but a labelled block is legitimate, so the root admits it. Below the root the key can only be an emitter's mistake, because no `(target)=` reaches a fallback row or cell and nothing else stamps it there; that ban binds the emitter wherever it applies, and this schema catches it only where it closes an inner definition against the key. The fallback `table`, `tableRow` and `tableCell` are closed against all three; `inlineNode` is not, so a cell's inline content is left to the emitter, which is a gap to close rather than a licence."
+    },
+    "identifier": {
+      "type": "string",
+      "description": "The normalised form of `label`, written by the same transform and admitted for the same reason. Meant for the root alone, and caught below it exactly as far as `label` is."
+    },
+    "html_id": {
+      "type": "string",
+      "description": "The HTML-safe form of `identifier`, written by the same transform and admitted for the same reason. Meant for the root alone, and caught below it exactly as far as `label` is."
+    }
   },
   "allOf": [
     {
@@ -154,7 +163,7 @@
       "required": [
         "type"
       ],
-      "description": "The permitted inline subset inside a fallback cell — the family's allowed node types, narrowed to the ones that can appear inline. `myst-to-tex` has no handler for `grid`, `card` or a custom node type and drops the whole subtree silently while the build still exits 0, so a cell's content is held to types every export path handles.",
+      "description": "The permitted inline subset inside a fallback cell — the family's allowed node types, narrowed to the ones that can appear inline. `myst-to-tex` has no handler for `grid`, `card` or a custom node type and drops the whole subtree silently while the build still exits 0, so a cell's content is held to types every export path handles. The definition is otherwise open — it neither closes against unknown properties nor names `label`, `identifier` and `html_id` — so an anchor key on an inline node inside a cell is accepted here and is barred by the emitter rule alone; that is a gap to close, not a licence to write one.",
       "properties": {
         "type": {
           "enum": [
@@ -467,7 +476,8 @@
           ]
         },
         "tone": {
-          "$ref": "#/$defs/tone"
+          "$ref": "#/$defs/tone",
+          "default": "neutral"
         },
         "strong": {
           "type": "boolean",
@@ -496,7 +506,8 @@
           "minimum": 0
         },
         "tone": {
-          "$ref": "#/$defs/tone"
+          "$ref": "#/$defs/tone",
+          "default": "neutral"
         }
       }
     },
@@ -526,7 +537,8 @@
           "exclusiveMinimum": 0
         },
         "tone": {
-          "$ref": "#/$defs/tone"
+          "$ref": "#/$defs/tone",
+          "default": "neutral"
         }
       }
     },
@@ -548,7 +560,8 @@
           "minLength": 1
         },
         "tone": {
-          "$ref": "#/$defs/tone"
+          "$ref": "#/$defs/tone",
+          "default": "neutral"
         }
       }
     },
@@ -573,7 +586,8 @@
           }
         },
         "tone": {
-          "$ref": "#/$defs/tone"
+          "$ref": "#/$defs/tone",
+          "default": "neutral"
         }
       }
     },

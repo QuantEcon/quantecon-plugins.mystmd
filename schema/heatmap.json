@@ -2,7 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/heatmap.json",
   "title": "qe-dv heatmap",
-  "description": "Root node of the datavis `heatmap` primitive: a classed `div` carrying a rectangular matrix of numeric-or-missing cells, the numeric domain a consumer's colour ramp spans, and a tone hint saying what a high value means. Its two children are the same matrix rendered plainly — a `table` and a legend `paragraph` — so the node stays readable in a theme with no renderer and in LaTeX or Typst export. The structured properties and the children are two renderings of one dataset and must agree index for index; the rules JSON Schema cannot express (values.length === columns.length, key uniqueness, scale.max > scale.min, every table row carrying columns.length + 1 cells, and the table agreeing cell for cell with rows and columns) are enforced by the directive, which defers a diagnostic onto the node for the family's document-stage transform to re-raise so that `myst build --strict` counts it. `additionalProperties` is true at the root because the engine adds its own keys (`key`, `position`) to every mdast node, and true inside the fallback nodes for the same reason; it is false on the plain data objects — `columns` items, `rows` items and `scale` — where a typo must be caught.",
+  "$comment": "The root deliberately does not apply `portableNode`. `(target)=` before the block is a supported thing to write, and the target transform then stamps `label`, `identifier` and `html_id` onto the root, so a schema that bans them at the root rejects a tree the engine really emits. The rule below the root is kept, through `dumbInnerNode`: nothing stamps those keys there, so one appearing can only be an emitter's mistake.",
+  "description": "Root node of the datavis `heatmap` primitive: a classed `div` carrying a rectangular matrix of numeric-or-missing cells, the numeric domain a consumer's colour ramp spans, and a tone hint saying what a high value means. Its two children are the same matrix rendered plainly — a `table` and a legend `paragraph` — so the node stays readable in a theme with no renderer and in LaTeX or Typst export. The structured properties and the children are two renderings of one dataset and must agree index for index; the rules JSON Schema cannot express (values.length === columns.length, key uniqueness, scale.max > scale.min, every table row carrying columns.length + 1 cells, and the table agreeing cell for cell with rows and columns) are enforced by the directive, which defers a diagnostic onto the node for the family's document-stage transform to re-raise so that `myst build --strict` counts it. `additionalProperties` is true at the root because the engine adds its own keys (`key`, `position`, `data`) to every mdast node, and true inside the fallback nodes for the same reason; it is false on the plain data objects — `columns` items, `rows` items and `scale` — where a typo must be caught. The anchor keys `label`, `identifier` and `html_id` are named at the root, and typed, because a `(target)=` line before the block makes the engine's target transform stamp all three onto the root after the directive has run; no node below the root may carry them, where the same key could only be an emitter's typo, and `dumbInnerNode` is what enforces that.",
   "type": "object",
   "required": [
     "type",
@@ -21,7 +22,7 @@
     "type": {
       "type": "string",
       "const": "div",
-      "description": "Portable container node. `div` is the only wrapper myst-to-react, myst-to-tex and myst-to-typst all handle; `grid` and `card` have no LaTeX handler and their whole subtree is dropped silently."
+      "description": "Portable container node. `div` is the only wrapper myst-to-react, myst-to-tex and myst-to-typst all handle; `grid` and `card` have no LaTeX handler, so such a node and its whole subtree produce no output, `myst-to-tex` raises `Unhandled LaTeX conversion for node of \"grid\"`, and the build still exits 0."
     },
     "class": {
       "type": "string",
@@ -37,6 +38,18 @@
       "type": "string",
       "const": "heatmap",
       "description": "Primitive name, for consumers that dispatch on a property rather than on a class selector."
+    },
+    "label": {
+      "type": "string",
+      "description": "Anchor name taken from a `(target)=` line before the block and stamped on the root by the engine's target transform, never written by the directive. It is permitted here so a heatmap can be cross-referenced like any other block, and no node below the root may carry it, where the same key could only be an emitter's typo. The embed-transform hazard is the known price of the anchor rather than a reason to refuse it: `myst-cli` deletes all three anchor keys from a non-referencing node when the page is embedded elsewhere, so an embedded copy loses the anchor while the source page keeps it."
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Normalised form of `label`, stamped on the root beside it by the same target transform, and the key a `crossReference` resolves against. Permitted at the root for the same reason and on the same terms as `label`, and refused below it."
+    },
+    "html_id": {
+      "type": "string",
+      "description": "HTML-safe form of `identifier`, stamped on the root beside it by the same target transform, and the element id a fragment link targets on the site path. Permitted at the root for the same reason and on the same terms as `label`, and refused below it."
     },
     "corner": {
       "type": "string",
@@ -77,7 +90,7 @@
     },
     "children": {
       "type": "array",
-      "description": "The portable fallback, and exactly two nodes: the matrix as a `table`, then the legend as a `paragraph`. Both types have handlers in myst-to-react, myst-to-tex and myst-to-typst. Nothing else is permitted — a third child of an unhandled type would be dropped silently from a LaTeX export, which is the failure the div-rooted design exists to prevent.",
+      "description": "The portable fallback, and exactly two nodes: the matrix as a `table`, then the legend as a `paragraph`. Both types have handlers in myst-to-react, myst-to-tex and myst-to-typst. Two rules are at work here and they catch different mistakes. `prefixItems` fixes WHAT each of the two children is, and it is doing two jobs. In slot 1, a `grid` or a `card` written in the legend's place has no LaTeX handler, so the node and its whole subtree produce no output: `myst-to-tex` raises `Unhandled LaTeX conversion for node of \"grid\"` as a fileError and does not recurse, and the build still exits 0, because `--strict` accounting lives only in the site build path — the damage is a silently shorter PDF, not a failed build, which is the failure the div-rooted design exists to prevent. In slot 0, anything but a `table` leaves the matrix itself with no plain rendering, so a theme with no renderer, and every export, lose the data the block is for. `minItems`, `maxItems` and the closed tail fix HOW MANY there are: exactly two, so a consumer can read `children[1]` as the legend without searching, and a third node has nowhere to be read from.",
       "minItems": 2,
       "maxItems": 2,
       "prefixItems": [{ "$ref": "#/$defs/fallbackTable" }, { "$ref": "#/$defs/legendParagraph" }],
@@ -85,7 +98,6 @@
     }
   },
   "allOf": [
-    { "$ref": "#/$defs/portableNode" },
     {
       "$comment": "A missing value has one spelling family-wide: `null` in the properties, an em dash in the fallback. `naLabel`, the draft's per-block spelling of it, is retired. `additionalProperties` has to stay open for the engine's own keys, so the one retired property a stale wrapper would still emit is named and refused here rather than passing silently.",
       "propertyNames": { "not": { "const": "naLabel" } }
@@ -93,13 +105,13 @@
   ],
   "$defs": {
     "portableNode": {
-      "$comment": "Applied to the root and to every node in the fallback. Referenced rather than repeated so the rule cannot drift between the nodes it protects.",
+      "$comment": "Applied to every node in the fallback, and no longer to the root: the root is where the target transform legitimately stamps the three keys, and only there. Referenced rather than repeated so the rule cannot drift between the nodes it protects.",
       "type": "object",
-      "description": "A node this primitive emits, which carries no top-level `label`, `identifier` or `html_id`. `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link` (`packages/myst-cli/src/transforms/embed.ts:61-66`), so a `div`, `tableCell` or `paragraph` carrying one loses it — and loses it only when the page is embedded elsewhere, which is the worst place to find out. This forbids the properties on the node itself, not the property named `label` inside `columns` and `rows`: those live in arrays and the transform never reaches them.",
+      "description": "An inner node this primitive emits, which carries no top-level `label`, `identifier` or `html_id`. Nothing in the pipeline stamps those keys on a `table`, `tableRow`, `tableCell`, `paragraph` or `text` the directive built, so one appearing there is an emitter's typo and is caught here; the root is exempt, because a `(target)=` line makes the target transform stamp all three on it. `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link` (`packages/myst-cli/src/transforms/embed.ts:61-66`), so a `table`, `tableCell` or `paragraph` carrying one loses it — and loses it only when the page is embedded elsewhere, which is the worst place to find out. This forbids the properties on the node itself, not the property named `label` inside `columns` and `rows`: those live in arrays and the transform never reaches them.",
       "propertyNames": { "not": { "enum": ["label", "identifier", "html_id"] } }
     },
     "dumbInnerNode": {
-      "$comment": "Every node of the fallback, and nothing else. `portableNode` is applied to the root too, so the contract/primitive ban lives here rather than there.",
+      "$comment": "Every node of the fallback, and nothing else. `portableNode` is now inner-node-only as well, but the two bans are kept apart: the anchor ban is about what the target transform legitimately stamps and where, the contract/primitive ban about what re-describes itself.",
       "type": "object",
       "description": "An inner node carries a class and nothing else: no `contract`, no `primitive`, and no second copy of the datum it renders. Only the root is self-describing, so a consumer that finds a node carrying `primitive` knows it is a root without walking upwards, and there is no third copy of a value to drift from the other two.",
       "allOf": [{ "$ref": "#/$defs/portableNode" }],
