@@ -116,16 +116,25 @@ jobs:
       - name: Full test suite
         run: npm test
 
-      # A release asset is only trustworthy if it is reproducible from source. If
-      # bundling again changes the file, something in the build is
-      # non-deterministic and the published asset could differ from the one the
-      # suite above just tested.
+      # A release asset is only trustworthy if it is reproducible from source, so
+      # build it twice from a clean directory and compare. If the bytes differ,
+      # something in the build is non-deterministic and the asset published below
+      # is not the file anyone else gets by building this tag.
+      #
+      # Self-contained on purpose, and worth keeping that way. An earlier draft
+      # hashed whatever `npm test` had left in `dist/`, which read as "the
+      # published bytes are the ones the suite just tested" — but the suite tests
+      # no such thing. Every plugin test bundles into its own temp directory, so
+      # the `npm run bundle` at the front of `test:plugin` is a side effect nothing
+      # in the suite consumes, and this step was its only reader. Do not
+      # re-introduce that coupling.
       - name: The bundle is reproducible
         run: |
-          shasum -a 256 dist/*.mjs > before.sha
-          npm run bundle
-          shasum -a 256 dist/*.mjs > after.sha
-          diff before.sha after.sha
+          rm -rf dist && npm run bundle
+          shasum -a 256 dist/*.mjs > "$RUNNER_TEMP/first.sha"
+          rm -rf dist && npm run bundle
+          shasum -a 256 dist/*.mjs > "$RUNNER_TEMP/second.sha"
+          diff "$RUNNER_TEMP/first.sha" "$RUNNER_TEMP/second.sha"
 
       # The bundle stamps its own version from package.json. Checking it here
       # closes the loop the tag guard opens: the tag matches package.json, and
