@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/delta-list.json",
   "title": "qe-dv delta-list",
-  "description": "Root node of the datavis 'delta-list' primitive: named items whose measured value moved between two comparable periods, arranged in one to four labelled groups. Emitted by one directive, '{delta-list}' (documented alias '{dv-delta-list}'), whose body is a MyST bullet list; there are no item directives. The structured data on the root node and the children are two renderings of the same data. groups[i] describes children[i] and the length equality between them IS enforced here, one branch per permitted length; the item-by-item correspondence (groups[i].items[j] and the j-th listItem of that group's list) and the exact text of a formatted value are contractual but not expressible in JSON Schema, so the plugin's conformance test asserts them against the emitted AST. The root is the only node that carries 'contract' and 'primitive', and no node carries a top-level label, identifier or html_id.",
+  "description": "Root node of the datavis 'delta-list' primitive: named items whose measured value moved between two comparable periods, arranged in one to four labelled groups. Emitted by one directive, '{delta-list}' (documented alias '{dv-delta-list}'), whose body is a MyST bullet list; there are no item directives. The structured data on the root node and the children are two renderings of the same data. groups[i] describes children[i] and the length equality between them IS enforced here, one branch per permitted length; the item-by-item correspondence (groups[i].items[j] and the j-th listItem of that group's list) and the exact text of a formatted value are contractual but not expressible in JSON Schema, so the plugin's conformance test asserts them against the emitted AST. The root is the only node that carries 'contract' and 'primitive'. It is also the only node that may carry a top-level label, identifier or html_id: a '(target)=' line before the directive makes the engine stamp all three onto the emitted root, and every fallback node this schema closes below the root refuses them. The exception is a description's inline subtree: inlineNode is left open so the engine's own inline keys survive, so there the rule binds the emitter even though the schema does not catch it.",
   "type": "object",
   "required": ["type", "class", "contract", "primitive", "groups", "children"],
   "properties": {
@@ -86,13 +86,39 @@
         "properties": { "children": { "type": "array", "minItems": 4, "maxItems": 4 } }
       }
     },
-    { "$ref": "#/$defs/noNodeIdentity" }
+    { "$ref": "#/$defs/rootNodeIdentity" }
   ],
   "$defs": {
     "noNodeIdentity": {
       "type": "object",
-      "description": "No node this primitive emits carries a top-level label, identifier or html_id. myst-cli/src/transforms/embed.ts runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it silently, and only once the page is embedded elsewhere. This bans the property on a node; it says nothing about a label INSIDE an array or object, which is where groups[].label and items[].label live. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
+      "description": "No node this primitive emits below the root carries a top-level label, identifier or html_id — the root itself is the exception, and has its own rootNodeIdentity. myst-cli/src/transforms/embed.ts runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it silently, and only once the page is embedded elsewhere. An anchor on an inner node is never an author's cross-reference — the target transform can only reach the root — so it is an emitter typo, and this is where it is caught, on every fallback node that refers to this definition. A description's inline nodes are not among them: inlineNode stays open, and there the rule binds the emitter rather than the schema. This bans the property on a node; it says nothing about a label INSIDE an array or object, which is where groups[].label and items[].label live. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
       "properties": { "label": false, "identifier": false, "html_id": false, "naLabel": false }
+    },
+    "rootNodeIdentity": {
+      "type": "object",
+      "description": "What the root may carry of the four keys noNodeIdentity refuses. A '(target)=' line before the directive is ordinary MyST: myst-cli's target transform stamps 'label', 'identifier' and 'html_id' onto the block that follows, which is this root, so refusing them here would reject a tree the engine legitimately emits and leave the block impossible to cross-reference. Only the root is reachable that way, which is why the rule below it is unweakened: nothing stamps an anchor key on an inner node, so one appearing there is an emitter's mistake, caught wherever an inner definition is closed. The three are stamped as a set, so 'dependentRequired' binds them as a set: a root carrying 'identifier' or 'html_id' without the other two is not an anchored delta-list, it is a wrapper that hand-wrote a key the target transform would have written along with its companions, and this is the one place that catches it — 'additionalProperties' is true on the root so the engine's own keys survive, which means an invented anchor key is otherwise unremarked. The dependency deliberately has no leg for 'label': when a ':label:' option normalises to an empty identifier the engine emits a root carrying 'label' alone, exit 0 and no warning, so a leg there would reject a tree mystmd really emits — the very defect the relaxation at the root exists to avoid. The three are also held to 'minLength': 1, because no '(target)=' line and no ':label:' option can produce an empty anchor name, so an empty string is a wrapper's placeholder rather than the transform's work. The embed transform still deletes an anchor from an embedded root, but that is the engine's behaviour for every div on the page and not this contract's to forbid. The retired naLabel is refused here as firmly as anywhere: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
+      "dependentRequired": {
+        "identifier": ["label", "html_id"],
+        "html_id": ["label", "identifier"]
+      },
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The anchor's name, exactly as the '(target)=' line before the directive spelled it. The target transform writes it, the normalised 'identifier' and the HTML-safe 'html_id' onto this root in one go, so a root that carries 'identifier' or 'html_id' carries all three; the directive itself writes none of them, here or anywhere else, and the ban on every fallback node the schema closes below the root is unchanged. It is the one key of the trio that may stand alone, because a ':label:' option whose value normalises to an empty identifier makes the engine emit a root carrying nothing but this. Never empty: a target name that survives normalisation has at least one character."
+        },
+        "identifier": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The normalised form of 'label' — the spelling a cross-reference resolves against. Written by the engine's target transform together with 'label' and 'html_id', never by the directive, and typed as a non-empty string because that is what the transform writes: anything else, an empty string included, is a wrapper inventing the key rather than the engine stamping it. Its presence therefore requires the other two, which is what the dependency above says. The ban on the fallback nodes below the root is unchanged."
+        },
+        "html_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The HTML-safe form of 'identifier', used as the element's id in the rendered page. The third key the target transform writes with the other two, so it appears on an anchored root and nowhere else, never without them and never empty; the directive writes none of the three, and the ban on the fallback nodes below the root is unchanged."
+        },
+        "naLabel": false
+      }
     },
     "dumbInnerNode": {
       "type": "object",
@@ -137,7 +163,7 @@
         },
         "from": {
           "type": "number",
-          "description": "The value in the earlier period. A number, never null: 1.0 has no representation for an item that did not exist in one of the two periods, so a producer excludes non-comparable items rather than spelling the gap. The family null tokens ('', 'n/a', 'na', '-', '\u2014', 'null', trimmed and matched case-insensitively) in a 'from' or 'to' source cell are a deferred error, not a value."
+          "description": "The value in the earlier period. A number, never null: 1.0 has no representation for an item that did not exist in one of the two periods, so a producer excludes non-comparable items rather than spelling the gap. The family null tokens ('', 'n/a', 'na', '-', '—', 'null', trimmed and matched case-insensitively) in a 'from' or 'to' source cell are a deferred error, not a value."
         },
         "to": {
           "type": "number",

@@ -62,9 +62,31 @@
       }
     },
     "naLabel": false,
-    "label": false,
-    "identifier": false,
-    "html_id": false
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Set by the engine's target transform, not by the directive: a `(target)=` line before the block stamps `label`, `identifier` and `html_id` onto the root so the set can be cross-referenced. The root is the one node allowed to carry them — `myst-cli`'s embed transform still strips all three when the page is embedded elsewhere, so an anchor is a local convenience and never a place to keep data. No node below the root may carry them, because nothing stamps them there and one appearing can only be an emitter's typo. Not every inner definition in this file is closed enough to catch it, so the rule binds the emitter whether or not the schema fires. The transform only ever writes a non-empty string here, so anything else — a number, or the empty string — is a wrapper inventing the key rather than an anchor the engine stamped. A `label` standing alone is the one partial anchor a chips root may carry, which is why the `dependentRequired` beside these properties has no leg for it: a `:label:` option whose value normalises to an empty identifier — `:label: '` is enough — makes the target transform copy the label onto this root and silently drop the other two, and the build exits 0 with no warning, so binding `label` to its companions would reject a chip set the engine really emits."
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The normalised form of `label`, stamped on the root by the engine's target transform alongside it. Allowed here for the same reason, under the same caveat, and bounded to a non-empty string for the same reason: an anchor nothing can be normalised to is not one. The transform stamps the trio as a set, so the `dependentRequired` beside these properties binds this key to both of the others: a chips root carrying an `identifier` without them is a wrapper inventing the key, and it leaves a consumer half an anchor that no cross-reference to the set can resolve."
+    },
+    "html_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The HTML-safe form of `identifier`, stamped on the root by the engine's target transform alongside it. Allowed here for the same reason, under the same caveat, and bounded to a non-empty string for the same reason: an empty `id` attribute anchors nothing. Bound to `label` and `identifier` by the `dependentRequired` beside these properties for the same reason the `identifier` leg exists: the transform never writes an `html_id` without both companions — fuzzing 52,059 labels through `normalizeLabel` and `createHtmlId` produced an `identifier` or an `html_id` without the rest not once — so a chips root carrying one here came from something other than the target transform."
+    }
+  },
+  "dependentRequired": {
+    "identifier": [
+      "label",
+      "html_id"
+    ],
+    "html_id": [
+      "label",
+      "identifier"
+    ]
   },
   "allOf": [
     {

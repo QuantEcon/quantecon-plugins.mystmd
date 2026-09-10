@@ -2853,7 +2853,8 @@
       }
     },
     {
-      "because": "a chip span carries a top-level `label`, which `myst-cli`'s embed transform deletes; no node this primitive emits carries `label`, `identifier` or `html_id`",
+      "because": "a chip span carries a top-level `label`: `$defs/chipSpan` sets \"label\": false, because nothing stamps an anchor key below the root — the engine's target transform writes the three onto the block alone — so one on a span is an emitter's typo, and `myst-cli`'s embed transform would delete it from the subtree in any case",
+      "rejectedAt": "/children/0/children/0/children/0/children/0/label",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
@@ -3002,7 +3003,8 @@
       }
     },
     {
-      "because": "the root carries a top-level `label`; `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the property works locally and silently disappears the first time the page is embedded elsewhere",
+      "because": "a chip span carries a top-level `identifier`: the root may carry one, because the engine's target transform stamps `label`, `identifier` and `html_id` there for a `(target)=` line, but no inner node may, so an anchor key on a chip span is an emitter typo rather than an anchor — and `myst-cli`'s embed transform would delete it from the subtree in any case",
+      "rejectedAt": "/children/0/children/0/children/0/children/0/identifier",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-chips qe-dv-chips--pill qe-clean-rules",
@@ -3141,6 +3143,7 @@
                       {
                         "type": "span",
                         "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--pill qe-dv-tone-good",
+                        "identifier": "series-priority-mix",
                         "children": [
                           {
                             "type": "text",
@@ -3597,8 +3600,7 @@
               }
             ]
           }
-        ],
-        "label": "series-priority-mix"
+        ]
       }
     },
     {
@@ -4199,6 +4201,160 @@
           }
         ],
         "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "the root's `label` is the number 7: the engine's target transform stamps a string there for a `(target)=` line, so the \"type\": \"string\" bound on the root anchor key catches a wrapper that invented the property instead of an anchor the engine wrote. The companion `identifier` and `html_id` are present and well formed, so the root's `dependentRequired` is satisfied and the type bound is the only rule that can fire.",
+      "rejectedAt": "/label",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "label": 7,
+        "identifier": "chip-set-scores",
+        "html_id": "chip-set-scores"
+      }
+    },
+    {
+      "because": "the root carries `identifier` with no `label` and no `html_id`, and the root's `dependentRequired` binds `identifier` to both of them because a `(target)=` line before the chips block stamps all three onto the set's root together or stamps none of them",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-chips qe-dv-chips--tag",
+        "identifier": "chip-set-scores",
+        "contract": "1.0",
+        "primitive": "chips",
+        "variant": "tag",
+        "tone": "neutral",
+        "items": [
+          {
+            "label": "Writing 4.6",
+            "tone": "neutral",
+            "variant": "tag"
+          },
+          {
+            "label": "Math 5.8",
+            "tone": "neutral",
+            "variant": "tag"
+          }
+        ],
+        "children": [
+          {
+            "type": "list",
+            "ordered": false,
+            "spread": false,
+            "children": [
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Writing 4.6"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "spread": false,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv qe-dv-chips__chip qe-dv-chips__chip--tag qe-dv-tone-neutral",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Math 5.8"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]

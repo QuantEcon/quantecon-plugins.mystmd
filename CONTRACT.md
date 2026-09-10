@@ -40,8 +40,15 @@ one. A primitive whose fallback is empty is not implementing this contract.
 ## Portability: what the node types may be
 
 The allowed node types are `div`, `span`, `table`, `tableRow`, `tableCell`, `list`,
-`listItem`, `paragraph`, `text`, `strong`, `emphasis`, `inlineCode`, `link`, `admonition`
-and `code`. Nothing else.
+`listItem`, `paragraph`, `text`, `strong`, `emphasis`, `inlineCode`, `link`, `admonition`,
+`admonitionTitle` and `code`. Nothing else.
+
+`admonitionTitle` is on the list for one path only: it is the heading of the error admonition
+`errorNode()` emits (`src/lib/report.mjs`), and the normative error node shown in each
+primitive's *Errors and warnings* section carries one. Both exporters handle it, so it is
+portable in the sense that matters here. **No primitive's `children` ever contain an
+admonition on the success path**, which is why the fallback floor listed under *Schema files*
+below is the shorter list and stays that way.
 
 Three engine behaviours make this list what it is, all verified against mystmd 1.10.1
 (qe-v10):
@@ -61,6 +68,23 @@ primitives uses them, and neither do the compliance wrappers.
 
 `myst-to-typst` handles `card`, `cardTitle` and `footer`, but not `grid`; its `footer`
 handler returns without writing anything, which loses the content while reporting success.
+
+**The Markdown and notebook exporters do not handle `div` at all.** `myst build --md` on a page
+containing any node of this family logs `Unsupported node type: div`, writes **no export file
+whatsoever**, and exits 0 — with `--strict`. Verified against mystmd 1.10.1 (qe-v10), and it is
+not this family's doing: a page using the **core** `{div}` directive fails identically. The
+consequences are worth stating plainly, because they bound where these primitives may be used:
+
+- A site build (`--html`, `--site`) and a LaTeX export are unaffected. Those are the paths the
+  compliance ledger uses, so nothing in the report design is blocked.
+- A repository that ships downloadable `.md` or `.ipynb` alongside its pages — which the lecture
+  series do — cannot put a datavis primitive on an exported page until either the exporter grows
+  a `div` handler or the primitive emits something else. `admonition` round-trips through both.
+- Whichever way that is resolved, **a CI check must assert the exported file still contains the
+  content**, because the build will not say. Exit 0 and no file is the whole signal.
+
+This is an engine gap rather than a contract decision, so it is recorded here and belongs on the
+estate's upstream-candidates list; it does not change what the primitives emit at 1.0.
 
 ## Packaging constraints
 
@@ -137,8 +161,23 @@ primitive's own section appears to say otherwise, this section wins.
 A primitive's data is authored either in the directive body or in a CSV named by `:file:`.
 The body is ordinary MyST content, and each primitive accepts exactly one form of it: a
 bullet list for the list-shaped primitives, and a pipe table for the matrix-shaped ones.
-There are **no item directives** — no `{stat}` inside `{stats}`, no `{delta}` inside
-`{delta-list}`.
+There are **no item directives among the eight primitives** — no `{stat}` inside `{stats}`,
+no `{delta}` inside `{delta-list}`.
+
+**Two stated exceptions, both outside the eight**, each specified in full under *Classed cards
+and grids* and named here so this rule and that section stop contradicting each other:
+
+1. **The compliance card kit keeps its container-and-item form** — `{qe-wins}` wrapping
+   `{qe-win}`, and the same for issues and findings. A card carries a title, options *and*
+   authored markdown prose, and a one-array body cannot express that triple without inventing
+   an encoding, which is the thing this contract exists to avoid. The engine behaviour that
+   killed `{stat}` does not bite here, but only because the container obeys a rule the
+   `{stat}` design did not: see *The re-parenting rule* below.
+2. **Every container in the card kit takes two forms** — nested in one fence, or gated as
+   `{qe-wins-start}` … `{qe-wins-end}`. Both are supported and both carry a `code-cell`;
+   the gated form is the one to reach for when a body holds executable content, because it
+   needs no fence nesting and its structural mistakes fail the build. See *The two container
+   forms*.
 
 That is not a style preference. Verified behaviour: `myst-parser` collects every unprocessed
 directive in the document with one `selectAll` in document order and runs them in a single
@@ -148,12 +187,56 @@ still fires afterwards, against nodes the container has already replaced, so the
 computed and then discarded — and any diagnostic they raise is raised from a node that is no
 longer in the tree.
 
+Two engine facts bound everything in this section and the next. **The nested directives run in
+source order, not in the order the container returned them**, so anything a nested directive
+computes at run time — a counter, an equation number, a registration — reflects where it was
+written and not where it ended up. And **the behaviour described here holds from mystmd 1.7.0
+onwards**: `markChildrenAsProcessed` arrived in `fae1ab1e` (2025-12-02), first tagged at 1.7.0,
+and before it a non-`myst` body's subtree was processed rather than skipped. A consumer on 1.6
+or earlier meets the opposite behaviour, not a degraded one, so **1.7.0 is this contract's
+minimum engine version**.
+
 A container could parse the raw `mystDirective` nodes itself, and `myst-ext-grid` gets away
-with re-parenting its body untouched. Neither is worth it here: item directives would double
-the number of registered names, each one a fresh chance of a silent collision with a future
-core directive, in exchange for syntax a bullet list already expresses. A bullet list also
-gives inline markdown — code spans, links, emphasis — in labels and descriptions, which is
-what the YAML bodies in the original design brief were reaching for.
+with re-parenting its body untouched. Neither is worth it *for the eight primitives*: item
+directives would double the number of registered names, each one a fresh chance of a silent
+collision with a future core directive, in exchange for syntax a bullet list already
+expresses. A bullet list also gives inline markdown — code spans, links, emphasis — in labels
+and descriptions, which is what the YAML bodies in the original design brief were reaching for.
+
+#### The re-parenting rule
+
+Where a container *does* nest directives — the card kit, and nothing else in this family — one
+rule makes the difference between working and silently destroying the page.
+
+**A container's `run()` must return the very node objects it was given in `data.body`. Never a
+copy.**
+
+`applyDirectives` collects every unprocessed `mystDirective` in the document with a single
+`selectAll` *before* any `run()` fires, then walks that fixed list. A nested directive is
+therefore processed if and only if **the object that was collected** is still reachable in the
+tree when its turn comes. Re-parenting, wrapping in extra nodes, re-ordering and duplicating
+all preserve object identity and are safe. `structuredClone`, a JSON round-trip, or a `.map()`
+that rebuilds nodes do not, and the clone never runs: its raw `mystDirectiveArg` and
+`mystDirectiveBody` scaffolding is published into the page instead.
+
+Three ways to get this wrong, all of which exit 0 under `--strict`:
+
+| Mistake | What reaches the page |
+| --- | --- |
+| Dropping a body child instead of re-parenting it | Nothing. The child's `run()` still fired, so any side effect happened, but its output was assigned to a detached node |
+| Cloning a body child | The child's raw directive scaffolding, rendered as prose |
+| Declaring `body: {type: String}` | The body's literal source text, code fences and all. The engine marks a non-`myst` body's nested directives processed, so none of them runs — see *The two container forms* |
+
+There is no diagnostic for any of them. A container that filters its body must account for
+every child it discards and report it itself, because the engine will not.
+
+One more, which fails loudly rather than silently and is worth the same line of defence:
+**`data.body` is `undefined`, not `[]`, when a directive declares `body: {required: false}` and
+the author writes none.** `children: [...data.body]` then throws
+`Cannot read properties of undefined (reading 'map')`, which aborts the entire build with no
+file name, no line and no page. Write `...(data.body ?? [])`, or declare the body
+`required: true` as `myst-ext-grid` does. `run()` must also always return an array; returning
+`undefined` crashes the build the same way.
 
 ### Fallback tables: one header row, equal row lengths
 
@@ -177,13 +260,64 @@ nothing else: no `contract`, no `primitive`, no duplicate copy of the item they 
 third copy is a third thing to keep in step, and the first one to drift is the one nobody
 renders.
 
-### No `label`, `identifier` or `html_id` on any node a primitive emits
+### A primitive never writes `label`, `identifier` or `html_id` — but the root may carry them
 
-`{embed}` strips all three from every node in the embedded subtree except cross-references,
-citations, footnotes and links. A primitive that put a label on its root would lose it, and
-only when the page was embedded somewhere else — the kind of defect that survives every test
-and appears once the content is reused. Text that needs to travel goes in a property or in
-the children.
+Two halves, and they are easy to run together.
+
+**The primitive never writes them, anywhere.** `{embed}` strips all three from every node in the
+embedded subtree except cross-references, citations, footnotes and links. A primitive that put a
+label on its root would lose it, and only when the page was embedded somewhere else — the kind of
+defect that survives every test and appears once the content is reused. Text that needs to travel
+goes in a property or in the children.
+
+**The root may nevertheless carry them, because the engine puts them there.** A `(target)=` line
+before a block makes `mystTargetsTransform` stamp `label`, `identifier` and `html_id` onto the
+node the directive emitted. An author who anchors a chart is doing something ordinary and correct,
+and a schema that refused the keys would reject every anchored block with a diagnostic that named
+the schema rather than the anchor. **All eight schemas therefore admit the three keys as strings
+at the root**, and a validator that refuses them is wrong.
+
+**The ban stays where it can only mean a mistake: on the nodes a primitive builds itself.** No
+`(target)=` can reach a `span` inside a chip or a `tableCell` inside a fallback row, so one of
+those keys there is an emitter's typo and nothing else. Each schema enforces this on its own inner
+node definitions; where a schema leaves an inner definition open for another reason, the rule still
+binds the emitter even though the schema does not catch it, and closing the gap is a schema bug
+rather than a licence.
+
+#### The trio travels together — except for a lone `label`
+
+The engine writes the three keys as a set, so a root carrying `identifier` without `label`, or
+`html_id` with only one companion, is not a tree the engine can emit: it is a wrapper inventing a
+key, and every schema refuses it. Each schema states that as two dependencies, placed wherever it
+already declares the keys:
+
+```json
+"dependentRequired": {
+  "identifier": ["label", "html_id"],
+  "html_id":    ["label", "identifier"]
+}
+```
+
+**There is deliberately no third dependency binding `label`, because a lone `label` is a tree
+mystmd really emits.** Give a directive `:label: '` and `normalizeLabel` strips the quote, returns
+an empty `identifier` — and so an undefined `html_id` — and `transferTargetAttrs` copies each key
+only when it is truthy. The node ships with a `label` and nothing else, the build exits 0, and
+nothing warns. Verified with a real build; and fuzzing 52,059 labels through `normalizeLabel` and
+`createHtmlId` gives 51,660 full trios, 399 lone labels, and **not one** `identifier` without an
+`html_id`. A rule binding `label` would therefore reject a real tree, which is the whole defect the
+root relaxation exists to avoid, so the asymmetry is the point rather than an oversight.
+
+The three keys are also `minLength: 1` in every schema. Neither a `(target)=` line nor a `:label:`
+option can produce an empty string in any of them: an empty label yields no keys at all, and a
+non-empty one always yields a non-empty `html_id`, because `createHtmlId` prefixes `id-` whenever
+its first surviving character is not a letter.
+
+**The rule is checked by behaviour rather than by shape.** `scripts/validate-contract.mjs` asks
+each schema what it *accepts* — every illegal subset must be rejected, a lone `label` must be
+accepted — which is idiom-blind, so it holds whether a schema states the rule bare on its root or
+inside a `$def`. It lives in `scripts/` on purpose: `schema/1.0/` freezes and is never edited
+again, and that file does not, so the check survives into the next contract version and covers
+every wrapper that emits these shapes.
 
 ### One vocabulary for a missing value
 
@@ -273,6 +407,21 @@ is forbidden.** And **a tone-bearing leaf must always carry a resolved value** �
 closed set, never `undefined` and never `null`. Where a leaf has no tone field of its own it must
 be tied unambiguously to exactly one tone-bearing entity by position, as a `stacked-bar` segment is
 tied to `categories[i]`; that is normalisation, not inheritance, and it is permitted.
+
+**One primitive is a stated exception: a `data-table` cell may omit `tone`, and an omitted cell
+tone means `neutral`.** `tone` is absent from `required` on all five tone-bearing cell types, and
+that is deliberate rather than an oversight. A table is the one place in the family where the
+tone-bearing entities are counted in the hundreds and where most of them have nothing to say:
+across the valid samples the majority of tone-bearing cells carry no tone at all. Requiring the
+field would write `tone: "neutral"` onto every one of them, where it signals nothing and where the
+next reader has to work out that it signals nothing.
+
+The exception is bounded in two ways. It applies to **cells only** — every other tone-bearing
+entity in the family, `data-table`'s own columns included, still carries a resolved tone. And the
+default is machine-readable, not prose to be remembered: `schema/data-table.json` carries
+`"default": "neutral"` on each of those five `tone` properties, so a renderer author reads it off
+the schema. A consumer that resolves an absent cell tone to anything but `neutral` is
+non-conformant.
 
 ### Defaults, repeats and precedence
 
@@ -508,21 +657,23 @@ Four facts, all verified against the QuantEcon `mystmd` fork at v1.10.1 (qe-v10)
 
 1. **The first registration under a name wins**, and core directives are registered before any plugin's.
 2. **A plugin that claims a core name is silently ignored.** The page still builds and the content is simply wrong — the worst failure mode available. The only signal is a per-page `duplicate directives registered` warning, and when core is the winner there is not even an error.
-3. **As of 1.10.1 the registered names are** `admonition`, `anywidget`, `aside`, `bibliography`, `blockquote`, `code`, `code-cell`, `csv-table`, `div`, `dropdown`, `embed`, `figure`, `glossary`, `iframe`, `image`, `include`, `index`, `list-table`, `math`, `mdast`, `mermaid`, `myst`, `raw`, `show-index`, `table`, `toc`, plus the `myst-ext-*` set `button`, `card`, `exercise`, `exercise-end`, `grid`, `grid-item`, `proof`, `solution`, `solution-end`, `tab-item`, `tab-set`. **None of the family's eleven names appears.**
-4. **The eleven `dv-` aliases are likewise free.**
+3. **As of 1.10.1 the registered names are** `admonition`, `anywidget`, `aside`, `bibliography`, `blockquote`, `code`, `code-cell`, `csv-table`, `div`, `dropdown`, `embed`, `figure`, `glossary`, `iframe`, `image`, `include`, `index`, `list-table`, `math`, `mdast`, `mermaid`, `myst`, `raw`, `show-index`, `table`, `toc`, plus the `myst-ext-*` set `button`, `card`, `exercise`, `exercise-end`, `grid`, `grid-item`, `proof`, `solution`, `solution-end`, `tab-item`, `tab-set`. **None of the family's eight names appears.**
+4. **The eight `dv-` aliases are likewise free.**
 
-The family claims eleven names, not eight — three of them are item directives, and they carry exactly the same collision risk:
+The family claims **eight names, one per primitive**, each registered with a `dv-` alias — sixteen registrations in all. There are no item directives to add to that count, for the reason given under *Authoring: one body form, no item directives*: a container's `run()` executes before the directives nested in its body and receives them as raw `mystDirective` nodes, so an item directive's output is computed and then discarded.
 
-| Primitive | Container | Items |
-| --- | --- | --- |
-| `stats` | `stats` / `dv-stats` | `stat` / `dv-stat` |
-| `bar-list` | `bar-list` / `dv-bar-list` | — |
-| `stacked-bar` | `stacked-bar` / `dv-stacked-bar` | — |
-| `heatmap` | `heatmap` / `dv-heatmap` | — |
-| `data-table` | `data-table` / `dv-data-table` | — |
-| `chips` | `chips` / `dv-chips` | — (deliberately none) |
-| `badges` | `badges` / `dv-badges` | — (deliberately none) |
-| `delta-list` | `delta-list` / `dv-delta-list` | `delta-group` / `dv-delta-group`, `delta` / `dv-delta` |
+| Primitive | Registered as |
+| --- | --- |
+| `stats` | `stats` / `dv-stats` |
+| `bar-list` | `bar-list` / `dv-bar-list` |
+| `stacked-bar` | `stacked-bar` / `dv-stacked-bar` |
+| `heatmap` | `heatmap` / `dv-heatmap` |
+| `data-table` | `data-table` / `dv-data-table` |
+| `chips` | `chips` / `dv-chips` |
+| `badges` | `badges` / `dv-badges` |
+| `delta-list` | `delta-list` / `dv-delta-list` |
+
+An earlier draft of this section registered `stat`, `delta` and `delta-group` as item directives and put the count at eleven names and twenty-two registrations. Those three are deleted, `tests/plugin/registration.test.mjs` has only ever implemented the eight, and this table is now what that test asserts.
 
 **The rule: register the plain name and its `dv-` alias together, from the first release**, as a `DirectiveSpec.alias` on one spec. This settles the disagreement between the primitives — one argued that a second registered name is a second chance at a silent collision, another asked whether the alias is registered or merely documented.
 
@@ -530,9 +681,9 @@ The reasoning is that an alias is not a defence. A collision cannot be defended 
 
 Detection and response:
 
-- `tests/plugin/registration.test.mjs` re-checks all twenty-two names against the pinned engine on every run, so a collision surfaces when **we** bump the engine, not when a reader's build goes quiet.
+- `tests/plugin/registration.test.mjs` re-checks all sixteen names against the pinned engine on every run, so a collision surfaces when **we** bump the engine, not when a reader's build goes quiet.
 - On a collision: record it in the changelog, tell content to move to `dv-<name>`, and drop the dead plain name in the plugin's next major. **The contract version does not move**, because no node changes — the clearest illustration of why there are two numbers.
-- `stat` and `delta` are the shortest, most generic singular nouns in the family and carry the highest residual risk. Both must be in the test's name list; today only the eight container names are.
+- `bar-list`, `chips` and `badges` are the shortest, most generic names left in the family and carry the highest residual collision risk. All eight are in the test's name list, along with their aliases.
 
 ### The plugin's release version and the contract version
 
@@ -1383,7 +1534,7 @@ engine writes.
 | `layout` | `"labelled"` \| `"compact"` | yes | drawing hint | Row anatomy for an upgrading renderer. Always emitted, never left to a renderer default. |
 | `max` | number > 0 | yes | drawing hint | The value a full-width bar represents; the bar fraction is `value / max`. A value above `max` is clamped to a full bar, not rejected. |
 | `total` | number > 0 \| `null` | yes | yes, as `/27` | The denominator printed after every value. `null` when the denominator belongs in the surrounding prose instead, as on the charts page where "(of 348)" is stated once above the list. |
-| `columns` | array of 2–3 strings | yes | yes, as the header row | Column names for the fallback table, in fallback column order, one entry per column. Never `null`: the fallback always carries a header row, because a headerless table leaves the reader of the plain rendering with no column vocabulary. With no `:columns:` the directive falls back to the contract's own field names — `Item`, `Note`, `Value`, sliced to the table's width. |
+| `columns` | array of 2–3 strings | yes | yes, as the header row | Column names for the fallback table, in fallback column order, one entry per column. Never `null`: the fallback always carries a header row, because a headerless table leaves the reader of the plain rendering with no column vocabulary. With no `:columns:` the directive falls back to the contract's own field names: `Item`, `Note`, `Value` for a three-column table and `Item`, `Value` for a two-column one. **The middle name is dropped, not truncated to width** — a two-column table's second column holds the value, so heading it "Note" would be wrong. |
 | `items` | array, ≥ 1 | yes | yes, one row each | The bars, in render order. |
 | `children` | exactly one `table` node | yes | — | The portable fallback. A renderer that upgrades the node ignores it entirely. |
 
@@ -1470,7 +1621,7 @@ two names this primitive registers.
 | `:total:` | number > 0 | — (`total` is `null`) | The denominator printed on every row, and the bar scale unless `:max:` overrides it. The systemic list's rows read `23/27 · 178×`. |
 | `:max:` | number > 0 | `:total:`, else the largest `value`, else 1 | The bar scale alone, when the scale is not a denominator worth repeating on every row. The reach chart scales eighteen bars against the 348-lecture corpus while printing bare counts. |
 | `:layout:` | `labelled` \| `compact` | `labelled` | The two row anatomies the compliance pages use. A third member needs a second consumer. |
-| `:columns:` | comma-separated labels | `Item, Note, Value`, sliced to the table's width | Names the fallback table's columns in the author's own vocabulary, rather than leaving the header row on the contract's generic field names. The count must match the fallback's width (2 or 3) or the directive fails. |
+| `:columns:` | comma-separated labels | `Item, Note, Value`; `Item, Value` when the table is two columns wide | Names the fallback table's columns in the author's own vocabulary, rather than leaving the header row on the contract's generic field names. The count must match the fallback's width (2 or 3) or the directive fails. |
 | `:file:` | path | — (data comes from the body) | CSV source. Mutually exclusive with a body list; exactly one of the two is required. |
 | `:class:` | string | — | Extra class tokens, following the built-in `{div}` convention. The report theme uses it to give the systemic list and the reach chart different column widths without a new option. |
 
@@ -3444,7 +3595,9 @@ cannot produce a `bar`, `fraction`, `badge` or `chips` column, and cannot set a 
 A `fileError` raised inside a **directive** is logged but is not counted by `myst build --site
 --strict`: `loadFile` clears a file's stored messages each time it loads the file and then
 serves the cached mdast without re-running the directive, so the message is gone before the
-strict check harvests it. This is filed upstream as QuantEcon/mystmd#95. Every statement in this
+strict check harvests it. This is filed against the QuantEcon fork as QuantEcon/mystmd#95, and is a
+candidate for filing upstream: the defective code is byte-identical on `jupyter-book/mystmd@main`,
+so the fix belongs there in the end. Every statement in this
 section about reporting a problem therefore means the deferred mechanism in `src/lib/report.mjs`,
 not a direct `fileError`.
 
@@ -4545,7 +4698,7 @@ obvious target for a pinned commit, and it is what exercises `href`:
 | `items[].label` | string, non-empty | yes | Plain-text flattening of the badge's inline content. Definition below. |
 | `items[].tone` | `neutral` \| `accent` \| `good` \| `warn` \| `bad` | yes | Colour-family hint. Always resolved by the directive, so a consumer never has to know a default. |
 | `items[].emphasis` | `outline` \| `solid` | yes | Fill hint, orthogonal to tone. Always resolved, never absent. |
-| `items[].href` | string, no whitespace | no | Present when, and only when, the badge's whole content is one link; equals that link's `url`. |
+| `items[].href` | string, no whitespace | no | Present when, and only when, the badge span's content, **after unwrapping a single `strong`**, is one `link`; equals that link's `url`. `strong` is always outermost, so a solid badge that is also wholly linked emits span → strong → link and is read through the wrapper. |
 | `children` | array, ≥ 1 | yes | The fallback row. Revision 1.0 emits exactly one `paragraph`. |
 
 Downstream MyST transforms add keys to every node in the tree: `keysTransform` stamps a `key` on
@@ -4629,9 +4782,11 @@ satisfies this schema is not yet conformant. First the count: `items.length` equ
 badge spans. Then `items[i]` and the *i*-th badge span must agree on every field. `items[i].label`
 equals that span's flattened text; `items[i].tone` and `items[i].emphasis` equal the tone and
 emphasis tokens in that span's class; and `items[i].href` is present exactly when that span's
-whole content is
-one `link`, with the same `url` — both directions, so a linked span with no `href` on the item
-fails too. The row's shape is the other half: the paragraph's children alternate strictly, a
+content, after unwrapping a single `strong`, is one `link`, with the same `url` — both
+directions, so a linked span with no `href` on the item fails too. The unwrap is what makes a
+solid, whole-label-linked badge expressible at all: **`strong` is outermost always**, never
+`link` over `strong`, so emphasis and linking compose rather than each demanding to be the
+outer node. The row's shape is the other half: the paragraph's children alternate strictly, a
 badge span at every even index and a separator at every odd one, giving 2*n* − 1 children for
 *n* badges, so the row opens and closes with a badge and never carries two separators in a row.
 
@@ -5828,7 +5983,7 @@ There is a second, independent objection. The core `grid` node carries `columns:
 
 Option (a), core `grid`/`card` with the LaTeX loss recorded, trades a permanent, silent data loss in every export path for prettier chrome in one transitional build. A contract whose stated purpose is that content survives the theme cannot have its three most editorial regions disappear when the theme is removed.
 
-Option (c) in its only credible form — adding `grid`, `card`, `header` and `footer` handlers to `myst-to-tex` in the QuantEcon fork — is a genuine fix but the wrong instrument here. It would make report PDFs correct only on a forked CLI, which contradicts the reason the family is generic at all, and it is an upstream contribution rather than a contract decision. It belongs in `UPSTREAM-CANDIDATES.yml`: if those handlers ever land upstream, this section's anatomy tokens map onto them one for one, and the migration is mechanical.
+Option (c) in its only credible form — adding `grid`, `card`, `header` and `footer` handlers to `myst-to-tex` in the QuantEcon fork — is a genuine fix but the wrong instrument here. It would make report PDFs correct only on a forked CLI, which contradicts the reason the family is generic at all, and it is an upstream contribution rather than a contract decision. It belongs on the estate's upstream-candidates list — the file of that name lives in [`quantecon-theme.mystmd`](https://github.com/QuantEcon/quantecon-theme.mystmd), not in this repository, and the mystmd fork's own `quantecon/UPSTREAM-PRS.yml` is shaped for cherry-pick SHA lists and cannot hold a change nobody has written yet. If those handlers ever land upstream, this section's anatomy tokens map onto them one for one, and the migration is mechanical.
 
 ### The card kit
 
@@ -5883,6 +6038,178 @@ Then the variant's own properties, specified below. Cards carry no `label`, `ide
 **Anatomy rules.** The four anatomy children appear at most once each, always in the order title, body, aside, footer. `__title` and `__footer` are `paragraph` nodes; `__body` and `__aside` are `div` nodes holding flow content, because that is where authored markdown lands. `__body` is the slot a renderer reads back and re-slots; everything else it may redraw from the properties.
 
 **Agreement rule.** Every value in a card's properties appears verbatim in that card's children, and the children introduce no fact that is not either a property or authored prose. A test asserts property-by-property containment against the flattened text of the matching child. This is the cards' form of the invariant the primitives express as index-for-index correspondence, and it is what makes the fallback honest rather than decorative.
+
+### The two container forms: nested and gated
+
+*A container takes its cards either nested in one fence or between a pair of gate markers. Both are supported,
+both hold executable content, and this section says what each costs.*
+
+A card's body is authored prose, and on the charts page and in a lecture report that prose may need to contain a
+`code-cell`. **Both forms carry one**, and both were verified end to end against mystmd 1.10.1 (qe-v10) with a
+real kernel — a nested cell executes at any depth, because the executable-node collector is a whole-tree
+`selectAll` and knows nothing about containers.
+
+**Every container in this family therefore offers both.** The nested form is the natural one and stays the
+default; the gated form is the one to reach for when a body holds executable content or grows complicated. The
+choice is the author's, and the table under *Which form to use* below is the guidance, not a rule.
+
+The gated form exists because nesting has one cost and one risk, neither of which is about whether the code runs.
+
+**The cost is the colon-fence count, and it is smaller than it looks.** Colon fences escalate with depth — a
+`{qe-win}` at `:::` needs its `{qe-wins}` container at `::::` — but a backtick code fence is a different fence
+type and does **not** escalate with them. A `code-cell` two container levels deep is written at plain three
+backticks and executes: verified end to end with a real kernel, output attached in place. So the burden is one
+extra colon per nesting level, not a three-way tick negotiation, and it falls on the container fences rather than
+on the code.
+
+It is still the burden `qe-admon-003`, *tick-count management for nested directives*, exists to measure — one of
+only two rules in the ledger flagged `build-risk`, where a single occurrence is graded **critical** because it
+breaks the build rather than the prose. And `qe-admon-001`, *use gated syntax for executable code in exercises*,
+means the gated form is already QuantEcon's convention for this situation rather than a new invention. Neither
+makes nesting wrong; together they are why the gated form is worth offering.
+
+The risk is what happens when the nesting is wrong, and it is covered under *Which form to use*.
+
+#### The nested form
+
+Nothing special: the container declares `body: {type: 'myst'}`, reads what it needs off the raw `mystDirective`
+children, and returns those same objects as the children of its wrapper. A `code-cell` among them becomes an
+executable `block` exactly as it would at document level, and its outputs are attached in place.
+
+````markdown
+::::{qe-wins} Biggest wins
+:layout: grid
+
+:::{qe-win} Descriptive figure names
+:rule: qe-fig-005
+
+The fix and why it matters.
+
+```{code-cell} python
+plot_reach(rule_reach)
+```
+:::
+::::
+````
+
+Note what that example does **not** need: the code fence stays at three backticks two container levels down.
+Only the colon fences escalate. That page was built with a real kernel and the cell's output was attached inside
+the card's `__body`.
+
+The one hard requirement is the identity rule under *The re-parenting rule*: the container must return the very
+node objects it was handed, never copies. That is the container implementer's obligation, not the author's, and
+it is the same obligation whichever form the author writes in.
+
+#### The gated form
+
+The cards are written between a pair of markers, at document level:
+
+````markdown
+:::{qe-wins-start} Biggest wins
+:layout: grid
+:::
+
+The prose of the first card, at document level.
+
+```{code-cell} python
+plot_reach(rule_reach)
+```
+
+:::{qe-wins-end}
+:::
+````
+
+The content between the markers is written at document level. There is no nesting, so there is no tick count to
+manage, and a three-backtick code fence is legal wherever it appears.
+
+There is no nesting, so there is no tick count to manage, and a three-backtick code fence is legal wherever it
+appears.
+
+**The mechanism.** `joinGatesTransform` (`myst-transforms/src/joinGates.ts`) walks each parent's children and folds everything
+between a node carrying `gate: "start"` and the next sibling carrying `gate: "end"` into the first node's
+`children`, then deletes the `gate` key. It is **entirely type-agnostic**: it never looks at a directive name and
+matches only on the property, so a plugin gets the behaviour by emitting the property. It runs inside
+`basicTransformations`, which the CLI applies at `myst-cli/src/process/mdast.ts:336` — after execution, before
+`blockNestingTransform`, and before any plugin transform.
+
+That ordering is what makes the form work, and each step of it was verified against mystmd 1.10.1 (qe-v10) rather
+than reasoned about:
+
+| Question | Verified answer |
+| --- | --- |
+| Does a plugin's own node get gated? | Yes. A `div` with `gate: "start"` absorbed the prose and the cell between the markers; `class`, `primitive`, `variant` and `layout` all survived |
+| Does a nested `code-cell` still execute? | Yes. `print(6 * 7)` inside the container returned `stream` output `"42\n"`, attached in place. `getExecutableNodes` is a whole-tree `selectAll`, so depth is irrelevant |
+| Does an unclosed gate fail the build? | **Yes — exit 1.** `joinGates` raises its `fileError` from a transform, so it escapes the defect that swallows directive-stage messages (QuantEcon/mystmd#95) |
+| Does content after `{…-end}` stay outside? | Yes |
+
+That third row is the reason to prefer this form even where nesting would do. Everything else the family catches,
+it catches because the plugin went looking: a missing CSV or a bad column fails `--strict` only because the
+directive defers a diagnostic and `diagnosticsTransform` re-raises it. **A mis-nested container is the one
+authoring mistake the plugin cannot see at all** — the content is simply gone before any of its code runs, and
+the build exits 0. An unclosed gate is the same mistake made in a form the engine itself refuses.
+
+#### The specification
+
+A gated container registers **three** names, on two specs, following the engine's own `exercise` pattern
+(`myst-ext-exercise/src/exercise.ts`):
+
+| Name | Spec | Emits |
+| --- | --- | --- |
+| `qe-wins` | the container spec | the container node, no `gate` |
+| `qe-wins-start` | `alias` on the same spec | the same node, plus `gate: "start"` |
+| `qe-wins-end` | a second, argument-less spec | `{ "type": "div", "gate": "end" }` |
+
+The start directive branches on `data.name.endsWith('-start')`, exactly as `exerciseDirective` does. The end
+directive emits a bare `div` and nothing else: it is a marker, never a node a renderer sees, and `joinGates`
+removes it.
+
+These are **compliance-family names**, registered by `compliance.mjs` in the report theme's repository. The
+datavis family's own count is untouched: it registers eight names and eight `dv-` aliases and no gated pair,
+because none of the eight primitives has a body that could hold executable content — a bullet list and a pipe
+table cannot. A future generic primitive that could would take the gated form on the same terms.
+
+Two rules on the emitted nodes:
+
+- **The `-end` marker's `type` must equal the container's.** `joinGates` warns on a mismatch, and the warning
+  names the types rather than the directives. Both are `div` throughout this family.
+- **The gated container's `run()` receives an empty body**, because the content is outside its fence. Every check
+  a nested container would make in `run()` moves to the family's document-stage transform, which runs after
+  `joinGates` and therefore sees the joined children. This is a gain, not a cost: a transform's diagnostics reach
+  `--strict` and a directive's do not.
+
+#### Which form to use
+
+Both work. This is guidance, and a page that mixes the two is fine.
+
+| Situation | Suggested form | Why |
+| --- | --- | --- |
+| Card bodies are prose | **Nested** | It reads better, keeps the card set in one fence, and the container can validate its own children |
+| A card body contains a `code-cell` | **Gated**, mildly | Both execute. The gated form needs no container fences to escalate, and it is what `qe-admon-001` already asks for |
+| A long card set, or one being edited often | **Gated** | Its structural mistake fails the build; the nested form's does not |
+| The container must reject a bad item with a line number | **Nested** | `run()` sees the raw children and can report on any of them |
+
+The asymmetry worth knowing, because it is the only one that bites silently:
+
+**A mis-nested container exits 0 and takes the rest of the page with it.** Write the container and its item at
+the same colon depth — `:::{qe-wins}` around `:::{qe-win}`, the escalation forgotten — and the parser pairs the
+first closing marker with the inner directive. The card renders, so the page looks half right; but the outer
+container's closing `:::` is then loose, and **every line after it is swallowed into a `code` node**. Verified:
+a page ending "After." emits `code` with the value `"\nAfter."`, and `myst build --site --strict` exits **0**
+with no error and no warning. Neither the engine nor the plugin has anything to say, because by the time any
+plugin code runs the tree is already the wrong shape.
+
+**An unclosed gate exits 1**, named and located: `Gated node is not closed, expected a {div-end} directive.`
+
+That is the reason to prefer the gated form for anything long or often-edited. It is not a reason to avoid
+nesting, which is the more readable form, the one where a container can validate its own children, and the right
+default for a set of prose cards.
+
+#### Known rough edge
+
+An unclosed gate reports `Gated node is not closed, expected a {div-end} directive.` — `joinGates` names the
+node's `type`, not the directive the author actually wrote, so someone who opened `{qe-wins-start}` is told to
+close `{div-end}`. The diagnostic fires at the right place and fails the build, which is what matters; the wording
+is an upstream candidate rather than something this contract can fix.
 
 ### `qe-win` — biggest-wins cards
 
@@ -5970,7 +6297,7 @@ The other seven cards follow the same shape: Collapse double spaces `qe-writing-
 
 **The band ramp is the theme's, not the contract's.** The design bands the bar and the percentage badge by share — `≥ 75%` `#173f6d`, `≥ 60%` `#2c72b8`, `≥ 45%` `#5f8fc2`, `≥ 30%` `#96b3d2` — four steps of one hue, which the five-tone vocabulary cannot express and should not try to. The card carries `share`; the theme bands it, exactly as `heatmap` carries `scale` and the theme owns the oklch ramp. The band legend beneath the grid ("Share of corpus · ≥ 75% · ≥ 60% …") is theme chrome generated from the theme's own thresholds, and no node is emitted for it.
 
-**Authoring.** `{qe-wins}` wraps `{qe-win}` items; the title is the item's argument, the description its markdown body, and `:rule:` and `:effort:` its options. All eight wins in the design map onto a `rule_reach.csv` row whose `lectures_affected` is exactly the reach the canvas shows, so **`reach`, `total` and `share` are read and derived, never typed** — `:reach:` is refused with a `fileError`, `total` comes from the `TOTAL` row of `series_summary.csv`, and goal 2's "the visuals cannot drift from the measured data" holds for this region without a verification step.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-wins}` nesting its items in one fence, or the gated `{qe-wins-start}` … `{qe-wins-end}` pair. See *The two container forms* for which to reach for. `{qe-wins}` wraps `{qe-win}` items; the title is the item's argument, the description its markdown body, and `:rule:` and `:effort:` its options. All eight wins in the design map onto a `rule_reach.csv` row whose `lectures_affected` is exactly the reach the canvas shows, so **`reach`, `total` and `share` are read and derived, never typed** — `:reach:` is refused with a `fileError`, `total` comes from the `TOTAL` row of `series_summary.csv`, and goal 2's "the visuals cannot drift from the measured data" holds for this region without a verification step.
 
 ### `qe-issue` — issue cards
 
@@ -6085,7 +6412,7 @@ A filterable list of rule violations found in one lecture. Container `layout: "s
 
 Acceptance criterion 7 is met structurally: every card is a child, so the unfiltered list is what the server renders and what a reader with JavaScript disabled sees. The filter is a pure client-side narrowing of nodes already on the page. Because the chip row is an interaction rather than content, no node is emitted for it — and in its place the container emits the `qe-dv-cards__summary` paragraph, which puts the same counts in the text where a plain theme, a printed page and a PDF can all read them.
 
-**Authoring.** `{qe-issues}` wraps `{qe-issue}` items: title as the argument, example prose as the markdown body, `:severity:`, `:rule:`, `:count:` and `:lines:` as options. Issue text is necessarily authored (REVIEW §6: lines and examples exist only in the generated report markdown), and `:count:` is the typed number the plugin verifies.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-issues}` nesting its items in one fence, or the gated `{qe-issues-start}` … `{qe-issues-end}` pair. See *The two container forms* for which to reach for. `{qe-issues}` wraps `{qe-issue}` items: title as the argument, example prose as the markdown body, `:severity:`, `:rule:`, `:count:` and `:lines:` as options. Issue text is necessarily authored (REVIEW §6: lines and examples exist only in the generated report markdown), and `:count:` is the typed number the plugin verifies.
 
 ### `qe-finding` — fix-immediately cards
 
@@ -6222,7 +6549,7 @@ A structural defect, where it is, and the state of the issue and pull request th
 
 **The `⇋`, `⎇` and `·` status icons are not emitted.** None of them has an entry in `myst-to-tex`'s replacement tables (`packages/myst-to-tex/src/utils.ts`), so they would reach the `.tex` file raw. They are decoration; `pr.state` already carries the meaning, and the theme draws the glyph. `×` and `—` are safe and are used: `—` maps to `---`, and `×` is in `mathReplacements`, which `stringToLatexText` wraps in `$…$`. `→` is deliberately avoided everywhere in this family — `arrows` is spread into `textReplacements`, so it emits a bare `\rightarrow` in text mode and stops `pdflatex`, the same trap the `delta-list` specification records.
 
-**Authoring.** `{qe-findings}` wraps `{qe-finding}` items; a lone `{qe-finding}` emits a bare card. The location is the argument, the problem statement the markdown body, and `:rule:` the one option. `issue`, `pr` and `checked` come from `findings.csv` (`where, rule, issue_url, issue_state, pr_url, pr_state, checked_at`) keyed on the location and rule, per D4 — never typed in the page. `url` is composed from the series repository and the pinned commit in `snapshot.json`. The "Note — a correction to the previous pass" block that closes the same section in the design is a standard admonition (§5.5) and is not part of this kit.
+**Authoring.** Both forms are supported, and either carries a `code-cell`: `{qe-findings}` nesting its items in one fence, or the gated `{qe-findings-start}` … `{qe-findings-end}` pair. See *The two container forms* for which to reach for. `{qe-findings}` wraps `{qe-finding}` items; a lone `{qe-finding}` emits a bare card. The location is the argument, the problem statement the markdown body, and `:rule:` the one option. `issue`, `pr` and `checked` come from `findings.csv` (`where, rule, issue_url, issue_state, pr_url, pr_state, checked_at`) keyed on the location and rule, per D4 — never typed in the page. `url` is composed from the series repository and the pinned commit in `snapshot.json`. The "Note — a correction to the previous pass" block that closes the same section in the design is a standard admonition (§5.5) and is not part of this kit.
 
 ### Fallback rendering
 

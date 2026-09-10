@@ -39,9 +39,25 @@
       "items": { "$ref": "#/$defs/row" }
     },
     "naLabel": false,
-    "label": false,
-    "identifier": false,
-    "html_id": false
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The target label mystmd's target transform stamps on the root when a `(target)=` line precedes the block, so a badge row can be cross-referenced like any other block. The schema admits it because a real emitted tree carries it; what `myst-cli` later does with the three identity keys when the page is embedded elsewhere is the engine's business rather than a defect in the emission. `dependentRequired` beside these properties is what stops the admission becoming a licence for a partial anchor: the target transform stamps the trio as a set from one `(target)=` line, so a badge row arriving with `identifier` but no `label`, or with `label` and `html_id` and no normalised form between them, was not anchored by the engine — it is a wrapper that copied part of somebody else's anchor onto our div and invented the rest, and a consumer resolving the cross-reference would find nothing to resolve. Note which key carries no leg: a lone `label` stays legal on purpose. When a `:label:` option normalises to an empty identifier — `:label: '` is enough — the engine emits the badge row carrying `label` alone, exit 0 and no warning, so requiring the other two beside it would reject a tree mystmd really produces. The rule below the root is unchanged: no node a primitive builds may carry any of the three, because nothing stamps them there and one appearing can only be an emitter's typo. Where an inner definition in this file is closed it enforces that; where one is left open for another reason the rule still binds the emitter, and the gap is a schema bug rather than a licence."
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The normalised form of `label`, stamped on the root by the same target transform and admitted for the same reason. It never travels alone, and `dependentRequired` beside these properties says so: `normalizeLabel` produces an identifier only from a label, and `createHtmlId` then derives the html_id from that identifier, so a badge row bearing an identifier without both of its neighbours did not come through the target transform at all. Root only: no span inside the fallback row is ever a cross-reference target."
+    },
+    "html_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The HTML-safe form of `identifier`, stamped on the root by the same target transform and admitted for the same reason. It carries the same dependency as `identifier`, and for the tighter reason: an html_id is computed from an identifier, so it cannot precede one, and no label the engine has ever normalised yields an html_id with its identifier missing. Root only, exactly as `identifier` is."
+    }
+  },
+  "dependentRequired": {
+    "identifier": ["label", "html_id"],
+    "html_id": ["label", "identifier"]
   },
   "additionalProperties": true,
   "$defs": {
@@ -71,7 +87,7 @@
           "type": "string",
           "minLength": 1,
           "pattern": "^\\S+$",
-          "description": "Present when, and only when, the badge span's whole content is a single `link`; equals that link's `url`. A renderer reading `items` alone can therefore still link the badge."
+          "description": "Present when, and only when, the badge span's content, after unwrapping a single `strong`, is one `link`; equals that link's `url`. The unwrapping is what makes a solid, whole-label-linked badge expressible: `strong` is always outermost, so the linked outline badge (span → link) and the linked solid badge (span → strong → link) are the same rule read through the emphasis wrapper rather than two competing trees. A renderer reading `items` alone can therefore still link the badge. The correspondence itself is a test's job: JSON Schema cannot relate this array to the spans beside it."
         }
       },
       "additionalProperties": false
@@ -107,7 +123,7 @@
         "children": {
           "type": "array",
           "minItems": 1,
-          "description": "Inline mdast for the label. A badge whose class carries `qe-dv-emph-solid` wraps its whole content in one `strong`, which is how emphasis stays visible with no renderer."
+          "description": "Inline mdast for the label. A badge whose class carries `qe-dv-emph-solid` wraps its whole content in one `strong`, which is how emphasis stays visible with no renderer. The `strong` is outermost always, so a badge that is both solid and wholly linked emits span → strong → link → text and never span → link → strong: one order, so emphasis and linking compose instead of contradicting each other, and `items[i].href` is read through the wrapper. The check below runs in one direction only, and deliberately so: it fires on `qe-dv-emph-solid` and asserts nothing about an outline badge, whose children are ordinary author inline markup. A `strong` inside an outline badge is emphasis the author wrote into the label rather than a claim about the badge's fill, so refusing it would refuse a tree the directive really emits: the schema requires the wrapper of a solid badge and permits, without requiring, a `strong` in an outline one."
         }
       },
       "additionalProperties": true,
@@ -122,6 +138,7 @@
             }
           },
           "then": {
+            "description": "The solid badge's single child. `maxItems: 1` beside `items` — not a `prefixItems` entry, which would pin position 0 and leave whatever followed it unexamined — is what makes the `strong` outermost: `items` applies to every element of the array and the array holds exactly one, so the `strong` is the span's whole content rather than one node among several. A whole-label link therefore sits inside the `strong`, and the mirror tree span → link → strong is rejected here, on the child's `type`.",
             "properties": {
               "children": {
                 "type": "array",
@@ -165,7 +182,7 @@
     },
     "dumbInnerNode": {
       "type": "object",
-      "description": "The family's inner-node rule, asserted rather than assumed. An inner node carries a class and nothing else: no `contract` or `primitive`, because only the root self-describes; no copy of the item it renders, because the datum already lives in `items` and in the rendered children and a third copy is a drift surface; and none of `label`, `identifier` or `html_id`, which `myst-cli/src/transforms/embed.ts` deletes from every node that is not a crossReference, cite, footnote node, captionNumber or link. Unknown keys stay allowed, because downstream MyST transforms add their own.",
+      "description": "The family's inner-node rule, asserted rather than assumed. An inner node carries a class and nothing else: no `contract` or `primitive`, because only the root self-describes; no copy of the item it renders, because the datum already lives in `items` and in the rendered children and a third copy is a drift surface; and none of `label`, `identifier` or `html_id`, which the root may carry — the target transform stamps them there for a `(target)=` line — but which no span inside the row ever earns, because no span is a cross-reference target and `myst-cli/src/transforms/embed.ts` deletes all three from every node that is not a crossReference, cite, footnote node, captionNumber or link. On an inner node the key is therefore an emitter's typo, and this is where it is caught. Unknown keys stay allowed, because downstream MyST transforms add their own: `key`, `position` and `data` all arrive this way.",
       "properties": {
         "contract": false,
         "primitive": false,

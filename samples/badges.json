@@ -504,6 +504,98 @@
           ]
         }
       ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-badges qe-release-badges",
+      "contract": "1.0",
+      "primitive": "badges",
+      "items": [
+        {
+          "label": "Release 2026-09",
+          "tone": "accent",
+          "emphasis": "solid",
+          "href": "https://github.com/QuantEcon/quantecon-plugins.mystmd/releases/tag/v0.3.0"
+        },
+        {
+          "label": "8 primitives",
+          "tone": "neutral",
+          "emphasis": "outline"
+        },
+        {
+          "label": "contract 1.0",
+          "tone": "neutral",
+          "emphasis": "outline"
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-accent qe-dv-emph-solid",
+              "children": [
+                {
+                  "type": "strong",
+                  "children": [
+                    {
+                      "type": "link",
+                      "url": "https://github.com/QuantEcon/quantecon-plugins.mystmd/releases/tag/v0.3.0",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Release 2026-09"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "8 primitives"
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge-sep",
+              "children": [
+                {
+                  "type": "text",
+                  "value": " · "
+                }
+              ]
+            },
+            {
+              "type": "span",
+              "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "contract 1.0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "invalid": [
@@ -957,7 +1049,8 @@
       }
     },
     {
-      "because": "`tone` is \"danger\", which is outside the closed set neutral | accent | good | warn | bad",
+      "because": "`tone` is \"danger\", which is outside the closed set neutral | accent | good | warn | bad. The badge span keeps a well-formed class, so the closed set is the only rule left that can reject the node: a class token spelling \"danger\" too would be caught by the span class pattern and the fixture would stop testing the enum.",
+      "rejectedAt": "/items/0/tone",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-badges qe-lecture-badges",
@@ -987,7 +1080,7 @@
             "children": [
               {
                 "type": "span",
-                "class": "qe-dv-badge qe-dv-tone-danger qe-dv-emph-outline",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
                 "children": [
                   {
                     "type": "text",
@@ -1891,6 +1984,7 @@
     },
     {
       "because": "a badge span carries a top-level `label`: `myst-cli`'s embed transform deletes `label`, `identifier` and `html_id` from every node that is not a crossReference, cite, footnote node, captionNumber or link, so the property would vanish only once the page is embedded elsewhere",
+      "rejectedAt": "/children/0/children/0/label",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-badges qe-lecture-badges",
@@ -1981,32 +2075,29 @@
       }
     },
     {
-      "because": "the root carries a top-level `label`; `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the property works locally and silently disappears the first time the page is embedded elsewhere",
+      "because": "the fallback row renders the separators and not one badge span: `contains` is the half of \"badge spans separated by separator spans\" that JSON Schema can assert, and without it a row whose badges were all dropped and whose separators were all kept validates happily while reading as two middle dots and no metadata at all",
+      "rejectedAt": "/children/0/children",
       "node": {
         "type": "div",
-        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "class": "qe-dv qe-dv-badges qe-lecture-badges",
         "contract": "1.0",
         "primitive": "badges",
         "items": [
           {
-            "label": "Pass 2026-08",
-            "tone": "neutral",
-            "emphasis": "solid"
-          },
-          {
-            "label": "vs 2026-05",
+            "label": "lectures/python_by_example.md",
             "tone": "neutral",
             "emphasis": "outline"
           },
           {
-            "label": "348 lectures · 5 series",
+            "label": "audited 2026-08-26",
             "tone": "neutral",
             "emphasis": "outline"
           },
           {
-            "label": "49 rules",
+            "label": "snapshot ceec881028",
             "tone": "neutral",
-            "emphasis": "outline"
+            "emphasis": "outline",
+            "href": "https://github.com/QuantEcon/lecture-python-programming/commit/ceec881028"
           }
         ],
         "children": [
@@ -2015,21 +2106,6 @@
             "children": [
               {
                 "type": "span",
-                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
-                "children": [
-                  {
-                    "type": "strong",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "Pass 2026-08"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "span",
                 "class": "qe-dv-badge-sep",
                 "children": [
                   {
@@ -2040,58 +2116,17 @@
               },
               {
                 "type": "span",
-                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "vs 2026-05"
-                  }
-                ]
-              },
-              {
-                "type": "span",
                 "class": "qe-dv-badge-sep",
                 "children": [
                   {
                     "type": "text",
                     "value": " · "
-                  }
-                ]
-              },
-              {
-                "type": "span",
-                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "348 lectures · 5 series"
-                  }
-                ]
-              },
-              {
-                "type": "span",
-                "class": "qe-dv-badge-sep",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": " · "
-                  }
-                ]
-              },
-              {
-                "type": "span",
-                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "49 rules"
                   }
                 ]
               }
             ]
           }
-        ],
-        "label": "series-priority-mix"
+        ]
       }
     },
     {
@@ -2206,6 +2241,217 @@
           }
         ],
         "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "a solid, whole-label-linked badge nests the wrong way round: `strong` is always outermost, so the span of a `qe-dv-emph-solid` badge holds exactly one child and that child is the `strong`, with the `link` inside it — span → link → strong renders the same words but is the tree the emphasis rule does not admit",
+      "rejectedAt": "/children/0/children/0/children/0/type",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-release-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Release 2026-09",
+            "tone": "accent",
+            "emphasis": "solid",
+            "href": "https://github.com/QuantEcon/quantecon-plugins.mystmd/releases/tag/v0.3.0"
+          },
+          {
+            "label": "8 primitives",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "contract 1.0",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-accent qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "link",
+                    "url": "https://github.com/QuantEcon/quantecon-plugins.mystmd/releases/tag/v0.3.0",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Release 2026-09"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "8 primitives"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "contract 1.0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries `identifier` alone, with neither `label` nor `html_id`, and the root's `dependentRequired` binds identifier to both of them: mystmd's target transform stamps the trio on a badge row as a set from one `(target)=` line, so a lone normalised identifier is a wrapper copying part of an anchor onto our div rather than anything the engine emitted",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "identifier": "pass-2026-08-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Pass 2026-08",
+            "tone": "neutral",
+            "emphasis": "solid"
+          },
+          {
+            "label": "vs 2026-05",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "348 lectures · 5 series",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "49 rules",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "strong",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Pass 2026-08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "vs 2026-05"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "348 lectures · 5 series"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "49 rules"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]

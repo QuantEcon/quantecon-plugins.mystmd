@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/bar-list.json",
   "title": "datavis bar-list root node",
-  "description": "The root node emitted by the datavis {bar-list} directive, and by any wrapper that reuses the contract: a div carrying the family and primitive class tokens, the bar data as node properties, and a portable table of the same data as its children. The schema validates SHAPE. It cannot express the contract's central invariant — that the properties and the fallback table are two renderings of the same data, row for row — because JSON Schema has no way to compare the TEXT of one part of an instance with another. That invariant (children[0] holds the header row followed by one tableRow per items entry, in the same order; row i's label cell text equals items[i].label; its value cell's strong text equals String(items[i].value); a null note renders as the em dash) is asserted by the repository's plugin tests, not here. What the schema does enforce is the family's structural rules: exactly one header row and it is row 0, every row the same width, that width agreeing with the length of columns, no inner node carrying anything but its class, and no node carrying a top-level label, identifier or html_id. The item objects are closed, so a misspelt field is caught.",
+  "description": "The root node emitted by the datavis {bar-list} directive, and by any wrapper that reuses the contract: a div carrying the family and primitive class tokens, the bar data as node properties, and a portable table of the same data as its children. The schema validates SHAPE. It cannot express the contract's central invariant — that the properties and the fallback table are two renderings of the same data, row for row — because JSON Schema has no way to compare the TEXT of one part of an instance with another. That invariant (children[0] holds the header row followed by one tableRow per items entry, in the same order; row i's label cell text equals items[i].label; its value cell's strong text equals String(items[i].value); a null note renders as the em dash) is asserted by the repository's plugin tests, not here. What the schema does enforce is the family's structural rules: exactly one header row and it is row 0, every row the same width, that width agreeing with the length of columns, no inner node carrying anything but its class and the engine's own key, position and data, and no node BELOW the root carrying a label, identifier or html_id. The root itself may carry those three: a (target)= line before the directive makes the engine's target transform stamp them onto the block it labels, and refusing them there would reject a tree the engine itself produced. The item objects are closed, so a misspelt field is caught.",
   "type": "object",
   "required": [
     "type",
@@ -17,7 +17,7 @@
     "children"
   ],
   "additionalProperties": true,
-  "allOf": [{ "$ref": "#/$defs/noEmbedKeys" }],
+  "allOf": [{ "$ref": "#/$defs/rootAnchorKeys" }],
   "oneOf": [
     {
       "title": "two-column fallback",
@@ -77,7 +77,7 @@
       "type": "array",
       "minItems": 2,
       "maxItems": 3,
-      "description": "Column names for the fallback table's header row, in the fallback's column order: label, note (only when the table is three columns wide), value. Never null: the fallback always carries a header row, so a reader of the plain rendering always has a column vocabulary. When the author gives no :columns: the directive supplies the contract's own field names, 'Item', 'Note' and 'Value', sliced to the table's width. The length always equals the fallback's column count, which the root's oneOf enforces.",
+      "description": "Column names for the fallback table's header row, in the fallback's column order: label, note (only when the table is three columns wide), value. Never null: the fallback always carries a header row, so a reader of the plain rendering always has a column vocabulary. When the author gives no :columns: the directive supplies the contract's own field names: 'Item', 'Note', 'Value' for a three-column table and 'Item', 'Value' for a two-column one. The middle name is DROPPED, not truncated to width -- a two-column table's second column holds the value, so heading it 'Note' would name the wrong thing. The length always equals the fallback's column count, which the root's oneOf enforces.",
       "items": {
         "type": "string",
         "minLength": 1,
@@ -103,12 +103,26 @@
   "$defs": {
     "noEmbedKeys": {
       "type": "object",
-      "description": "No node the primitive emits carries a top-level label, identifier or html_id. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it — and only when the page is embedded elsewhere. This forbids the property on a node; it says nothing about a property called label inside an array or object, which is what items[].label is. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
+      "description": "No node BELOW the root carries a label, identifier or html_id. myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from every node whose type is not crossReference, cite, footnoteDefinition, footnoteReference, captionNumber or link, so a div or span carrying one loses it — and only when the page is embedded elsewhere. Nothing inside the fallback has any business carrying one, so a label on a table, a row or a text node is an emitter's typo and is caught here. The root is the exception and uses rootAnchorKeys instead. This forbids the property on a node; it says nothing about a property called label inside an array or object, which is what items[].label is. The retired naLabel is refused here too: the family has exactly one spelling of an absent value — null in the properties, an em dash in the fallback — and additionalProperties stays open for the engine's own keys, so a stale wrapper would otherwise slip one through unnoticed.",
       "properties": {
         "label": false,
         "identifier": false,
         "html_id": false,
         "naLabel": false
+      }
+    },
+    "rootAnchorKeys": {
+      "type": "object",
+      "description": "The root's anchor keys, allowed as non-empty strings and bound in the one pattern the engine can actually produce. A (target)= line before the {bar-list} directive is how an author cross-references the block, and the engine's target transform answers it by stamping label, identifier and html_id onto the div the directive emitted, so the contract cannot forbid them at the root without forbidding a labelled bar-list. They are the engine's to write, not the directive's: the directive never emits them, and their values are the engine's normalised target, so the schema constrains no more than the shape the transform can produce. Each is a non-empty string, and identifier and html_id each require the other two keys, because normalizeLabel and createHtmlId derive them from a single target and the transform never writes one without the rest: fuzzing 52,059 labels through the pair produced not one identifier lacking an html_id. label carries no dependency of its own, and that asymmetry is measured rather than assumed. When a :label: value normalises to an empty identifier, which a lone apostrophe is enough to do, the transform copies the label and drops the other two, and the engine emits a bar-list root carrying label alone, exits 0 and warns about nothing. Binding label to its companions would reject a tree a real build produces, which is the very defect this root relaxation exists to avoid. A root carrying identifier or html_id without the rest, or an empty value for any of the three, was written by something other than the target transform and leaves a consumer half an anchor that no cross-reference to the bar-list can resolve. The embed transform still strips all three when the page is embedded elsewhere, which costs the anchor and nothing else, because every property a renderer reads — max, total, columns and items — is a sibling of them rather than inside them. Every node below the root keeps the flat ban in noEmbedKeys, and the retired naLabel is refused here too, for the same reason it is refused there.",
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "identifier": { "type": "string", "minLength": 1 },
+        "html_id": { "type": "string", "minLength": 1 },
+        "naLabel": false
+      },
+      "dependentRequired": {
+        "identifier": ["label", "html_id"],
+        "html_id": ["label", "identifier"]
       }
     },
     "item": {
@@ -282,7 +296,8 @@
           "prefixItems": [{ "$ref": "#/$defs/text" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "headerCellRight": {
@@ -301,7 +316,8 @@
           "prefixItems": [{ "$ref": "#/$defs/text" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "labelCell": {
@@ -319,7 +335,8 @@
           "prefixItems": [{ "$ref": "#/$defs/labelSpan" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "noteCell": {
@@ -337,7 +354,8 @@
           "prefixItems": [{ "$ref": "#/$defs/noteSpan" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "valueCell": {
@@ -355,12 +373,13 @@
           "prefixItems": [{ "$ref": "#/$defs/valueSpan" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "valueSpan": {
       "type": "object",
-      "description": "The value span. Closed but for the engine's own key and position: an inner node carries its class and nothing else — no contract, no primitive, no second copy of the item it renders.",
+      "description": "The value span. Closed but for the engine's own key, position and data: an inner node carries its class and nothing else — no contract, no primitive, no second copy of the item it renders. data is admitted because it is an ordinary mdast field and the one this family's deferred diagnostics ride on, so a node that carries a diagnostic must still validate.",
       "required": ["type", "class", "children"],
       "additionalProperties": false,
       "properties": {
@@ -385,12 +404,13 @@
           ]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "labelSpan": {
       "type": "object",
-      "description": "The label span, wrapping one text node whose value is items[i].label verbatim. Closed but for the engine's own key and position.",
+      "description": "The label span, wrapping one text node whose value is items[i].label verbatim. Closed but for the engine's own key, position and data.",
       "required": ["type", "class", "children"],
       "additionalProperties": false,
       "properties": {
@@ -403,12 +423,13 @@
           "prefixItems": [{ "$ref": "#/$defs/text" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "noteSpan": {
       "type": "object",
-      "description": "The note span, wrapping one text node whose value is items[i].note, or the em dash when the note is null. Closed but for the engine's own key and position.",
+      "description": "The note span, wrapping one text node whose value is items[i].note, or the em dash when the note is null. Closed but for the engine's own key, position and data.",
       "required": ["type", "class", "children"],
       "additionalProperties": false,
       "properties": {
@@ -421,7 +442,8 @@
           "prefixItems": [{ "$ref": "#/$defs/text" }]
         },
         "key": { "type": "string" },
-        "position": { "type": "object" }
+        "position": { "type": "object" },
+        "data": { "type": "object" }
       }
     },
     "strong": {

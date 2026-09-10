@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quantecon.github.io/quantecon-plugins.mystmd/schema/stacked-bar.json",
   "title": "qe-dv stacked-bar",
-  "description": "Root node emitted by the datavis `stacked-bar` directive at contract 1.0: one or more proportional stacked bars sharing a single ordered set of categories. The node is a portable MyST `div`; the measured data rides as properties and the children are a genuine table carrying the same measured numbers, so a theme with no custom renderer still shows every value. The data lives exactly twice — once in the properties, once rendered in the fallback — and no node the directive emits carries a top-level `label`, `identifier` or `html_id`, because `myst-cli`'s embed transform deletes all three from any node that is not a crossReference, cite, footnote, captionNumber or link.",
+  "description": "Root node emitted by the datavis `stacked-bar` directive at contract 1.0: one or more proportional stacked bars sharing a single ordered set of categories. The node is a portable MyST `div`; the measured data rides as properties and the children are a genuine table carrying the same measured numbers, so a theme with no custom renderer still shows every value. The data lives exactly twice — once in the properties, once rendered in the fallback. The root tolerates the `label`, `identifier` and `html_id` that the engine's target transform stamps on a block preceded by a `(target)=` line; the fallback's table, its rows and its cells are closed against all three, because there an anchor key can only be an emitter typo, and `myst-cli`'s embed transform deletes all three from any node that is not a crossReference, cite, footnote, captionNumber or link in any case. The inline nodes inside a cell are the exception: `$defs.inlineNode` stays open, so there the ban binds the emitter and no keyword in this file catches a breach of it. Where the root does tolerate the trio it tolerates it as the transform stamps it: `dependentRequired` ties `identifier` and `html_id` each to the other two, so a partial anchor on a stacked bar is caught as the invention it is, while a lone `label` — which the engine emits whenever a `:label:` value normalises to an empty identifier — stays legal.",
   "type": "object",
   "required": [
     "type",
@@ -109,9 +109,25 @@
       ]
     },
     "naLabel": false,
-    "label": false,
-    "identifier": false,
-    "html_id": false
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Anchor name for the block, stamped on the root — with `identifier` and `html_id` — by the engine's target transform when a `(target)=` line precedes the directive. The directive never writes it, and the root tolerates it only so that an anchored block is not rejected as a tree the engine itself produced; the fallback's table, its rows and its cells stay closed against it, where the key could only be an emitter typo, while a cell's inline nodes stay open and are held to the same ban by the emitter alone. `minLength` is 1 because neither a `(target)=` line nor a `:label:` option can name a block with the empty string, so an empty `label` on a stacked bar is a wrapper's placeholder rather than a stamped anchor. `dependentRequired` below deliberately hangs no leg on this key: give the directive `:label: '` and `normalizeLabel` returns an empty identifier, so the target transform copies the label, drops the other two and the build exits 0 without a warning — a stacked-bar root carrying `label` alone is a tree mystmd really emits, and a rule that refused it would reject the very thing the root's relaxation exists to admit. The anchor buys a local cross-reference and no more: `myst-cli`'s embed transform runs `selectAll('[identifier],[label],[html_id]')` over an embedded subtree and deletes all three from every node whose type is not `crossReference`, `cite`, `footnoteDefinition`, `footnoteReference`, `captionNumber` or `link`, so the anchor disappears the first time the page is embedded elsewhere."
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The normalised form of `label`, stamped by the same target transform and the string a `{ref}` role resolves against. Tolerated at the root for the same reason as `label`, closed out of the fallback's table, rows and cells for the same reason, and non-empty for the same reason. `dependentRequired` below binds it to both companions because the transform stamps the trio as a set: a stacked bar carrying an `identifier` without a `label` or without an `html_id` did not come from a `(target)=` line, it is a wrapper inventing a key, and a `{ref}` resolved against it would send a reader to a bar chart the renderer gave no `id` to."
+    },
+    "html_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The HTML-safe form of `identifier`, stamped by the same target transform and written as the `id` of the element wrapping the bars and their fallback table. Tolerated at the root for the same reason as `label`, closed out of the fallback's table, rows and cells for the same reason, and non-empty for the same reason. `dependentRequired` below binds it to both companions on the same evidence as `identifier`: fuzzing 52,059 labels through `normalizeLabel` and `createHtmlId` produced the two together 51,660 times and one without the other not once, so an `html_id` arriving on a stacked bar alone, or with only one companion, is an emitter's invention rather than a stamped anchor."
+    }
+  },
+  "dependentRequired": {
+    "identifier": ["label", "html_id"],
+    "html_id": ["label", "identifier"]
   },
   "$defs": {
     "inlineNode": {

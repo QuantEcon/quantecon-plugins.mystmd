@@ -2080,6 +2080,156 @@
           ]
         }
       ]
+    },
+    {
+      "type": "div",
+      "class": "qe-dv qe-dv-bar-list",
+      "label": "series-sizes",
+      "identifier": "series-sizes",
+      "html_id": "series-sizes",
+      "contract": "1.0",
+      "primitive": "bar-list",
+      "layout": "compact",
+      "max": 145,
+      "total": null,
+      "columns": [
+        "Series",
+        "Lectures"
+      ],
+      "items": [
+        {
+          "label": "python.myst",
+          "value": 145,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        },
+        {
+          "label": "advanced",
+          "value": 68,
+          "note": null,
+          "secondary": null,
+          "tone": "neutral"
+        }
+      ],
+      "children": [
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Series"
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "header": true,
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Lectures"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "python.myst"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "145"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "children": [
+                {
+                  "type": "tableCell",
+                  "align": "left",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__label",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "advanced"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "align": "right",
+                  "children": [
+                    {
+                      "type": "span",
+                      "class": "qe-dv-bar-list__value",
+                      "children": [
+                        {
+                          "type": "strong",
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "68"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "invalid": [
@@ -5174,7 +5324,8 @@
       }
     },
     {
-      "because": "the root carries a top-level label, which myst-cli's embed transform deletes from every node that is not a crossReference, cite, footnote reference, caption number or link",
+      "because": "the fallback table carries a label, and only the root may carry one: the engine's target transform stamps label, identifier and html_id onto the block an author writes (target)= before, so an anchor key on any node BELOW the root is an emitter's slip",
+      "rejectedAt": "/children/0/label",
       "node": {
         "type": "div",
         "class": "qe-dv qe-dv-bar-list",
@@ -5207,6 +5358,7 @@
         "children": [
           {
             "type": "table",
+            "label": "top-systemic-issues",
             "children": [
               {
                 "type": "tableRow",
@@ -5372,8 +5524,7 @@
               }
             ]
           }
-        ],
-        "label": "top-systemic-issues"
+        ]
       }
     },
     {
@@ -5646,6 +5797,312 @@
           }
         ],
         "naLabel": "N/A"
+      }
+    },
+    {
+      "because": "the root's identifier is a number, and the target transform only ever writes a string there, so a non-string is a wrapper inventing the key rather than the engine stamping it",
+      "rejectedAt": "/identifier",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "label": "series-sizes",
+        "identifier": 12,
+        "html_id": "series-sizes",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "compact",
+        "max": 145,
+        "total": null,
+        "columns": [
+          "Series",
+          "Lectures"
+        ],
+        "items": [
+          {
+            "label": "python.myst",
+            "value": 145,
+            "note": null,
+            "secondary": null,
+            "tone": "neutral"
+          },
+          {
+            "label": "advanced",
+            "value": 68,
+            "note": null,
+            "secondary": null,
+            "tone": "neutral"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "python.myst"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "145"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "advanced"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "68"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "because": "the root carries identifier with no label and no html_id, and rootAnchorKeys' dependentRequired makes identifier require both of them, because normalizeLabel and createHtmlId derive an identifier and an html_id from the same normalised target and the transform never stamps one of that pair alone",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-bar-list",
+        "identifier": "series-sizes",
+        "contract": "1.0",
+        "primitive": "bar-list",
+        "layout": "compact",
+        "max": 145,
+        "total": null,
+        "columns": [
+          "Series",
+          "Lectures"
+        ],
+        "items": [
+          {
+            "label": "python.myst",
+            "value": 145,
+            "note": null,
+            "secondary": null,
+            "tone": "neutral"
+          },
+          {
+            "label": "advanced",
+            "value": 68,
+            "note": null,
+            "secondary": null,
+            "tone": "neutral"
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Series"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lectures"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "python.myst"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "145"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__label",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "advanced"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "span",
+                        "class": "qe-dv-bar-list__value",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "68"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]
