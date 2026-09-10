@@ -284,6 +284,41 @@ node definitions; where a schema leaves an inner definition open for another rea
 binds the emitter even though the schema does not catch it, and closing the gap is a schema bug
 rather than a licence.
 
+#### The trio travels together — except for a lone `label`
+
+The engine writes the three keys as a set, so a root carrying `identifier` without `label`, or
+`html_id` with only one companion, is not a tree the engine can emit: it is a wrapper inventing a
+key, and every schema refuses it. Each schema states that as two dependencies, placed wherever it
+already declares the keys:
+
+```json
+"dependentRequired": {
+  "identifier": ["label", "html_id"],
+  "html_id":    ["label", "identifier"]
+}
+```
+
+**There is deliberately no third dependency binding `label`, because a lone `label` is a tree
+mystmd really emits.** Give a directive `:label: '` and `normalizeLabel` strips the quote, returns
+an empty `identifier` — and so an undefined `html_id` — and `transferTargetAttrs` copies each key
+only when it is truthy. The node ships with a `label` and nothing else, the build exits 0, and
+nothing warns. Verified with a real build; and fuzzing 52,059 labels through `normalizeLabel` and
+`createHtmlId` gives 51,660 full trios, 399 lone labels, and **not one** `identifier` without an
+`html_id`. A rule binding `label` would therefore reject a real tree, which is the whole defect the
+root relaxation exists to avoid, so the asymmetry is the point rather than an oversight.
+
+The three keys are also `minLength: 1` in every schema. Neither a `(target)=` line nor a `:label:`
+option can produce an empty string in any of them: an empty label yields no keys at all, and a
+non-empty one always yields a non-empty `html_id`, because `createHtmlId` prefixes `id-` whenever
+its first surviving character is not a letter.
+
+**The rule is checked by behaviour rather than by shape.** `scripts/validate-contract.mjs` asks
+each schema what it *accepts* — every illegal subset must be rejected, a lone `label` must be
+accepted — which is idiom-blind, so it holds whether a schema states the rule bare on its root or
+inside a `$def`. It lives in `scripts/` on purpose: `schema/1.0/` freezes and is never edited
+again, and that file does not, so the check survives into the next contract version and covers
+every wrapper that emits these shapes.
+
 ### One vocabulary for a missing value
 
 A value that is absent is `null` in the properties and renders as an em dash in the fallback.

@@ -5644,6 +5644,231 @@
         ],
         "naLabel": "N/A"
       }
+    },
+    {
+      "because": "the root carries identifier with no label and no html_id, and the root's dependentRequired binds identifier to both companions because the target transform stamps the trio on the block as a set — a stacked bar with a bare identifier is a wrapper inventing the key a {ref} would resolve against",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-stacked-bar",
+        "identifier": "stacked-bar-priority-mix",
+        "contract": "1.0",
+        "primitive": "stacked-bar",
+        "dimension": "Priority",
+        "unit": "lectures",
+        "labels": "full",
+        "legend": false,
+        "size": "md",
+        "categories": [
+          {
+            "label": "HIGH",
+            "tone": "bad"
+          },
+          {
+            "label": "MEDIUM",
+            "tone": "warn"
+          },
+          {
+            "label": "LOW",
+            "tone": "warn"
+          },
+          {
+            "label": "NONE",
+            "tone": "good"
+          }
+        ],
+        "bars": [
+          {
+            "label": "lecture-python-programming",
+            "total": 27,
+            "segments": [
+              {
+                "category": "HIGH",
+                "value": 20,
+                "share": 74.1
+              },
+              {
+                "category": "MEDIUM",
+                "value": 0,
+                "share": 0
+              },
+              {
+                "category": "LOW",
+                "value": 5,
+                "share": 18.5
+              },
+              {
+                "category": "NONE",
+                "value": 2,
+                "share": 7.4
+              }
+            ]
+          }
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Priority (lectures)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "lecture-python-programming"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "HIGH"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "20"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "MEDIUM"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "LOW"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "5"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "NONE"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Total"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "27"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }

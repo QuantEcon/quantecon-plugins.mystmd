@@ -70,22 +70,21 @@
     "naLabel": false,
     "label": {
       "type": "string",
-      "description": "Present exactly when the author wrote a `(target)=` line immediately before the directive: mystmd's target transform lifts that target onto the block it precedes, so the root arrives at a consumer already carrying label, identifier and html_id. The root is the one node in the tree where the three are permitted, and only as strings, and only all three at once — dependentRequired below enforces that rather than leaving it asserted, because a root carrying one of them alone did not come from the target transform and no consumer resolving a cross-reference would find it; no node below the root may carry them, because down there the key can only be an emitter's mistake; closed inner definitions catch it, and where one is open the rule still binds the emitter. Permitted is not emitted — this plugin never writes them itself, and myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from a div, so nothing downstream may depend on their being present. A `label` key inside the stats array is a different thing and is required there."
+      "minLength": 1,
+      "description": "Present when the author anchored the stats block: a `(target)=` line immediately before the directive stamps label, identifier and html_id together, and a `:label:` option normally does the same. It can also arrive alone. When the `:label:` value normalises to an empty identifier — `:label: '` is enough — mystmd emits the block carrying label and nothing else, exit 0 and no warning; that was reproduced with a real build, and fuzzing 52,059 labels through normalizeLabel and createHtmlId produced 399 such lone labels. So dependentRequired below deliberately carries no leg for label: binding it would reject a stats block the engine really emits, which is the one defect the root's relaxed typing exists to avoid. Never empty, though: no `(target)=` line and no `:label:` option can yield an empty string, so `label: \"\"` on a stats root is an emitter fault. The root is the one node in the tree where the three keys are permitted; no node below it may carry them, because down there the key can only be an emitter's mistake — the closed inner definitions catch it, and where one is open the rule still binds the emitter. Permitted is not emitted: this plugin never writes them itself, and myst-cli's embed transform runs selectAll('[identifier],[label],[html_id]') over an embedded subtree and deletes all three from a div, so nothing downstream may depend on their being present. A `label` key inside the stats array is a different thing and is required there."
     },
     "identifier": {
       "type": "string",
-      "description": "Present exactly when label is, and for the same reason: the target transform stamps all three keys together, or none of them. dependentRequired below is what makes that a rule rather than a note."
+      "minLength": 1,
+      "description": "Present only alongside label and html_id, and dependentRequired below is what makes that a rule rather than a note: the identifier is what a cross-reference to this stats block resolves against, and one arriving without the label it was normalised from and the html_id the fallback table's container is reached by anchors nothing. The reverse leg is not asserted — a lone label is a shape mystmd really emits — but this direction is safe to bind: across 52,059 fuzzed labels not one produced an identifier without an html_id. Never empty, because an identifier that normalises to the empty string is exactly the case where the engine drops the key and emits the lone label instead."
     },
     "html_id": {
       "type": "string",
-      "description": "Present exactly when label is, and for the same reason: the target transform stamps all three keys together, or none of them. dependentRequired below is what makes that a rule rather than a note."
+      "minLength": 1,
+      "description": "Present only alongside label and identifier, and dependentRequired below is what makes that a rule rather than a note: html_id is the DOM id the stats root is reached by, derived by createHtmlId from the identifier, so it cannot meaningfully exist without the identifier it was derived from or the label that identifier came from. Never empty, for the same reason as identifier: an anchor that normalises away leaves a lone label rather than a blank html_id."
     }
   },
   "dependentRequired": {
-    "label": [
-      "identifier",
-      "html_id"
-    ],
     "identifier": [
       "label",
       "html_id"

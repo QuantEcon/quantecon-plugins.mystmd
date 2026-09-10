@@ -5954,7 +5954,7 @@
       }
     },
     {
-      "because": "the root carries identifier with no label and no html_id, and rootAnchorKeys' dependentRequired binds the three together because the target transform stamps all three from one (target)= line or none of them",
+      "because": "the root carries identifier with no label and no html_id, and rootAnchorKeys' dependentRequired makes identifier require both of them, because normalizeLabel and createHtmlId derive an identifier and an html_id from the same normalised target and the transform never stamps one of that pair alone",
       "rejectedAt": "",
       "node": {
         "type": "div",

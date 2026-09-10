@@ -42,18 +42,22 @@
     "label": {
       "type": "string",
       "minLength": 1,
-      "description": "The target label mystmd's target transform stamps on the root when a `(target)=` line precedes the block, so a badge row can be cross-referenced like any other block. The schema admits it because a real emitted tree carries it; what `myst-cli` later does with the three identity keys when the page is embedded elsewhere is the engine's business rather than a defect in the emission. The rule below the root is unchanged: no node a primitive builds may carry any of the three, because nothing stamps them there and one appearing can only be an emitter's typo. Where an inner definition in this file is closed it enforces that; where one is left open for another reason the rule still binds the emitter, and the gap is a schema bug rather than a licence."
+      "description": "The target label mystmd's target transform stamps on the root when a `(target)=` line precedes the block, so a badge row can be cross-referenced like any other block. The schema admits it because a real emitted tree carries it; what `myst-cli` later does with the three identity keys when the page is embedded elsewhere is the engine's business rather than a defect in the emission. `dependentRequired` beside these properties is what stops the admission becoming a licence for a partial anchor: the target transform stamps the trio as a set from one `(target)=` line, so a badge row arriving with `identifier` but no `label`, or with `label` and `html_id` and no normalised form between them, was not anchored by the engine — it is a wrapper that copied part of somebody else's anchor onto our div and invented the rest, and a consumer resolving the cross-reference would find nothing to resolve. Note which key carries no leg: a lone `label` stays legal on purpose. When a `:label:` option normalises to an empty identifier — `:label: '` is enough — the engine emits the badge row carrying `label` alone, exit 0 and no warning, so requiring the other two beside it would reject a tree mystmd really produces. The rule below the root is unchanged: no node a primitive builds may carry any of the three, because nothing stamps them there and one appearing can only be an emitter's typo. Where an inner definition in this file is closed it enforces that; where one is left open for another reason the rule still binds the emitter, and the gap is a schema bug rather than a licence."
     },
     "identifier": {
       "type": "string",
       "minLength": 1,
-      "description": "The normalised form of `label`, stamped on the root by the same target transform and admitted for the same reason. Root only: no span inside the fallback row is ever a cross-reference target."
+      "description": "The normalised form of `label`, stamped on the root by the same target transform and admitted for the same reason. It never travels alone, and `dependentRequired` beside these properties says so: `normalizeLabel` produces an identifier only from a label, and `createHtmlId` then derives the html_id from that identifier, so a badge row bearing an identifier without both of its neighbours did not come through the target transform at all. Root only: no span inside the fallback row is ever a cross-reference target."
     },
     "html_id": {
       "type": "string",
       "minLength": 1,
-      "description": "The HTML-safe form of `identifier`, stamped on the root by the same target transform and admitted for the same reason. Root only, exactly as `identifier` is."
+      "description": "The HTML-safe form of `identifier`, stamped on the root by the same target transform and admitted for the same reason. It carries the same dependency as `identifier`, and for the tighter reason: an html_id is computed from an identifier, so it cannot precede one, and no label the engine has ever normalised yields an html_id with its identifier missing. Root only, exactly as `identifier` is."
     }
+  },
+  "dependentRequired": {
+    "identifier": ["label", "html_id"],
+    "html_id": ["label", "identifier"]
   },
   "additionalProperties": true,
   "$defs": {

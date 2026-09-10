@@ -3979,7 +3979,7 @@
       }
     },
     {
-      "because": "the root carries an identifier with no label and no html_id, when the target transform stamps all three together or none: dependentRequired must catch the lone key rather than let a root that no cross-reference can resolve pass as anchored",
+      "because": "the root carries an identifier with no label and no html_id, a shape no anchor normalisation produces: dependentRequired's identifier leg must catch it rather than let a root that no cross-reference can resolve pass as anchored. Only identifier and html_id are bound this way — a lone label is a tree mystmd really emits, so it has no leg",
       "rejectedAt": "",
       "node": {
         "type": "div",

@@ -300,6 +300,82 @@ for (const name of sampleNames) {
   });
 }
 
+// 6. The anchor trio travels together, in every primitive.
+//
+//    A `(target)=` line stamps `label`, `identifier` and `html_id` on the block that follows it,
+//    and the engine writes them as a set: 52,059 labels fuzzed through `normalizeLabel` and
+//    `createHtmlId` produce all three or nothing but a bare `label`, and never once an
+//    `identifier` without an `html_id`. So a root carrying `identifier` alone, or `html_id` with
+//    only one of its companions, is not a tree the engine can emit — it is a wrapper inventing a
+//    key, and every schema must refuse it.
+//
+//    `label` ALONE is the exception, and it is legal. Give a directive `:label: '` and
+//    `normalizeLabel` returns an empty identifier, so `transferTargetAttrs` copies the label and
+//    silently drops the other two: the engine emits a lone `label`, exits 0, and warns about
+//    nothing. A rule binding `label` to the other two would therefore reject a real tree, which
+//    is the defect the root relaxation exists to avoid. Hence two dependencies per schema, not
+//    three.
+//
+//    This check exists because the rule itself cannot be trusted to stay put. It is expressed
+//    differently in different schemas — bare on the root where the keys are declared inline, and
+//    inside a `$def` where they are not — and nothing compares the copies, so a schema that
+//    quietly stops enforcing it looks exactly like one that never did. Asking each schema what it
+//    ACCEPTS is idiom-blind, and it is deliberately here in `scripts/` rather than in the schemas:
+//    `schema/1.0/` freezes at v1.0.0 and is never edited again, and this file does not.
+const ANCHOR_KEYS = ['label', 'identifier', 'html_id'];
+/** Every proper non-empty subset of the trio, minus the one the engine really emits. */
+const ILLEGAL_ANCHOR_SUBSETS = [
+  ['identifier'],
+  ['html_id'],
+  ['label', 'identifier'],
+  ['label', 'html_id'],
+  ['identifier', 'html_id'],
+];
+for (const name of sampleNames) {
+  const validate = validators.get(name);
+  const samples = readJson(path.join(sampleDir, `${name}.json`));
+  const base = samples?.valid?.[0];
+  if (!validate || !base) continue;
+
+  for (const subset of ILLEGAL_ANCHOR_SUBSETS) {
+    checks += 1;
+    const node = { ...base };
+    for (const key of ANCHOR_KEYS) delete node[key];
+    for (const key of subset) node[key] = `anchor-${name}`;
+    if (validate(node)) {
+      fail(
+        `schema/${name}.json accepts a root carrying ${subset.join(' and ')} without the rest of the anchor trio — the engine stamps label, identifier and html_id as a set, so a partial anchor is an emitter's invention`,
+      );
+    }
+  }
+
+  // The other half of the same rule, and the reason it is two dependencies rather than three:
+  // a lone `label` IS emitted, so a schema that refuses it is wrong in the opposite direction.
+  checks += 1;
+  const loneLabel = { ...base };
+  for (const key of ANCHOR_KEYS) delete loneLabel[key];
+  loneLabel.label = `anchor-${name}`;
+  if (!validate(loneLabel)) {
+    fail(
+      `schema/${name}.json rejects a root carrying only a label, which mystmd emits whenever a :label: option normalises to an empty identifier — the anchor rule must bind identifier and html_id, never label`,
+    );
+  }
+
+  // And the ordinary case, which is the one an over-eager rule breaks. Without this a schema
+  // that refused the trio outright would satisfy every assertion above — each illegal subset
+  // rejected, for the wrong reason — and the relaxation these checks exist to protect would be
+  // silently undone. Step 5 covers it incidentally, by decorating every root; stating it here
+  // means the anchor rule is tested by one block rather than by two that must be read together.
+  checks += 1;
+  const fullTrio = { ...base };
+  for (const key of ANCHOR_KEYS) fullTrio[key] = `anchor-${name}`;
+  if (!validate(fullTrio)) {
+    fail(
+      `schema/${name}.json rejects a root carrying the whole anchor trio, which is what a (target)= line stamps — the root must admit all three together`,
+    );
+  }
+}
+
 if (verbose && notes.length) console.log(notes.join('\n'));
 
 if (problems.length > 0) {

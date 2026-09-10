@@ -2338,6 +2338,121 @@
           }
         ]
       }
+    },
+    {
+      "because": "the root carries `identifier` alone, with neither `label` nor `html_id`, and the root's `dependentRequired` binds identifier to both of them: mystmd's target transform stamps the trio on a badge row as a set from one `(target)=` line, so a lone normalised identifier is a wrapper copying part of an anchor onto our div rather than anything the engine emitted",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-badges qe-pass-badges",
+        "identifier": "pass-2026-08-badges",
+        "contract": "1.0",
+        "primitive": "badges",
+        "items": [
+          {
+            "label": "Pass 2026-08",
+            "tone": "neutral",
+            "emphasis": "solid"
+          },
+          {
+            "label": "vs 2026-05",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "348 lectures · 5 series",
+            "tone": "neutral",
+            "emphasis": "outline"
+          },
+          {
+            "label": "49 rules",
+            "tone": "neutral",
+            "emphasis": "outline"
+          }
+        ],
+        "children": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-solid",
+                "children": [
+                  {
+                    "type": "strong",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Pass 2026-08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "vs 2026-05"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "348 lectures · 5 series"
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge-sep",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": " · "
+                  }
+                ]
+              },
+              {
+                "type": "span",
+                "class": "qe-dv-badge qe-dv-tone-neutral qe-dv-emph-outline",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "49 rules"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }

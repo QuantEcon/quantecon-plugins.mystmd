@@ -83,16 +83,29 @@
     "naLabel": false,
     "label": {
       "type": "string",
-      "description": "Written by the engine's target transform when a `(target)=` line precedes the block. The directive never emits it, but a labelled block is legitimate, so the root admits it. Below the root the key can only be an emitter's mistake, because no `(target)=` reaches a fallback row or cell and nothing else stamps it there; that ban binds the emitter wherever it applies, and this schema catches it only where it closes an inner definition against the key. The fallback `table`, `tableRow` and `tableCell` are closed against all three; `inlineNode` is not, so a cell's inline content is left to the emitter, which is a gap to close rather than a licence."
+      "minLength": 1,
+      "description": "Written by the engine's target transform when a `(target)=` line precedes the block. The directive never emits it, but a labelled table is legitimate, so the root admits it — as a non-empty string, because neither a `(target)=` line nor a `:label:` option can produce an empty one. The transform stamps `label`, `identifier` and `html_id` as a set, so `dependentRequired` beside this `properties` object binds the other two to each other rather than to this key: a root carrying `identifier` or `html_id` without the rest did not come from the transform and is a wrapper inventing an anchor key on a table nobody can cross-reference. A lone `label` is deliberately still legal, because a `:label:` value that normalises to an empty identifier makes the engine emit exactly that — label alone, exit 0, no warning — and a rule that rejected it would reject a tree mystmd really emits. Below the root the key can only be an emitter's mistake, because no `(target)=` reaches a fallback row or cell and nothing else stamps it there; that ban binds the emitter wherever it applies, and this schema catches it only where it closes an inner definition against the key. The fallback `table`, `tableRow` and `tableCell` are closed against all three; `inlineNode` is not, so a cell's inline content is left to the emitter, which is a gap to close rather than a licence."
     },
     "identifier": {
       "type": "string",
-      "description": "The normalised form of `label`, written by the same transform and admitted for the same reason. Meant for the root alone, and caught below it exactly as far as `label` is."
+      "minLength": 1,
+      "description": "The normalised form of `label`, written by the same transform and admitted for the same reason, and non-empty for the same reason. Never arrives alone: `dependentRequired` beside this `properties` object requires `label` and `html_id` alongside it, because the only writer of this key on a data-table root stamps the trio together. Meant for the root alone, and caught below it exactly as far as `label` is."
     },
     "html_id": {
       "type": "string",
-      "description": "The HTML-safe form of `identifier`, written by the same transform and admitted for the same reason. Meant for the root alone, and caught below it exactly as far as `label` is."
+      "minLength": 1,
+      "description": "The HTML-safe form of `identifier`, written by the same transform and admitted for the same reason, and non-empty for the same reason. Never arrives alone: `dependentRequired` beside this `properties` object requires `label` and `identifier` alongside it — fuzzing the engine's own `normalizeLabel` and `createHtmlId` over 52,059 labels produced no `identifier` without an `html_id` and no `html_id` without an `identifier`, so on a data-table root the pair is either both present or both absent. Meant for the root alone, and caught below it exactly as far as `label` is."
     }
+  },
+  "dependentRequired": {
+    "identifier": [
+      "label",
+      "html_id"
+    ],
+    "html_id": [
+      "label",
+      "identifier"
+    ]
   },
   "allOf": [
     {

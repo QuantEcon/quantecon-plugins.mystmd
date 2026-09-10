@@ -24523,6 +24523,312 @@
         ],
         "naLabel": "N/A"
       }
+    },
+    {
+      "because": "the root carries identifier with no label and no html_id, and the root dependentRequired binds identifier to both: the target transform stamps the trio from a single (target)= line or writes none of it, so a lone identifier on a data-table root is a wrapper inventing an anchor no cross-reference can resolve",
+      "rejectedAt": "",
+      "node": {
+        "type": "div",
+        "class": "qe-dv qe-dv-data-table",
+        "contract": "1.0",
+        "primitive": "data-table",
+        "identifier": "series-attention-triage",
+        "sortable": false,
+        "columns": [
+          {
+            "key": "lecture",
+            "label": "Lecture",
+            "type": "code",
+            "align": "left"
+          },
+          {
+            "key": "writing",
+            "label": "Writing",
+            "type": "number",
+            "align": "right"
+          },
+          {
+            "key": "overall",
+            "label": "Overall",
+            "type": "number",
+            "align": "right"
+          },
+          {
+            "key": "priority",
+            "label": "Priority",
+            "type": "text",
+            "align": "left"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "kind": "code",
+              "value": "about_py",
+              "url": "lectures/about_py"
+            },
+            {
+              "kind": "number",
+              "value": 3
+            },
+            {
+              "kind": "number",
+              "value": 7.1
+            },
+            {
+              "kind": "text",
+              "value": "HIGH"
+            }
+          ],
+          [
+            {
+              "kind": "code",
+              "value": "python_by_example",
+              "url": "lectures/python_by_example"
+            },
+            {
+              "kind": "number",
+              "value": 3
+            },
+            {
+              "kind": "number",
+              "value": 7.2
+            },
+            {
+              "kind": "text",
+              "value": "HIGH"
+            }
+          ],
+          [
+            {
+              "kind": "code",
+              "value": "pandas",
+              "url": "lectures/pandas"
+            },
+            {
+              "kind": "number",
+              "value": 3
+            },
+            {
+              "kind": "number",
+              "value": 7.3
+            },
+            {
+              "kind": "text",
+              "value": "HIGH"
+            }
+          ]
+        ],
+        "children": [
+          {
+            "type": "table",
+            "children": [
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Lecture"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Writing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Overall"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "header": true,
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Priority"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "link",
+                        "url": "lectures/about_py",
+                        "children": [
+                          {
+                            "type": "inlineCode",
+                            "value": "about_py"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "HIGH"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "link",
+                        "url": "lectures/python_by_example",
+                        "children": [
+                          {
+                            "type": "inlineCode",
+                            "value": "python_by_example"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "HIGH"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "children": [
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "link",
+                        "url": "lectures/pandas",
+                        "children": [
+                          {
+                            "type": "inlineCode",
+                            "value": "pandas"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "right",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "7.3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "align": "left",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "HIGH"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
