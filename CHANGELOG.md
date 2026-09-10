@@ -18,7 +18,7 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [0.0.1] — unreleased
+## [0.0.1] — 2026-09-10
 
 The distribution plumbing, with no directives in it yet.
 
