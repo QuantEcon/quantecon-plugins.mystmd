@@ -1,0 +1,19 @@
+# Keeps the GitHub Actions pins in .github/workflows/ on current majors.
+# Two groups, as QuantEcon/actions does, so updates land as at most two PRs a
+# week: minor and patch updates together, and major updates on their own.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "⬆️"
+    groups:
+      github-actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
+      github-actions-major:
+        patterns: ["*"]
+        update-types: [major]
