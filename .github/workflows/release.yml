@@ -99,11 +99,11 @@ jobs:
 
       # The plugin tests drive the real CLI, and a release is exactly the moment
       # that matters: the asset published here is what someone else's build will
-      # load. The pin is upstream 1.10.1 — the version the QuantEcon fork tracks,
+      # load. The pin is upstream 1.12.0 — the version the QuantEcon fork tracks,
       # which has no published package to install from. CONTRIBUTING.md
       # "Engine constraints" records the gap; bump this pin deliberately.
       - name: Install mystmd
-        run: npm install --no-save mystmd@1.10.1
+        run: npm install --no-save mystmd@1.12.0
 
       - name: Add mystmd to PATH
         run: echo "$PWD/node_modules/.bin" >> "$GITHUB_PATH"

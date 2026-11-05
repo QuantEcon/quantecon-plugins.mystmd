@@ -34,17 +34,19 @@ when it is missing, so `npm test` still passes without it — check the skip cou
 believing a green run. On CI the same absence is an error rather than a skip, so a runner
 that has quietly lost the CLI cannot report a green suite.
 
-CI installs upstream `mystmd@1.10.1` from the npm registry. The themes are developed against
-QuantEcon's fork of that version (qe-v10), which is what `myst --version` prints on a
+CI installs upstream `mystmd@1.12.0` from the npm registry. The themes are developed against
+QuantEcon's fork of that version (qe-v14), which is what `myst --version` prints on a
 maintainer's machine; the fork has no published package to install from, so CI and local
 runs test the same version from two builds. A fork-only change to plugin loading would show
 up in one and not the other.
 
 ## Engine constraints
 
-These are not style preferences. Each has been verified against mystmd 1.10.1 (qe-v10). The
-ones a test can pin are pinned, and the section on each says which test; the two that are
-export behaviours of `myst-to-tex` are verified by hand and recorded in the node contract.
+These are not style preferences. Each was verified against mystmd 1.10.1 (qe-v10). The
+ones a test can pin are pinned, and the section on each says which test, so CI re-checks them
+against the pinned engine (now 1.12.0) on every run; the two that are export behaviours of
+`myst-to-tex` are verified by hand and recorded in the node contract (`myst-to-tex` has no
+source change between 1.10.1 and 1.12.0).
 
 **A bundle may import nothing but Node built-ins.** A plugin registered by URL is downloaded
 into the consuming project's `_build` cache and imported from there, so it can resolve
